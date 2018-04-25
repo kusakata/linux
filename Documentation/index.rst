@@ -3,44 +3,35 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-The Linux Kernel documentation
+Linux カーネルドキュメント
 ==============================
 
-This is the top level of the kernel's documentation tree.  Kernel
-documentation, like the kernel itself, is very much a work in progress;
-that is especially true as we work to integrate our many scattered
-documents into a coherent whole.  Please note that improvements to the
-documentation are welcome; join the linux-doc list at vger.kernel.org if
-you want to help out.
+こちらはカーネルのドキュメントツリーの最上部です。カーネルドキュメントはカーネル自体と同じように、まだまだ発展途上です。分散しているドキュメントを整理してまとめる作業が進行しています。ドキュメントの改善提案は歓迎されます。ドキュメントの編集に参加したい場合は vger.kernel.org の linux-doc メーリングリストに参加してください。
 
-Licensing documentation
+ライセンスに関するドキュメント
 -----------------------
 
-The following describes the license of the Linux kernel source code
-(GPLv2), how to properly mark the license of individual files in the source
-tree, as well as links to the full license text.
+以下のドキュメントでは Linux カーネルソースコードのライセンス (GPLv2) について説明しています。ソースツリーの個々のファイルのライセンスの宣言方法やライセンス全文へのリンクがあります。
 
 .. toctree::
    :maxdepth: 2
 
    process/license-rules.rst
 
-User-oriented documentation
+ユーザー向けのドキュメント
 ---------------------------
 
-The following manuals are written for *users* of the kernel — those who are
-trying to get it to work optimally on a given system.
+以下のマニュアルはカーネルの「ユーザー」向けに書かれています。特定の環境で最適の結果を得たい人が対象です。
 
 .. toctree::
    :maxdepth: 2
 
    admin-guide/index
 
-Application-developer documentation
+アプリケーション開発者向けのドキュメント
 -----------------------------------
 
-The user-space API manual gathers together documents describing aspects of
-the kernel interface as seen by application developers.
+ユーザースペース API マニュアルにはアプリケーション開発者が知るべきカーネルインターフェイスについて説明しているドキュメントが記載されています。
 
 .. toctree::
    :maxdepth: 2
@@ -48,14 +39,10 @@ the kernel interface as seen by application developers.
    userspace-api/index	      
 
 
-Introduction to kernel development
+カーネル開発の始め方
 ----------------------------------
 
-These manuals contain overall information about how to develop the kernel.
-The kernel community is quite large, with thousands of developers
-contributing over the course of a year.  As with any large community,
-knowing how things are done will make the process of getting your changes
-merged much easier.
+以下のマニュアルにはカーネルの開発に関するあらゆる情報が載っています。カーネルコミュニティは数千人の開発者からなる巨大なコミュニティであり、年間を通じて開発されています。巨大なコミュニティの常、物事がどのように運用されているのか知ることで変更をマージしてもらいやすくなるでしょう。
 
 .. toctree::
    :maxdepth: 2
@@ -67,14 +54,10 @@ merged much easier.
    trace/index
    maintainer/index
 
-Kernel API documentation
+カーネル API ドキュメント
 ------------------------
 
-These books get into the details of how specific kernel subsystems work
-from the point of view of a kernel developer.  Much of the information here
-is taken directly from the kernel source, with supplemental material added
-as needed (or at least as we managed to add it — probably *not* all that is
-needed).
+以下のブックでは、カーネル開発者の視点から、カーネルサブシステムがどのように機能しているのか詳細に説明しています。情報のほとんどはカーネルソースから直接引用されており、必要に応じて補足を追加しています (あるいは追加することができた最低限 — 必要な補足が全て揃っているとは限りません)。
 
 .. toctree::
    :maxdepth: 2
@@ -90,18 +73,22 @@ needed).
    crypto/index
    filesystems/index
 
-Architecture-specific documentation
+アーキテクチャ個別のドキュメント
 -----------------------------------
 
-These books provide programming details about architecture-specific
-implementation.
+以下のブックでは特定のアーキテクチャの実装に関するプログラミングの詳細情報を提供しています。
 
 .. toctree::
    :maxdepth: 2
 
    sh/index
+   
+日本語訳
+------------
 
-Indices and tables
+この日本語訳は ArchWiki の副読本として日本 Arch Linux ユーザー会のメンテナが非公式に翻訳・編集しています。翻訳文の提案や改善は https://github.com/kusakata/linux で受け付けています。
+
+総索引
 ==================
 
 * :ref:`genindex`
