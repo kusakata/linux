@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Linux カーネルドキュメント
+Arch Linux カーネルドキュメント
 ==============================
 
 こちらはカーネルのドキュメントツリーの最上部です。カーネルドキュメントはカーネル自体と同じように、まだまだ発展途上です。分散しているドキュメントを整理してまとめる作業が進行しています。ドキュメントの改善提案は歓迎されます。ドキュメントの編集に参加したい場合は vger.kernel.org の linux-doc メーリングリストに参加してください。
