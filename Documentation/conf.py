@@ -58,8 +58,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Arch Linux カーネルドキュメント'
-copyright = 'カーネル開発コミュニティ'
-author = 'カーネル開発コミュニティ'
+copyright = 'The kernel development community'
+author = 'The kernel development community'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

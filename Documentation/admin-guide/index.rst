@@ -1,14 +1,9 @@
-The Linux kernel user's and administrator's guide
+Linux カーネルユーザー・管理者ガイド
 =================================================
 
-The following is a collection of user-oriented documents that have been
-added to the kernel over time.  There is, as yet, little overall order or
-organization here — this material was not written to be a single, coherent
-document!  With luck things will improve quickly over time.
+以下は年月と共にカーネルに追加されてきたユーザー向けドキュメント集です。ただし、順序・系統づけられているとは言い難いものがあります — ひとつの首尾一貫したドキュメントとしては書かれていないためです。時間と共に急速に改善されていくことでしょう。
 
-This initial section contains overall information, including the README
-file describing the kernel as a whole, documentation on kernel parameters,
-etc.
+最初のセクションでは全体的な情報が記載されています。カーネル全体を説明している README やカーネルパラメータのドキュメントなどが含まれます。
 
 .. toctree::
    :maxdepth: 1
@@ -17,8 +12,7 @@ etc.
    kernel-parameters
    devices
 
-Here is a set of documents aimed at users who are trying to track down
-problems and bugs in particular.
+以下は特定の問題やバグを追跡しようとしているユーザーのためのドキュメントです。
 
 .. toctree::
    :maxdepth: 1
@@ -32,17 +26,14 @@ problems and bugs in particular.
    dynamic-debug-howto
    init
 
-This is the beginning of a section with information of interest to
-application developers.  Documents covering various aspects of the kernel
-ABI will be found here.
+アプリケーション開発者の興味を引くような情報がセクションの冒頭にあります。カーネル ABI の様々な面をカバーするドキュメントはこちらです。
 
 .. toctree::
    :maxdepth: 1
 
    sysfs-rules
 
-The rest of this manual consists of various unordered guides on how to
-configure specific aspects of kernel behavior to your liking.
+後はカーネルの特定の挙動を好みに合わせるために設定する方法を説明した様々な順不同のガイドになります。
 
 .. toctree::
    :maxdepth: 1

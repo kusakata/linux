@@ -1,5 +1,5 @@
-Using the initial RAM disk (initrd)
-===================================
+初期 RAM ディスク (initrd) を使用する
+======================================
 
 Written 1996,2000 by Werner Almesberger <werner.almesberger@epfl.ch> and
 Hans Lermen <lermen@fgan.de>
