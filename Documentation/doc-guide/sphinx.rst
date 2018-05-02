@@ -1,10 +1,7 @@
-Introduction
-============
+イントロダクション
+===================
 
-The Linux kernel uses `Sphinx`_ to generate pretty documentation from
-`reStructuredText`_ files under ``Documentation``. To build the documentation in
-HTML or PDF formats, use ``make htmldocs`` or ``make pdfdocs``. The generated
-documentation is placed in ``Documentation/output``.
+Linux カーネルは `Sphinx`_ を使用して ``Documentation`` の `reStructuredText`_ ファイルからドキュメントを生成します。HTML または PDF 形式でドキュメントを作成するには、``make htmldocs`` または ``make pdfdocs`` を使ってください。生成されたドキュメントは ``Documentation/output`` に配置されます。
 
 .. _Sphinx: http://www.sphinx-doc.org/
 .. _reStructuredText: http://docutils.sourceforge.net/rst.html
@@ -21,8 +18,8 @@ over time, but the bulk of them will remain in plain text.
 
 .. _sphinx_install:
 
-Sphinx Install
-==============
+Sphinx のインストール
+======================
 
 The ReST markups currently used by the Documentation/ files are meant to be
 built with ``Sphinx`` version 1.3 or upper. If you're desiring to build
@@ -65,7 +62,7 @@ in order to indicate that you're using the new environment. If you
 open a new shell, you need to rerun this command to enter again at
 the virtual environment before building the documentation.
 
-Image output
+画像出力
 ------------
 
 The kernel documentation build system contains an extension that
@@ -77,8 +74,8 @@ packages. If those packages are not installed, the build system will
 still build the documentation, but won't include any images at the
 output.
 
-PDF and LaTeX builds
---------------------
+PDF と LaTeX のビルド
+------------------------
 
 Such builds are currently supported only with Sphinx versions 1.4 and upper.
 
@@ -90,8 +87,8 @@ required for ``XeLaTeX`` to work.
 
 .. _sphinx-pre-install:
 
-Checking for Sphinx dependencies
---------------------------------
+Sphinx の依存パッケージのチェック
+-----------------------------------
 
 There's a script that automatically check for Sphinx dependencies. If it can
 recognize your distribution, it will also give a hint about the install
@@ -123,8 +120,8 @@ It supports two optional parameters:
 	Use OS packaging for Sphinx instead of Python virtual environment.
 
 
-Sphinx Build
-============
+Sphinx のビルド
+=================
 
 The usual way to generate the documentation is to run ``make htmldocs`` or
 ``make pdfdocs``. There are also other formats available, see the documentation
@@ -143,7 +140,7 @@ output.
 
 To remove the generated documentation, run ``make cleandocs``.
 
-Writing Documentation
+ドキュメントの記述
 =====================
 
 Adding new documentation can be as simple as:
@@ -219,7 +216,7 @@ Here are some specific guidelines for the kernel documentation:
   from highlighting.
 
 
-the C domain
+C ドメイン
 ------------
 
 The **Sphinx C Domain** (name c) is suited for documentation of C API. E.g. a

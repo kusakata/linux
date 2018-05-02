@@ -1,6 +1,6 @@
 .. _kernelparameters:
 
-The kernel's command-line parameters
+カーネルのコマンドラインパラメータ
 ====================================
 
 The following is a consolidated list of the kernel parameters as

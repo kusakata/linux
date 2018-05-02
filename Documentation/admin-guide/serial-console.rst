@@ -1,7 +1,7 @@
 .. _serial_console:
 
-Linux Serial Console
-====================
+Linux シリアルコンソール
+==========================
 
 To use a serial port as console you need to compile the support into your
 kernel - by default it is not compiled in. For PC style serial ports

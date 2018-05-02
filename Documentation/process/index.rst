@@ -5,7 +5,7 @@
 
 .. _process_index:
 
-Working with the kernel development community
+カーネル開発コミュニティとの共同作業
 =============================================
 
 So you want to be a Linux kernel developer?  Welcome!  While there is a lot

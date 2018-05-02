@@ -1,7 +1,7 @@
 .. SPDX-License-Identifier: GPL-2.0
 
-Linux kernel licensing rules
-============================
+Linux カーネルライセンス規則
+==============================
 
 The Linux Kernel is provided under the terms of the GNU General Public
 License version 2 only (GPL-2.0), as provided in LICENSES/preferred/GPL-2.0,
@@ -53,7 +53,7 @@ The valid identifiers used in the kernel are explained in the section
 `License identifiers`_ and have been retrieved from the official SPDX
 license list at https://spdx.org/licenses/ along with the license texts.
 
-License identifier syntax
+ライセンス識別子の書式
 -------------------------
 
 1. Placement:
@@ -146,7 +146,7 @@ License identifier syntax
 
       // SPDX-License-Identifier: GPL-1.0+ AND LGPL-2.1+
 
-License identifiers
+ライセンス識別子
 -------------------
 
 The licenses currently used, as well as the licenses for code added to the

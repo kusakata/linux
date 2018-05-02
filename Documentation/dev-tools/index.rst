@@ -1,5 +1,5 @@
 ================================
-Development tools for the kernel
+カーネルの開発ツール
 ================================
 
 This document is a collection of documents about development tools that can

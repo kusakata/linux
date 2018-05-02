@@ -1,5 +1,5 @@
 
-Linux allocated devices (4.x+ version)
+Linux 予約デバイス (4.x+ バージョン)
 ======================================
 
 This list is the Linux Device List, the official registry of allocated

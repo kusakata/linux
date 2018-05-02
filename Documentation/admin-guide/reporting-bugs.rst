@@ -1,9 +1,9 @@
 .. _reportingbugs:
 
-Reporting bugs
+バグの報告
 ++++++++++++++
 
-Background
+背景
 ==========
 
 The upstream Linux kernel maintainers only fix bugs for specific kernel
@@ -21,11 +21,11 @@ kernels, and see if you can reproduce the bug on that.  It's preferable
 to reproduce the bug on the latest -rc kernel.
 
 
-How to report Linux kernel bugs
+Linux カーネルバグの報告方法
 ===============================
 
 
-Identify the problematic subsystem
+問題のサブシステムの判別
 ----------------------------------
 
 Identifying which part of the Linux kernel might be causing your issue
@@ -39,7 +39,7 @@ maintainer doesn't answer, then expand your scope to mailing lists like
 LKML.
 
 
-Identify who to notify
+通知するべき人の確認
 ----------------------
 
 Once you know the subsystem that is causing the issue, you should send a
@@ -70,7 +70,7 @@ information on the linux-kernel mailing list see
 http://www.tux.org/lkml/).
 
 
-Tips for reporting bugs
+バグ報告のヒント
 -----------------------
 
 If you haven't reported a bug before, please read:
@@ -85,7 +85,7 @@ bugs at once, it's difficult for maintainers to tease apart the relevant
 data.
 
 
-Gather information
+情報の収集
 ------------------
 
 The most important information in a bug report is how to reproduce the
@@ -136,11 +136,11 @@ summary from [1.]>" for easy identification by the developers::
   [X.] Other notes, patches, fixes, workarounds:
 
 
-Follow up
-=========
+フォローアップ
+================
 
-Expectations for bug reporters
-------------------------------
+バグを報告した人に求められること
+----------------------------------
 
 Linux kernel maintainers expect bug reporters to be able to follow up on
 bug reports.  That may include running new tests, applying patches,
@@ -154,7 +154,7 @@ up reports, such as replying to the email thread with "I tried the latest
 kernel and I can't reproduce my bug anymore" are also helpful, because
 maintainers have to assume silence means things are still broken.
 
-Expectations for kernel maintainers
+カーネルメンテナに求められること
 -----------------------------------
 
 Linux kernel maintainers are busy, overworked human beings.  Some times

@@ -1,14 +1,14 @@
 .. _securitybugs:
 
-Security bugs
-=============
+セキュリティバグ
+=================
 
 Linux kernel developers take security very seriously.  As such, we'd
 like to know when a security bug is found so that it can be fixed and
 disclosed as quickly as possible.  Please report security bugs to the
 Linux kernel security team.
 
-Contact
+連絡
 -------
 
 The Linux kernel security team can be contacted by email at
@@ -26,7 +26,7 @@ information is helpful.  Any exploit code is very helpful and will not
 be released without consent from the reporter unless it has already been
 made public.
 
-Disclosure
+開示
 ----------
 
 The goal of the Linux kernel security team is to work with the bug
@@ -44,7 +44,7 @@ timeframe varies from immediate (esp. if it's already publicly known bug)
 to a few weeks.  As a basic default policy, we expect report date to
 release date to be on the order of 7 days.
 
-Coordination
+協力
 ------------
 
 Fixes for sensitive bugs, such as those that might lead to privilege
@@ -59,7 +59,7 @@ include linux-distros from the start. In this case, remember to prefix
 the email Subject line with "[vs]" as described in the linux-distros wiki:
 <http://oss-security.openwall.org/wiki/mailing-lists/distros#how-to-use-the-lists>
 
-CVE assignment
+CVE 割当
 --------------
 
 The security team does not normally assign CVEs, nor do we require them
@@ -70,7 +70,7 @@ linux-distros list, described above. When such a CVE identifier is known
 before a patch is provided, it is desirable to mention it in the commit
 message, though.
 
-Non-disclosure agreements
+未開示協定
 -------------------------
 
 The Linux kernel security team is not a formal body and therefore unable
