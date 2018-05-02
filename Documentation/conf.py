@@ -222,7 +222,7 @@ html_context = {
 #html_split_index = False
 
 # If true, links to the reST sources are added to the pages.
-#html_show_sourcelink = True
+html_show_sourcelink = False
 
 # If true, "Created using Sphinx" is shown in the HTML footer. Default is True.
 #html_show_sphinx = True
@@ -233,7 +233,7 @@ html_context = {
 # If true, an OpenSearch description file will be output, and all pages will
 # contain a <link> tag referring to it.  The value of this option must be the
 # base URL from which the finished HTML is served.
-#html_use_opensearch = ''
+html_use_opensearch = 'https://doc.kusakata.com'
 
 # This is the file name suffix for HTML files (e.g. ".xhtml").
 #html_file_suffix = None
