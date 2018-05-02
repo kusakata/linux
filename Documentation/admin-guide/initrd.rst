@@ -5,28 +5,20 @@ Written 1996,2000 by Werner Almesberger <werner.almesberger@epfl.ch> and
 Hans Lermen <lermen@fgan.de>
 
 
-initrd provides the capability to load a RAM disk by the boot loader.
-This RAM disk can then be mounted as the root file system and programs
-can be run from it. Afterwards, a new root file system can be mounted
-from a different device. The previous root (from initrd) is then moved
-to a directory and can be subsequently unmounted.
+initrd はブートローダーから RAM ディスクをロードする機能を提供します。RAM ディスクはルートファイルシステムとしてマウントされプログラムが実行できるようになります。その後、別のデバイスから新しいルートファイルシステムがマウントされます。前のルートファイルシステム (initrd) はディレクトリに移動され、アンマウントが可能になります。
 
-initrd is mainly designed to allow system startup to occur in two phases,
-where the kernel comes up with a minimum set of compiled-in drivers, and
-where additional modules are loaded from initrd.
+initrd は主としてシステムの起動を二段階で行うことができるようにするためにあります。まず組み込まれた最小限のドライバーでカーネルが立ち上がり、それから initrd から追加モジュールがロードされます。
 
-This document gives a brief overview of the use of initrd. A more detailed
-discussion of the boot process can be found in [#f1]_.
+このドキュメントでは initrd の使い方について簡単な説明を行います。ブートプロセスに関する詳しい解説は [#f1]_ を参照してください。
 
 
-Operation
+操作
 ---------
 
-When using initrd, the system typically boots as follows:
+initrd を使用する時、システムは基本的に以下のように起動します:
 
-  1) the boot loader loads the kernel and the initial RAM disk
-  2) the kernel converts initrd into a "normal" RAM disk and
-     frees the memory used by initrd
+  1) ブートローダーがカーネルと初期 RAM ディスクをロードします。
+  2) カーネルは initrd を通常の RAM ディスクに変換して initrd が使用しているメモリを開放します。
   3) if the root device is not ``/dev/ram0``, the old (deprecated)
      change_root procedure is followed. see the "Obsolete root change
      mechanism" section below.

@@ -1,9 +1,7 @@
-Linux kernel release 4.x <http://kernel.org/>
-=============================================
+Linux カーネルリリース 4.x <http://kernel.org/>
+=================================================
 
-These are the release notes for Linux version 4.  Read them carefully,
-as they tell you what this is all about, explain how to install the
-kernel, and what to do if something goes wrong.
+以下は Linux バージョン 4 のリリースノートです。Linux は何なのかということから、カーネルのインストール方法、何か問題が起こった時の対処方法まで書かれているので、注意して読んでください。
 
 What is Linux?
 --------------
