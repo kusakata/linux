@@ -3,39 +3,23 @@ Linux カーネルリリース 4.x <http://kernel.org/>
 
 以下は Linux バージョン 4 のリリースノートです。Linux は何なのかということから、カーネルのインストール方法、何か問題が起こった時の対処方法まで書かれているので、注意して読んでください。
 
-What is Linux?
+Linux とは？
 --------------
 
-  Linux is a clone of the operating system Unix, written from scratch by
-  Linus Torvalds with assistance from a loosely-knit team of hackers across
-  the Net. It aims towards POSIX and Single UNIX Specification compliance.
+  Linux は Unix オペレーティングシステムのクローンであり、ネット上で緩く結びついているハッカーたちの助けを借りながら、Linus Torvalds によってスクラッチから書かれました。POSIX と Single UNIX Specification 規格に準拠しています。
 
-  It has all the features you would expect in a modern fully-fledged Unix,
-  including true multitasking, virtual memory, shared libraries, demand
-  loading, shared copy-on-write executables, proper memory management,
-  and multistack networking including IPv4 and IPv6.
+  Linux には近代的な Unix が備えて然るべき機能が全て揃っています。真のマルチタスク、仮想メモリ、共有ライブラリ、動的ロード、共有のコピーオンライトな実行ファイル、適切なメモリ管理、IPv4 や IPv6 を含むマルチスタックネットワーク。
 
-  It is distributed under the GNU General Public License v2 - see the
-  accompanying COPYING file for more details.
+  Linux は GNU General Public License v2 の下で配布されています。詳しくは付属の COPYING ファイルを参照してください。
 
-On what hardware does it run?
------------------------------
+Linux が動作するハードウェアは？
+---------------------------------
 
-  Although originally developed first for 32-bit x86-based PCs (386 or higher),
-  today Linux also runs on (at least) the Compaq Alpha AXP, Sun SPARC and
-  UltraSPARC, Motorola 68000, PowerPC, PowerPC64, ARM, Hitachi SuperH, Cell,
-  IBM S/390, MIPS, HP PA-RISC, Intel IA-64, DEC VAX, AMD x86-64 Xtensa, and
-  ARC architectures.
+  Linux は当初32ビットの x86 ベース PC (386 以上) 向けに開発されていましたが、今日の Linux は Compaq Alpha AXP, Sun SPARC, UltraSPARC, Motorola 68000, PowerPC, PowerPC64, ARM, Hitachi SuperH, Cell, IBM S/390, MIPS, HP PA-RISC, Intel IA-64, DEC VAX, AMD x86-64 Xtensa, ARC アーキテクチャなどでも動作します。
 
-  Linux is easily portable to most general-purpose 32- or 64-bit architectures
-  as long as they have a paged memory management unit (PMMU) and a port of the
-  GNU C compiler (gcc) (part of The GNU Compiler Collection, GCC). Linux has
-  also been ported to a number of architectures without a PMMU, although
-  functionality is then obviously somewhat limited.
-  Linux has also been ported to itself. You can now run the kernel as a
-  userspace application - this is called UserMode Linux (UML).
+  ページメモリ管理ユニット (PMMU) を搭載していて (GNU Compiler Collection, GCC に含まれている) GNU C コンパイラ (gcc) の移植が存在すれば、簡単に Linux を32ビット・64ビットのアーキテクチャに移植することができます。Linux は PMMU を搭載していないアーキテクチャにも数多く移植されていますが、機能はかなり制限されます。Linux は Linux 自身にも移植されています。カーネルをユーザー空間アプリケーションとして動作させることが可能であり、これは UserMode Linux (UML) と呼ばれます。
 
-Documentation
+ドキュメント
 -------------
 
  - There is a lot of documentation available both in electronic form on
@@ -53,8 +37,8 @@ Documentation
    contains information about the problems, which may result by upgrading
    your kernel.
 
-Installing the kernel source
-----------------------------
+カーネルソースのインストール
+-----------------------------
 
  - If you install the full sources, put the kernel tarball in a
    directory where you have permissions (e.g. your home directory) and
@@ -108,7 +92,7 @@ Installing the kernel source
 
    You should now have the sources correctly installed.
 
-Software requirements
+ソフトウェア要件
 ---------------------
 
    Compiling and running the 4.x kernels requires up-to-date
@@ -120,7 +104,7 @@ Software requirements
    you can just update packages when obvious problems arise during
    build or operation.
 
-Build directory for the kernel
+カーネルのビルドディレクトリ
 ------------------------------
 
    When compiling the kernel, all output files will per default be
@@ -142,7 +126,7 @@ Build directory for the kernel
    Please note: If the ``O=output/dir`` option is used, then it must be
    used for all invocations of make.
 
-Configuring the kernel
+カーネルの設定
 ----------------------
 
    Do not skip this step even if you are only upgrading one minor
@@ -245,8 +229,8 @@ Configuring the kernel
       should probably answer 'n' to the questions for "development",
       "experimental", or "debugging" features.
 
-Compiling the kernel
---------------------
+カーネルのコンパイル
+----------------------
 
  - Make sure you have at least gcc 3.2 available.
    For more information, refer to :ref:`Documentation/process/changes.rst <changes>`.
@@ -318,7 +302,7 @@ Compiling the kernel
 
  - Reboot with the new kernel and enjoy.
 
-If something goes wrong
+問題が起こったら
 -----------------------
 
  - If you have problems that seem to be due to kernel bugs, please check
