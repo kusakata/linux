@@ -3,25 +3,18 @@
 Linux カーネルライセンス規則
 ==============================
 
-The Linux Kernel is provided under the terms of the GNU General Public
-License version 2 only (GPL-2.0), as provided in LICENSES/preferred/GPL-2.0,
-with an explicit syscall exception described in
-LICENSES/exceptions/Linux-syscall-note, as described in the COPYING file.
+Linux カーネルは GNU General Public License version 2 のみ (GPL-2.0) で配布されています。ライセンスの文言は LICENSES/preferred/GPL-2.0 にあります。ただし COPYING で説明されているように LICENSES/exceptions/Linux-syscall-note の記載があるシステムコールは例外です。
 
-This documentation file provides a description of how each source file
-should be annotated to make its license clear and unambiguous.
-It doesn't replace the Kernel's license.
+このドキュメントファイルではライセンスを明確にするために各ソースファイルに注釈を付ける方法を説明しています。カーネルのライセンスは置き換わりません。
 
-The license described in the COPYING file applies to the kernel source
-as a whole, though individual source files can have a different license
-which is required to be compatible with the GPL-2.0::
+COPYING ファイルで説明しているライセンスはカーネルソース全体に適用されますが、個別のソースコードでは GPL-2.0 と互換性のある他のライセンスが使われている場合があります::
 
-    GPL-1.0+  :  GNU General Public License v1.0 or later
-    GPL-2.0+  :  GNU General Public License v2.0 or later
-    LGPL-2.0  :  GNU Library General Public License v2 only
-    LGPL-2.0+ :  GNU Library General Public License v2 or later
-    LGPL-2.1  :  GNU Lesser General Public License v2.1 only
-    LGPL-2.1+ :  GNU Lesser General Public License v2.1 or later
+    GPL-1.0+  :  GNU General Public License v1.0 以上
+    GPL-2.0+  :  GNU General Public License v2.0 以上
+    LGPL-2.0  :  GNU Library General Public License v2 のみ
+    LGPL-2.0+ :  GNU Library General Public License v2 以上
+    LGPL-2.1  :  GNU Lesser General Public License v2.1 のみ
+    LGPL-2.1+ :  GNU Lesser General Public License v2.1 以上
 
 Aside from that, individual files can be provided under a dual license,
 e.g. one of the compatible GPL variants and alternatively under a
