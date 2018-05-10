@@ -1,17 +1,14 @@
 =====================================
-The Linux kernel user-space API guide
+Linux カーネルユーザー空間 API ガイド
 =====================================
 
 .. _man-pages: https://www.kernel.org/doc/man-pages/
 
-While much of the kernel's user-space API is documented elsewhere
-(particularly in the man-pages_ project), some user-space information can
-also be found in the kernel tree itself.  This manual is intended to be the
-place where this information is gathered.
+カーネルのユーザースペース API の多くは (man-pages_ プロジェクトなど) 他の場所でもドキュメント化されていますが、カーネルツリーの中にもユーザー空間の情報が存在します。このマニュアルではそのような情報を収集することができます。
 
 .. class:: toc-title
 
-	   Table of contents
+	   目次
 
 .. toctree::
    :maxdepth: 2
