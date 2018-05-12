@@ -22,36 +22,20 @@ Linux が動作するハードウェアは？
 ドキュメント
 -------------
 
- - There is a lot of documentation available both in electronic form on
-   the Internet and in books, both Linux-specific and pertaining to
-   general UNIX questions.  I'd recommend looking into the documentation
-   subdirectories on any Linux FTP site for the LDP (Linux Documentation
-   Project) books.  This README is not meant to be documentation on the
-   system: there are much better sources available.
+ - Linux や UNIX に関するドキュメントはインターネット上に電子媒体として、あるいは書籍として大量に存在します。Linux FTP サイトのドキュメントサブディレクトリの LDP (Linux Documentation Project) 文書を閲覧することを推奨します。この README はシステムのドキュメントではありません: 他にもっとよい情報源がいくらでもあります。
 
- - There are various README files in the Documentation/ subdirectory:
-   these typically contain kernel-specific installation notes for some
-   drivers for example. See Documentation/00-INDEX for a list of what
-   is contained in each file.  Please read the
-   :ref:`Documentation/process/changes.rst <changes>` file, as it
-   contains information about the problems, which may result by upgrading
-   your kernel.
+ - Documentation/ サブディレクトリには様々な README ファイルが存在します: 基本的にはカーネルのインストールノート、例えばドライバーについての情報が含まれています。Documentation/00-INDEX は各ファイルに何の情報が含まれているか書かれているリストです。カーネルをアップグレードするときに発生する可能性がある問題についての情報は :ref:`Documentation/process/changes.rst <changes>` ファイルを参照してください。
 
 カーネルソースのインストール
 -----------------------------
 
- - If you install the full sources, put the kernel tarball in a
-   directory where you have permissions (e.g. your home directory) and
-   unpack it::
+ - 完全なソースをインストールする場合、カーネルの tarball を適当なパーミッションがあるディレクトリ (例: ホームディレクトリ) に配置して解凍してください::
 
      xz -cd linux-4.X.tar.xz | tar xvf -
 
-   Replace "X" with the version number of the latest kernel.
+   "X" は最新のカーネルのバージョンに置き換えてください。
 
-   Do NOT use the /usr/src/linux area! This area has a (usually
-   incomplete) set of kernel headers that are used by the library header
-   files.  They should match the library, and not get messed up by
-   whatever the kernel-du-jour happens to be.
+   /usr/src/linux を使ってはいけません。ここにはライブラリのヘッダーファイルが使用するカーネルヘッダーが含まれています。ライブラリと一致している必要があるため、最新カーネル (kernel-du-jour) を置いてしまうと問題が発生します。
 
  - You can also upgrade between 4.x releases by patching.  Patches are
    distributed in the xz format.  To install by patching, get all the

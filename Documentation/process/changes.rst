@@ -1,33 +1,24 @@
 .. _changes:
 
-Minimal requirements to compile the Kernel
+カーネルをコンパイルするための最小要件
 ++++++++++++++++++++++++++++++++++++++++++
 
-Intro
-=====
+イントロダクション
+====================
 
-This document is designed to provide a list of the minimum levels of
-software necessary to run the 4.x kernels.
+このドキュメントでは 4.x カーネルを動作させるのに必要な最小限のソフトウェアのリストを並べています。
 
-This document is originally based on my "Changes" file for 2.0.x kernels
-and therefore owes credit to the same people as that file (Jared Mauch,
-Axel Boldt, Alessandro Sigala, and countless other users all over the
-'net).
+このドキュメントは 2.0.x カーネルにおける "Changes" ファイルが元になっており、ファイルのクレジットには同じ人間があてはまります (Jared Mauch, Axel Boldt, Alessandro Sigala 他、インターネットの数え切れないユーザー達)。
 
-Current Minimal Requirements
+現在の最小要件
 ****************************
 
-Upgrade to at **least** these software revisions before thinking you've
-encountered a bug!  If you're unsure what version you're currently
-running, the suggested command should tell you.
+バグだと思われるような現象に出会ったら、バグだと即断する前に以下のソフトウェアのバージョン要件が満たされているか確認してください。使用しているソフトウェアのバージョンが分からない場合、記載しているコマンドを使うことで確認できます。
 
-Again, keep in mind that this list assumes you are already functionally
-running a Linux kernel.  Also, not all tools are necessary on all
-systems; obviously, if you don't have any ISDN hardware, for example,
-you probably needn't concern yourself with isdn4k-utils.
+また、以下のリストは既に Linux カーネルが使える状態であることが前提です。さらに、環境によっては以下のツールが全て必要であるというわけではありません。例えば ISDN ハードウェアを使用していない場合、isdn4k-utils はおそらく必要ないでしょう。
 
 ====================== ===============  ========================================
-        Program        Minimal version       Command to check the version
+      プログラム          バージョン        バージョンをチェックするコマンド
 ====================== ===============  ========================================
 GNU C                  3.2              gcc --version
 GNU make               3.81             make --version
@@ -55,24 +46,23 @@ mcelog                 0.6              mcelog --version
 iptables               1.4.2            iptables -V
 openssl & libcrypto    1.0.0            openssl version
 bc                     1.06.95          bc --version
-Sphinx\ [#f1]_	       1.3		sphinx-build --version
+Sphinx\ [#f1]_	        1.3		          sphinx-build --version
 ====================== ===============  ========================================
 
-.. [#f1] Sphinx is needed only to build the Kernel documentation
+.. [#f1] カーネルドキュメントをビルドするには Sphinx が必要です
 
-Kernel compilation
-******************
+カーネルコンパイル
+*******************
 
 GCC
 ---
 
-The gcc version requirements may vary depending on the type of CPU in your
-computer.
+gcc のバージョン要件はあなたのコンピュータに搭載されている CPU のタイプによって変わる可能性があります。
 
 Make
 ----
 
-You will need GNU make 3.81 or later to build the kernel.
+カーネルをビルドするには GNU make 3.81 以上が必要です。
 
 Binutils
 --------
@@ -117,11 +107,11 @@ enabled.  You will also need openssl development packages to build kernels 4.3
 and higher.
 
 
-System utilities
-****************
+システムユーティリティ
+************************
 
-Architectural changes
----------------------
+アーキテクチャの変更
+-----------------------
 
 DevFS has been obsoleted in favour of udev
 (http://www.kernel.org/pub/linux/utils/kernel/hotplug/)
@@ -220,8 +210,8 @@ the newer version 2 quota format.  Quota-tools version 3.07 and
 newer has this support.  Use the recommended version or newer
 from the table above.
 
-Intel IA32 microcode
---------------------
+Intel IA32 マイクロコード
+---------------------------
 
 A driver has been added to allow updating of Intel IA32 microcode,
 accessible as a normal (misc) character device.  If you are not using
@@ -248,17 +238,17 @@ FUSE
 Needs libfuse 2.4.0 or later.  Absolute minimum is 2.3.0 but mount
 options ``direct_io`` and ``kernel_cache`` won't work.
 
-Networking
-**********
+ネットワーク
+*************
 
-General changes
----------------
+一般的な変更
+------------------
 
 If you have advanced network configuration needs, you should probably
 consider using the network tools from ip-route2.
 
-Packet Filter / NAT
--------------------
+パケットフィルタ / NAT
+------------------------
 The packet filtering and NAT code uses the same tools like the previous 2.4.x
 kernel series (iptables).  It still includes backwards-compatibility modules
 for 2.2.x-style ipchains and 2.0.x-style ipfwadm.
@@ -318,8 +308,8 @@ On x86 kernels the mcelog utility is needed to process and log machine check
 events when ``CONFIG_X86_MCE`` is enabled. Machine check events are errors
 reported by the CPU. Processing them is strongly encouraged.
 
-Kernel documentation
-********************
+カーネルドキュメント
+*********************
 
 Sphinx
 ------
@@ -327,11 +317,11 @@ Sphinx
 Please see :ref:`sphinx_install` in ``Documentation/doc-guide/sphinx.rst``
 for details about Sphinx requirements.
 
-Getting updated software
-========================
+最新のソフトウェアの入手先
+============================
 
-Kernel compilation
-******************
+カーネルコンパイル
+********************
 
 gcc
 ---
@@ -363,8 +353,8 @@ OpenSSL
 
 - <https://www.openssl.org/>
 
-System utilities
-****************
+システムユーティリティ
+************************
 
 Util-linux
 ----------
@@ -417,8 +407,8 @@ Quota-tools
 - <http://sourceforge.net/projects/linuxquota/>
 
 
-Intel P6 microcode
-------------------
+Intel P6 マイクロコード
+-------------------------
 
 - <https://downloadcenter.intel.com/>
 
@@ -437,8 +427,8 @@ mcelog
 
 - <http://www.mcelog.org/>
 
-Networking
-**********
+ネットワーク
+*************
 
 PPP
 ---
@@ -475,8 +465,8 @@ NFS-Utils
 
 - <http://nfs.sourceforge.net/>
 
-Kernel documentation
-********************
+カーネルドキュメント
+***********************
 
 Sphinx
 ------
