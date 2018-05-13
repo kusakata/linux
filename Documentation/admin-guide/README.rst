@@ -37,18 +37,11 @@ Linux が動作するハードウェアは？
 
    /usr/src/linux を使ってはいけません。ここにはライブラリのヘッダーファイルが使用するカーネルヘッダーが含まれています。ライブラリと一致している必要があるため、最新カーネル (kernel-du-jour) を置いてしまうと問題が発生します。
 
- - You can also upgrade between 4.x releases by patching.  Patches are
-   distributed in the xz format.  To install by patching, get all the
-   newer patch files, enter the top level directory of the kernel source
-   (linux-4.X) and execute::
+ - 4.x リリースからはパッチをあてることでアップグレードすることもできます。パッチは xz 形式で配布されています。パッチを使ってインストールするには、新しいパッチを全て取得して、カーネルソース (linux-4.X) の最上位ディレクトリに配置して、以下のコマンドを実行::
 
      xz -cd ../patch-4.x.xz | patch -p1
 
-   Replace "x" for all versions bigger than the version "X" of your current
-   source tree, **in_order**, and you should be ok.  You may want to remove
-   the backup files (some-file-name~ or some-file-name.orig), and make sure
-   that there are no failed patches (some-file-name# or some-file-name.rej).
-   If there are, either you or I have made a mistake.
+   "x" は現在のソースツリーのバージョン "X" 以上の全てのバージョンに置き換えてください (バージョンの順番通りに)。バックアップファイルは削除して (some-file-name~ や some-file-name.orig)、パッチの適用が失敗していないか確認すると良いでしょう (some-file-name# や some-file-name.rej)。適用が失敗したパッチが存在する場合、何かが間違っています。
 
    Unlike patches for the 4.x kernels, patches for the 4.x.y kernels
    (also known as the -stable kernels) are not incremental but instead apply
