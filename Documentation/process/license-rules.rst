@@ -16,17 +16,9 @@ COPYING ファイルで説明しているライセンスはカーネルソース
     LGPL-2.1  :  GNU Lesser General Public License v2.1 のみ
     LGPL-2.1+ :  GNU Lesser General Public License v2.1 以上
 
-Aside from that, individual files can be provided under a dual license,
-e.g. one of the compatible GPL variants and alternatively under a
-permissive license like BSD, MIT etc.
+さらに、個々のファイルはデュアルライセンスで配布することができます。例えば、GPL と互換性のあるライセンスと BSD や MIT などの許容的ライセンスのデュアルライセンスなど。
 
-The User-space API (UAPI) header files, which describe the interface of
-user-space programs to the kernel are a special case.  According to the
-note in the kernel COPYING file, the syscall interface is a clear boundary,
-which does not extend the GPL requirements to any software which uses it to
-communicate with the kernel.  Because the UAPI headers must be includable
-into any source files which create an executable running on the Linux
-kernel, the exception must be documented by a special license expression.
+ユーザースペースプログラムのカーネルインターフェイスを記述する User-space API (UAPI) ヘッダーファイルは特殊です。カーネルの COPYING ファイルにあるように、システムコールインターフェイスには明確な境界があり、システムコールを使用してカーネルと対話するソフトウェアまで GPL の要件が拡大されることはありません。UAPI ヘッダーは Linux カーネルで動作する実行ファイルを作成する全てのソースファイルに含める必要があるため、特別なライセンス表記で例外が設けられています。
 
 The common way of expressing the license of a source file is to add the
 matching boilerplate text into the top comment of the file.  Due to
