@@ -43,31 +43,20 @@ Linux が動作するハードウェアは？
 
    "x" は現在のソースツリーのバージョン "X" 以上の全てのバージョンに置き換えてください (バージョンの順番通りに)。バックアップファイルは削除して (some-file-name~ や some-file-name.orig)、パッチの適用が失敗していないか確認すると良いでしょう (some-file-name# や some-file-name.rej)。適用が失敗したパッチが存在する場合、何かが間違っています。
 
-   Unlike patches for the 4.x kernels, patches for the 4.x.y kernels
-   (also known as the -stable kernels) are not incremental but instead apply
-   directly to the base 4.x kernel.  For example, if your base kernel is 4.0
-   and you want to apply the 4.0.3 patch, you must not first apply the 4.0.1
-   and 4.0.2 patches. Similarly, if you are running kernel version 4.0.2 and
-   want to jump to 4.0.3, you must first reverse the 4.0.2 patch (that is,
-   patch -R) **before** applying the 4.0.3 patch. You can read more on this in
-   :ref:`Documentation/process/applying-patches.rst <applying_patches>`.
+   4.x カーネルのパッチとは異なり、4.x.y カーネル (別名 -stable カーネル) のパッチは積み上げ方式ではなく直接ベースの 4.x カーネルに適用します。例えば、ベースのカーネルが 4.0 で 4.0.3 のパッチを適用したい場合、あらかじめ 4.0.1 や 4.0.2 のパッチを適用する必要はありません。同じように、カーネルバージョン 4.0.2 を使用していて 4.0.3 にバージョンアップしたい場合、4.0.3 のパッチを適用する前に必ず 4.0.2 のパッチを逆適用してください (patch -R)。パッチの適用について詳しくは :ref:`Documentation/process/applying-patches.rst <applying_patches>` を見てください。
 
-   Alternatively, the script patch-kernel can be used to automate this
-   process.  It determines the current kernel version and applies any
-   patches found::
+   また、patch-kernel スクリプトを使うことで上記の作業は自動化できます。現在のカーネルバージョンを認識してパッチが適用されます::
 
      linux/scripts/patch-kernel linux
 
-   The first argument in the command above is the location of the
-   kernel source.  Patches are applied from the current directory, but
-   an alternative directory can be specified as the second argument.
+   上記のコマンドの最初の引数はカーネルソースのディレクトリです。パッチはカレントディレクトリから適用されますが、二番目の引数で別のディレクトリを指定することもできます。
 
- - Make sure you have no stale .o files and dependencies lying around::
+ - 古い .o ファイルや放置された依存関係が存在しないことを確認::
 
      cd linux
      make mrproper
 
-   You should now have the sources correctly installed.
+   これでソースが正しくインストールされたはずです。
 
 ソフトウェア要件
 ---------------------
