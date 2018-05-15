@@ -61,48 +61,31 @@ Linux が動作するハードウェアは？
 ソフトウェア要件
 ---------------------
 
-   Compiling and running the 4.x kernels requires up-to-date
-   versions of various software packages.  Consult
-   :ref:`Documentation/process/changes.rst <changes>` for the minimum version numbers
-   required and how to get updates for these packages.  Beware that using
-   excessively old versions of these packages can cause indirect
-   errors that are very difficult to track down, so don't assume that
-   you can just update packages when obvious problems arise during
-   build or operation.
+   4.x カーネルをコンパイル・実行するには様々なソフトウェアパッケージの最新バージョンが必要です。最低限必要なバージョン番号とパッケージの更新の取得方法については :ref:`Documentation/process/changes.rst <changes>` を見てください。古いバージョンのパッケージを使用すると追跡するのが困難な分かりにくいエラーが発生する可能性があります。ビルドや操作時に問題が発生したときは単なるパッケージの更新だと思い込まないでください。
 
 カーネルのビルドディレクトリ
 ------------------------------
 
-   When compiling the kernel, all output files will per default be
-   stored together with the kernel source code.
-   Using the option ``make O=output/dir`` allows you to specify an alternate
-   place for the output files (including .config).
-   Example::
+   カーネルのコンパイル時、デフォルトでは全ての出力ファイルはカーネルソースコードと同じ場所に保存されます。``make O=output/dir`` オプションを使うことで (.config を含む) 出力ファイルのディレクトリを指定することができます。例::
 
      kernel source code: /usr/src/linux-4.X
      build directory:    /home/name/build/kernel
 
-   To configure and build the kernel, use::
+   カーネルを設定・ビルドするには::
 
      cd /usr/src/linux-4.X
      make O=/home/name/build/kernel menuconfig
      make O=/home/name/build/kernel
      sudo make O=/home/name/build/kernel modules_install install
 
-   Please note: If the ``O=output/dir`` option is used, then it must be
-   used for all invocations of make.
+   ``O=output/dir`` オプションを使用するときは、全ての make コマンドで同じく使うようにしてください。
 
 カーネルの設定
 ----------------------
 
-   Do not skip this step even if you are only upgrading one minor
-   version.  New configuration options are added in each release, and
-   odd problems will turn up if the configuration files are not set up
-   as expected.  If you want to carry your existing configuration to a
-   new version with minimal work, use ``make oldconfig``, which will
-   only ask you for the answers to new questions.
+   マイナーバージョンのアップグレードでもこの手順を飛ばしてはいけません。リリース毎に新しい設定オプションが追加されており、設定ファイルを正しく設定しないと、おかしな問題が発生する可能性があります。出来る限り手間をかけないで既存の設定を新しいバージョンに持ち越したい場合、``make oldconfig`` を使ってください。新しい設定のみ、どうするか選択するように要求します。
 
- - Alternative configuration commands are::
+ - 他の設定コマンド::
 
      "make config"      Plain text interface.
 
@@ -173,20 +156,13 @@ Linux が動作するハードウェアは？
 
      "make tinyconfig"  Configure the tiniest possible kernel.
 
-   You can find more information on using the Linux kernel config tools
-   in Documentation/kbuild/kconfig.txt.
+   Linux カーネルのコンフィグツールについては Documentation/kbuild/kconfig.txt に詳しい情報が載っています。
 
- - NOTES on ``make config``:
+ - ``make config`` のノート:
 
-    - Having unnecessary drivers will make the kernel bigger, and can
-      under some circumstances lead to problems: probing for a
-      nonexistent controller card may confuse your other controllers.
+    - 不必要なドライバーを有効にするとカーネルが大きくなり、場合によっては問題が発生することがあります: 存在しないコントローラカードを探査することにより他のコントローラが混乱する場合があります。
 
-    - A kernel with math-emulation compiled in will still use the
-      coprocessor if one is present: the math emulation will just
-      never get used in that case.  The kernel will be slightly larger,
-      but will work on different machines regardless of whether they
-      have a math coprocessor or not.
+    - 浮動小数点エミュレーションを有効にしてカーネルをコンパイルした場合でもコプロセッサが存在するときはコプロセッサが使われます: その場合は浮動小数点エミュレーションは使用されません。有効にするとカーネルは多少大きくなりますが、数値演算コプロセッサが存在していないマシンでもカーネルが動作するようになります。
 
     - The "kernel hacking" configuration details usually result in a
       bigger or slower kernel (or both), and can even make the kernel
