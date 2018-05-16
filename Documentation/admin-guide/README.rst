@@ -164,30 +164,20 @@ Linux が動作するハードウェアは？
 
     - 浮動小数点エミュレーションを有効にしてカーネルをコンパイルした場合でもコプロセッサが存在するときはコプロセッサが使われます: その場合は浮動小数点エミュレーションは使用されません。有効にするとカーネルは多少大きくなりますが、数値演算コプロセッサが存在していないマシンでもカーネルが動作するようになります。
 
-    - The "kernel hacking" configuration details usually result in a
-      bigger or slower kernel (or both), and can even make the kernel
-      less stable by configuring some routines to actively try to
-      break bad code to find kernel problems (kmalloc()).  Thus you
-      should probably answer 'n' to the questions for "development",
-      "experimental", or "debugging" features.
+    - "kernel hacking" 設定は大抵の場合はカーネルが大きくなったり遅くなったりします (あるいはその両方)。また、カーネルの問題を見つけるために頻繁に不良コードを破壊しようとするルーチンを設定するとカーネルは不安定になります (kmalloc())。通常は "development", "experimental", "debugging" 機能の質問に対しては 'n' と答えるべきでしょう。
 
 カーネルのコンパイル
 ----------------------
 
- - Make sure you have at least gcc 3.2 available.
-   For more information, refer to :ref:`Documentation/process/changes.rst <changes>`.
+ - 最低でも gcc 3.2 がインストールされていることを確認してください。詳しくは :ref:`Documentation/process/changes.rst <changes>` を参照。
 
-   Please note that you can still run a.out user programs with this kernel.
+   このカーネルでも a.out ユーザープログラムは動作させることができるので注意してください。
 
- - Do a ``make`` to create a compressed kernel image. It is also
-   possible to do ``make install`` if you have lilo installed to suit the
-   kernel makefiles, but you may want to check your particular lilo setup first.
+ - ``make`` を実行して圧縮済みのカーネルイメージを作成します。また、lilo をカーネルの makefile に合わせてインストールしている場合は ``make install`` を実行することもできますが、先に lilo の設定をチェックしたほうが良いでしょう。
 
-   To do the actual install, you have to be root, but none of the normal
-   build should require that. Don't take the name of root in vain.
+   install を実行するときは root である必要がありますが、通常のビルドでは root は不要です。あなたの神、主の名 root をみだりに唱えてはならない。
 
- - If you configured any of the parts of the kernel as ``modules``, you
-   will also have to do ``make modules_install``.
+ - カーネルの一部を ``modules`` として設定した場合、``make modules_install`` も実行する必要があります。
 
  - Verbose kernel compile/build output:
 
