@@ -1,5 +1,5 @@
 ==========================
-Linux Tracing Technologies
+Linux のトレース技術
 ==========================
 
 .. toctree::
