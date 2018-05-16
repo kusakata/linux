@@ -1,12 +1,11 @@
 ======================
-Core API Documentation
+コア API ドキュメント
 ======================
 
-This is the beginning of a manual for core kernel APIs.  The conversion
-(and writing!) of documents for this manual is much appreciated!
+このページはコアカーネル API のマニュアルの冒頭です。このマニュアルの文章の改筆 (と執筆) は大歓迎です。
 
-Core utilities
-==============
+コアユーティリティ
+====================
 
 .. toctree::
    :maxdepth: 1
@@ -26,8 +25,8 @@ Core utilities
    errseq
    printk-formats
 
-Interfaces for kernel debugging
-===============================
+カーネルデバッグのインターフェイス
+===================================
 
 .. toctree::
    :maxdepth: 1
