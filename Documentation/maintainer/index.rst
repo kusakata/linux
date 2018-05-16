@@ -1,10 +1,8 @@
-==========================
-Kernel Maintainer Handbook
-==========================
+=============================
+カーネルメンテナハンドブック
+=============================
 
-This document is the humble beginning of a manual for kernel maintainers.
-There is a lot yet to go here!  Please feel free to propose (and write)
-additions to this manual.
+このドキュメントはカーネルメンテナのための貧しい生まれのマニュアルです。ここに書くべきことはまだ山ほどあります。このマニュアルへの追記の提案 (と執筆) はお気軽にお願いします。
 
 .. toctree::
    :maxdepth: 2
