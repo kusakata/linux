@@ -1,15 +1,12 @@
 ========================================
-The Linux driver implementer's API guide
+Linux ドライバー実装者の API ガイド
 ========================================
 
-The kernel offers a wide variety of interfaces to support the development
-of device drivers.  This document is an only somewhat organized collection
-of some of those interfaces — it will hopefully get better over time!  The
-available subsections can be seen below.
+カーネルにはデバイスドライバーの開発者を補助するための幅広いインターフェイスが備わっています。このドキュメントではそれらインターフェイスのうち一部のまとまったものだけ紹介しています。これから更に良いものになることを期待します。存在するサブセクションは以下の通りです。
 
 .. class:: toc-title
 
-	   Table of contents
+	   目次
 
 .. toctree::
    :maxdepth: 2
