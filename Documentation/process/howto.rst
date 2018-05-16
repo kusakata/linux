@@ -1,4 +1,4 @@
-HOWTO do Linux kernel development
+Linux カーネル開発ハウツー
 =================================
 
 This is the be-all, end-all document on this topic.  It contains
@@ -12,8 +12,8 @@ to the maintainer of this file, who is listed at the bottom of the
 document.
 
 
-Introduction
-------------
+イントロダクション
+-------------------
 
 So, you want to learn how to become a Linux kernel developer?  Or you
 have been told by your manager, "Go write a Linux driver for this
@@ -54,7 +54,7 @@ documented; do not expect people to adapt to you or your company's way
 of doing things.
 
 
-Legal Issues
+法的問題
 ------------
 
 The Linux kernel source code is released under the GPL.  Please see the
@@ -69,7 +69,7 @@ For common questions and answers about the GPL, please see:
 	https://www.gnu.org/licenses/gpl-faq.html
 
 
-Documentation
+ドキュメント
 -------------
 
 The Linux kernel source tree has a large range of documents that are
@@ -180,7 +180,7 @@ They can also be generated on LaTeX and ePub formats with::
 	make latexdocs
 	make epubdocs
 
-Becoming A Kernel Developer
+カーネル開発者になるには
 ---------------------------
 
 If you do not know anything about Linux kernel development, you should
@@ -225,7 +225,7 @@ repository of the kernel code may be found at:
 	http://lxr.free-electrons.com/
 
 
-The development process
+開発プロセス
 -----------------------
 
 Linux kernel development process currently consists of a few different
@@ -238,8 +238,8 @@ branches.  These different branches are:
   - subsystem specific kernel trees and patches
   - the 4.x -next kernel tree for integration tests
 
-4.x kernel tree
-~~~~~~~~~~~~~~~
+4.x カーネルツリー
+~~~~~~~~~~~~~~~~~~~~~
 
 4.x kernels are maintained by Linus Torvalds, and can be found on
 https://kernel.org in the pub/linux/kernel/v4.x/ directory.  Its development
@@ -275,8 +275,8 @@ mailing list about kernel releases:
 	released according to perceived bug status, not according to a
 	preconceived timeline."*
 
-4.x.y -stable kernel tree
-~~~~~~~~~~~~~~~~~~~~~~~~~
+4.x.y -stable カーネルツリー
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Kernels with 3-part versions are -stable kernels. They contain
 relatively small and critical fixes for security problems or significant
@@ -299,8 +299,8 @@ The file Documentation/process/stable-kernel-rules.rst in the kernel tree
 documents what kinds of changes are acceptable for the -stable tree, and
 how the release process works.
 
-4.x -git patches
-~~~~~~~~~~~~~~~~
+4.x -git パッチ
+~~~~~~~~~~~~~~~~~~
 
 These are daily snapshots of Linus' kernel tree which are managed in a
 git repository (hence the name.) These patches are usually released
@@ -348,7 +348,7 @@ expected to go into the mainline kernel at the next merge period.
 Adventurous testers are very welcome to runtime-test the -next kernel.
 
 
-Bug Reporting
+バグ報告
 -------------
 
 https://bugzilla.kernel.org is where the Linux kernel developers track kernel
@@ -363,7 +363,7 @@ of information is needed by the kernel developers to help track down the
 problem.
 
 
-Managing bug reports
+バグ報告の管理
 --------------------
 
 One of the best ways to put into practice your hacking skills is by fixing
@@ -376,8 +376,8 @@ not many people like wasting time fixing other people's bugs.
 To work in the already reported bug reports, go to https://bugzilla.kernel.org.
 
 
-Mailing lists
--------------
+メーリングリスト
+------------------
 
 As some of the above documents describe, the majority of the core kernel
 developers participate on the Linux Kernel Mailing list.  Details on how
@@ -435,8 +435,8 @@ or change it until it works.
 Above all, please remember to show respect to other subscribers.
 
 
-Working with the community
---------------------------
+コミュニティとの共同作業
+----------------------------
 
 The goal of the kernel community is to provide the best possible kernel
 there is.  When you submit a patch for acceptance, it will be reviewed
@@ -477,8 +477,8 @@ personally.  Simply correct all issues raised against your patch and
 resend it.
 
 
-Differences between the kernel community and corporate structures
------------------------------------------------------------------
+カーネルコミュニティと企業構造の違い
+--------------------------------------
 
 The kernel community works differently than most traditional corporate
 development environments.  Here are a list of things that you can try to
@@ -524,7 +524,7 @@ recommended that you check your emails to make sure they make sense in
 English before sending them.
 
 
-Break up your changes
+差分を解体せよ
 ---------------------
 
 The Linux kernel community does not gladly accept large chunks of code
@@ -580,7 +580,7 @@ Also realize that it is not acceptable to send patches for inclusion
 that are unfinished and will be "fixed up later."
 
 
-Justify your change
+差分を正当化せよ
 -------------------
 
 Along with breaking up your patches, it is very important for you to let
@@ -588,7 +588,7 @@ the Linux community know why they should add this change.  New features
 must be justified as being needed and useful.
 
 
-Document your change
+差分を文章化せよ
 --------------------
 
 When sending in your patches, pay special attention to what you say in

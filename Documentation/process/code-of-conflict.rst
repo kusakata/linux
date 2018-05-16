@@ -1,28 +1,10 @@
-Code of Conflict
+成敗規範
 ----------------
 
-The Linux kernel development effort is a very personal process compared
-to "traditional" ways of developing software.  Your code and ideas
-behind it will be carefully reviewed, often resulting in critique and
-criticism.  The review will almost always require improvements to the
-code before it can be included in the kernel.  Know that this happens
-because everyone involved wants to see the best possible solution for
-the overall success of Linux.  This development process has been proven
-to create the most robust operating system kernel ever, and we do not
-want to do anything to cause the quality of submission and eventual
-result to ever decrease.
+Linux カーネルの開発は「伝統的な」ソフトウェアの開発手法と比べると非常に個人的なプロセスとなります。あなたが書いたコードやアイデアは注意深くレビューされ、時として批評されたり批判を受けるでしょう。ほとんどの場合はレビューによってカーネルに変更をマージする前にコードを改善することが要求されます。このようなことが起こるのは皆が Linux を素晴らしいものにするために最良の解決方法を見つけ出そうとしているからだということを分かってください。この開発プロセスが続けられてきたからこそ最高に堅牢なオペレーティングシステムのカーネルが作られたのであり、ソースコードの品質の劣化そして結果としてカーネルの劣化を起こすようなことはあって欲しくありません。
 
-If however, anyone feels personally abused, threatened, or otherwise
-uncomfortable due to this process, that is not acceptable.  If so,
-please contact the Linux Foundation's Technical Advisory Board at
-<tab@lists.linux-foundation.org>, or the individual members, and they
-will work to resolve the issue to the best of their ability.  For more
-information on who is on the Technical Advisory Board and what their
-role is, please see:
+しかしながら、このプロセスによって個人攻撃や脅迫を受けていると感じたり、不快に思うようなところがあるのであれば、それは好ましいものではありません。そのような場合は、Linux Foundation の Technical Advisory Board <tab@lists.linux-foundation.org> や個別のメンバーに連絡を取ってください。力の及ぶ限り問題の解決に尽力します。Technical Advisory Board に参加しているメンバーとその役割について詳しくは以下のページを見てください:
 
 	- http://www.linuxfoundation.org/projects/linux/tab
 
-As a reviewer of code, please strive to keep things civil and focused on
-the technical issues involved.  We are all humans, and frustrations can
-be high on both sides of the process.  Try to keep in mind the immortal
-words of Bill and Ted, "Be excellent to each other."
+コードをレビューするときは、物事は丁寧に扱い、技術的な問題に焦点を絞るよう努めてください。ネットの向こう側にいるのは人間であり、フラストレーションが高まるのはプロセスの片側だけではありません。Bill and Ted の不滅の名言「お互いに良くあれ」("Be excellent to each other") を今一度思い返してください。
