@@ -42,6 +42,9 @@ if major == 1 and minor > 3:
 else:
     extensions.append("sphinx.ext.pngmath")
 
+extensions.append('sphinx_sitemap')
+site_url = 'https://doc.kusakata.com/'
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['sphinx-template']
 
