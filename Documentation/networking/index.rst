@@ -1,7 +1,7 @@
-Linux Networking Documentation
-==============================
+Linux ネットワークドキュメント
+================================
 
-Contents:
+コンテンツ:
 
 .. toctree::
    :maxdepth: 2

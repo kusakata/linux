@@ -1,8 +1,8 @@
-=====================
-Linux Filesystems API
-=====================
+============================
+Linux ファイルシステム API
+============================
 
-The Linux VFS
+Linux VFS
 =============
 
 The Filesystem types
@@ -71,17 +71,17 @@ Other Functions
 .. kernel-doc:: fs/block_dev.c
    :export:
 
-The proc filesystem
-===================
+proc ファイルシステム
+=======================
 
-sysctl interface
-----------------
+sysctl インターフェイス
+------------------------
 
 .. kernel-doc:: kernel/sysctl.c
    :export:
 
-proc filesystem interface
--------------------------
+proc ファイルシステムインターフェイス
+---------------------------------------
 
 .. kernel-doc:: fs/proc/base.c
    :internal:
@@ -101,11 +101,11 @@ The Filesystem for Exporting Kernel Objects
 .. kernel-doc:: fs/sysfs/symlink.c
    :export:
 
-The debugfs filesystem
-======================
+debugfs ファイルシステム
+==========================
 
-debugfs interface
------------------
+debugfs インターフェイス
+--------------------------
 
 .. kernel-doc:: fs/debugfs/inode.c
    :export:
@@ -116,10 +116,10 @@ debugfs interface
 The Linux Journalling API
 =========================
 
-Overview
+概要
 --------
 
-Details
+詳細
 ~~~~~~~
 
 The journalling layer is easy to use. You need to first of all create a
@@ -247,7 +247,7 @@ The opportunities for abuse and DOS attacks with this should be obvious,
 if you allow unprivileged userspace to trigger codepaths containing
 these calls.
 
-Summary
+まとめ
 ~~~~~~~
 
 Using the journal is a matter of wrapping the different context changes,
@@ -288,7 +288,7 @@ Transasction Level
 
 .. kernel-doc:: fs/jbd2/transaction.c
 
-See also
+参照
 --------
 
 `Journaling the Linux ext2fs Filesystem, LinuxExpo 98, Stephen

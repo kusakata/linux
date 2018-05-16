@@ -1,11 +1,11 @@
-Linux Media Subsystem Documentation
-===================================
+Linux メディアサブシステムドキュメント
+========================================
 
 .. only:: html
 
    .. class:: toc-title
 
-        Table of Contents
+        目次
 
 .. toctree::
    :maxdepth: 2

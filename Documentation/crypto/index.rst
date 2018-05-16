@@ -1,17 +1,15 @@
-=======================
-Linux Kernel Crypto API
-=======================
+===========================
+Linux カーネル Crypto API
+===========================
 
 :Author: Stephan Mueller
 :Author: Marek Vasut
 
-This documentation outlines the Linux kernel crypto API with its
-concepts, details about developing cipher implementations, employment of the API
-for cryptographic use cases, as well as programming examples.
+このドキュメントは Linux カーネルの crypto API について、コンセプトや暗号実装の開発について説明したり、暗号化のユースケースにおける API の使用方法、プログラミング例などを記載しています。
 
 .. class:: toc-title
 
-	   Table of contents
+	   目次
 
 .. toctree::
    :maxdepth: 2

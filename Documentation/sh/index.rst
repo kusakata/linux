@@ -1,10 +1,10 @@
-=======================
-SuperH Interfaces Guide
-=======================
+===============================
+SuperH インターフェイスガイド
+===============================
 
 :Author: Paul Mundt
 
-Memory Management
+メモリ管理
 =================
 
 SH-4
@@ -19,8 +19,8 @@ Store Queue API
 SH-5
 ----
 
-TLB Interfaces
-~~~~~~~~~~~~~~
+TLB インターフェイス
+~~~~~~~~~~~~~~~~~~~~~~
 
 .. kernel-doc:: arch/sh/mm/tlb-sh5.c
    :internal:
@@ -43,7 +43,7 @@ mach-x3proto
 .. kernel-doc:: arch/sh/boards/mach-x3proto/ilsel.c
    :export:
 
-Busses
+バス
 ======
 
 SuperHyway

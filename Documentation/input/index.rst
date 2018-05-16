@@ -1,8 +1,8 @@
 =============================
-The Linux Input Documentation
+Linux Input ドキュメント
 =============================
 
-Contents:
+コンテンツ:
 
 .. toctree::
    :maxdepth: 2
