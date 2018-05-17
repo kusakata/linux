@@ -179,18 +179,13 @@ Linux が動作するハードウェアは？
 
  - カーネルの一部を ``modules`` として設定した場合、``make modules_install`` も実行する必要があります。
 
- - Verbose kernel compile/build output:
+ - カーネルのコンパイル・ビルドの出力を詳細にする:
 
-   Normally, the kernel build system runs in a fairly quiet mode (but not
-   totally silent).  However, sometimes you or other kernel developers need
-   to see compile, link, or other commands exactly as they are executed.
-   For this, use "verbose" build mode.  This is done by passing
-   ``V=1`` to the ``make`` command, e.g.::
+   通常、カーネルのビルドシステムは非常に出力が少ないモードで実行されます (ただし全く出力がされないわけではありません)。コンパイルやリンクなどが上手くいっているか確認する必要がある場合、"verbose" ビルドモードを使ってください。``make`` コマンドに ``V=1`` を指定することで使用できます。例::
 
      make V=1 all
 
-   To have the build system also tell the reason for the rebuild of each
-   target, use ``V=2``.  The default is ``V=0``.
+   ビルドシステムにターゲットをリビルドする理由を出力して欲しいときは ``V=2`` を使ってください。デフォルトは ``V=0`` です。
 
  - Keep a backup kernel handy in case something goes wrong.  This is
    especially true for the development releases, since each new release
