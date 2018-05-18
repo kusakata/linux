@@ -1,7 +1,7 @@
-Bug hunting
+バグ退治
 ===========
 
-Kernel bug reports often come with a stack dump like the one below::
+カーネルのバグを報告するときは大抵以下のようなスタックダンプを付けます::
 
 	------------[ cut here ]------------
 	WARNING: CPU: 1 PID: 28102 at kernel/module.c:1108 module_put+0x57/0x70
@@ -59,7 +59,7 @@ we'll refer to "Oops" for all kinds of stack traces that need to be analized.
   If you post an Oops from 2.6+ that has been run through ``ksymoops``,
   people will just tell you to repost it.
 
-Where is the Oops message is located?
+Oops メッセージはどこにある？
 -------------------------------------
 
 Normally the Oops text is read from the kernel buffers by klogd and
@@ -94,8 +94,8 @@ the disk is not available then you have three options:
     extract the kernel ring buffer from old memory with using dmesg
     gdbmacro in Documentation/kdump/gdbmacros.txt.
 
-Finding the bug's location
---------------------------
+バグの発生箇所を突き止める
+----------------------------
 
 Reporting a bug works best if you point the location of the bug at the
 Kernel source file. There are two methods for doing that. Usually, using
@@ -230,7 +230,7 @@ e.g. crash dump output as shown by Dave Miller::
          mov        0x8(%ebp), %ebx         ! %ebx = skb->sk
          mov        0x13c(%ebx), %eax       ! %eax = inet_sk(sk)->opt
 
-Reporting the bug
+バグの報告
 -----------------
 
 Once you find where the bug happened, by inspecting its location,
@@ -270,7 +270,7 @@ linux-kernel@vger.kernel.org.
 
 Thanks for your help in making Linux as stable as humanly possible.
 
-Fixing the bug
+バグの修正
 --------------
 
 If you know programming, you could help us by not only reporting the bug,
@@ -287,8 +287,8 @@ to help your code get accepted.
 
 ---------------------------------------------------------------------------
 
-Notes on Oops tracing with ``klogd``
-------------------------------------
+``klogd`` による Oops の追跡に関するノート
+---------------------------------------------
 
 In order to help Linus and the other kernel developers there has been
 substantial support incorporated into ``klogd`` for processing protection

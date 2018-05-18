@@ -1,10 +1,10 @@
-Bisecting a bug
+バグの特定
 +++++++++++++++
 
-Last updated: 28 October 2016
+最終更新: 28 October 2016
 
-Introduction
-============
+イントロダクション
+===================
 
 Always try the latest kernel from kernel.org and build from source. If you are
 not confident in doing that please report the bug to your distribution vendor
@@ -17,14 +17,13 @@ MAINTAINERS for who that is for the subsystem you have worked on.
 Before you submit a bug report read
 :ref:`Documentation/admin-guide/reporting-bugs.rst <reportingbugs>`.
 
-Devices not appearing
-=====================
+デバイスが表示されない
+========================
 
-Often this is caused by udev/systemd. Check that first before blaming it
-on the kernel.
+大抵の場合は udev/systemd が原因です。カーネルに問題があると考える前に udev/systemd を先に確認してください。
 
-Finding patch that caused a bug
-===============================
+バグの原因となっているパッチを突き止める
+==========================================
 
 Using the provided tools with ``git`` makes finding bugs easy provided the bug
 is reproducible.

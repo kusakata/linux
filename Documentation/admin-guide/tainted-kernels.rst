@@ -1,5 +1,5 @@
-Tainted kernels
----------------
+汚染されたカーネル
+---------------------
 
 Some oops reports contain the string **'Tainted: '** after the program
 counter. This indicates that the kernel has been tainted by some
