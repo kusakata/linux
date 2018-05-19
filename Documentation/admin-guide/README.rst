@@ -187,64 +187,32 @@ Linux が動作するハードウェアは？
 
    ビルドシステムにターゲットをリビルドする理由を出力して欲しいときは ``V=2`` を使ってください。デフォルトは ``V=0`` です。
 
- - Keep a backup kernel handy in case something goes wrong.  This is
-   especially true for the development releases, since each new release
-   contains new code which has not been debugged.  Make sure you keep a
-   backup of the modules corresponding to that kernel, as well.  If you
-   are installing a new kernel with the same version number as your
-   working kernel, make a backup of your modules directory before you
-   do a ``make modules_install``.
+ - 何か問題が発生したときに備えてカーネルのバックアップを作成する。特に開発リリース版の場合はデバッグされていない新しいコードが含まれているためバックアップは必須です。カーネルに対応するモジュールのバックアップも備えておいてください。動作しているカーネルと同じバージョン番号の新しいカーネルをインストールするときは、``make modules_install`` を実行する前にモジュールのバックアップを作成してください。
 
-   Alternatively, before compiling, use the kernel config option
-   "LOCALVERSION" to append a unique suffix to the regular kernel version.
-   LOCALVERSION can be set in the "General Setup" menu.
+   また、コンパイルする前にカーネルコンフィグオプション "LOCALVERSION" を使うことで通常のカーネルバージョンの後ろに固有のサフィックスを追加できます。LOCALVERSION は "General Setup" メニューで設定できます。
 
- - In order to boot your new kernel, you'll need to copy the kernel
-   image (e.g. .../linux/arch/x86/boot/bzImage after compilation)
-   to the place where your regular bootable kernel is found.
+ - 新しいカーネルを起動するには、カーネルイメージ (例: コンパイル後の .../linux/arch/x86/boot/bzImage) を通常の起動可能なカーネルが認識されるディレクトリにコピーする必要があります。
 
- - Booting a kernel directly from a floppy without the assistance of a
-   bootloader such as LILO, is no longer supported.
+ - LILO などのブートローダーを使わずにフロッピーから直接カーネルを起動することはもはやサポートされていません。
 
-   If you boot Linux from the hard drive, chances are you use LILO, which
-   uses the kernel image as specified in the file /etc/lilo.conf.  The
-   kernel image file is usually /vmlinuz, /boot/vmlinuz, /bzImage or
-   /boot/bzImage.  To use the new kernel, save a copy of the old image
-   and copy the new image over the old one.  Then, you MUST RERUN LILO
-   to update the loading map! If you don't, you won't be able to boot
-   the new kernel image.
+   ハードドライブから Linux を起動する場合、LILO を使用することで /etc/lilo.conf ファイルに指定されているカーネルイメージを使うことができます。カーネルイメージファイルは通常の場合 /vmlinuz, /boot/vmlinuz, /bzImage, /boot/bzImage のいずれかです。新しいカーネルを使うには、古いイメージのコピーを保存して新しいイメージを古いイメージに上書きコピーしてください。そして LILO を再実行してローディングマップを更新してください。実行しなかった場合、新しいカーネルイメージを起動することができません。
 
-   Reinstalling LILO is usually a matter of running /sbin/lilo.
-   You may wish to edit /etc/lilo.conf to specify an entry for your
-   old kernel image (say, /vmlinux.old) in case the new one does not
-   work.  See the LILO docs for more information.
+   LILO を再インストールすると /sbin/lilo の実行が行われます。新しいカーネルが動作しないときは /etc/lilo.conf を編集して古いカーネルイメージ (/vmlinux.old など) のエントリを指定すると良いでしょう。詳しくは LILO のドキュメントを見てください。
 
-   After reinstalling LILO, you should be all set.  Shutdown the system,
-   reboot, and enjoy!
+   LILO の再インストール後、設定は全て完了です。システムをシャットダウンして、再起動してみてください。
 
-   If you ever need to change the default root device, video mode,
-   ramdisk size, etc.  in the kernel image, use the ``rdev`` program (or
-   alternatively the LILO boot options when appropriate).  No need to
-   recompile the kernel to change these parameters.
+   カーネルイメージのデフォルトのルートデバイス・ビデオモード・ラムディスク容量を変更する必要がある場合、``rdev`` プログラムを使ってください (または LILO のブートオプションを使ってください)。これらのパラメータを変更するのにカーネルを再コンパイルする必要はありません。
 
- - Reboot with the new kernel and enjoy.
+ - 新しいカーネルで再起動してください。
 
 問題が起こったら
 -----------------------
 
- - If you have problems that seem to be due to kernel bugs, please check
-   the file MAINTAINERS to see if there is a particular person associated
-   with the part of the kernel that you are having trouble with. If there
-   isn't anyone listed there, then the second best thing is to mail
-   them to me (torvalds@linux-foundation.org), and possibly to any other
-   relevant mailing-list or to the newsgroup.
+ - カーネルのバグらしき問題が発生したら、カーネル内の問題が起きている箇所を担当しているメンテナがいるかどうか MAINTAINERS ファイルをチェックして確認してください。誰も記載されていない場合、私 (torvalds@linux-foundation.org) にメールするか適当なメーリングリストやニュースグループに投稿してください。
 
- - In all bug-reports, *please* tell what kernel you are talking about,
-   how to duplicate the problem, and what your setup is (use your common
-   sense).  If the problem is new, tell me so, and if the problem is
-   old, please try to tell me when you first noticed it.
+ - バグを報告するときは、使用しているカーネルと問題の説明、あなたが使用している設定を伝えるようにしてください (本能に従ってください)。問題が新しい場合、私に教えてください。問題が古い場合、いつ初めて問題に気づいたのか教えてください。
 
- - If the bug results in a message like::
+ - バグが以下のようなメッセージで確認できる場合::
 
      unable to handle kernel paging request at address C0000010
      Oops: 0002
@@ -255,13 +223,7 @@ Linux が動作するハードウェアは？
      Pid: xx, process nr: xx
      xx xx xx xx xx xx xx xx xx xx
 
-   or similar kernel debugging information on your screen or in your
-   system log, please duplicate it *exactly*.  The dump may look
-   incomprehensible to you, but it does contain information that may
-   help debugging the problem.  The text above the dump is also
-   important: it tells something about why the kernel dumped code (in
-   the above example, it's due to a bad kernel pointer). More information
-   on making sense of the dump is in Documentation/admin-guide/bug-hunting.rst
+   あるいはカーネルのデバッグ情報やシステムログに何らかの情報が得られる場合は、正確に情報を教えてください。あなたにはダンプの意味がよくわからないとしても、問題をデバッグするのに役立つかもしれない情報が含まれています。ダンプの上のテキストも重要です: カーネルがなぜコードをダンプしたのかが書かれています (上の例であれば、カーネルポインタが原因です)。ダンプに関する詳しい情報は Documentation/admin-guide/bug-hunting.rst に存在します。
 
  - If you compiled the kernel with CONFIG_KALLSYMS you can send the dump
    as is, otherwise you will have to use the ``ksymoops`` program to make
