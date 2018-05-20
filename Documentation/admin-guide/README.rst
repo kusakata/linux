@@ -225,54 +225,20 @@ Linux が動作するハードウェアは？
 
    あるいはカーネルのデバッグ情報やシステムログに何らかの情報が得られる場合は、正確に情報を教えてください。あなたにはダンプの意味がよくわからないとしても、問題をデバッグするのに役立つかもしれない情報が含まれています。ダンプの上のテキストも重要です: カーネルがなぜコードをダンプしたのかが書かれています (上の例であれば、カーネルポインタが原因です)。ダンプに関する詳しい情報は Documentation/admin-guide/bug-hunting.rst に存在します。
 
- - If you compiled the kernel with CONFIG_KALLSYMS you can send the dump
-   as is, otherwise you will have to use the ``ksymoops`` program to make
-   sense of the dump (but compiling with CONFIG_KALLSYMS is usually preferred).
-   This utility can be downloaded from
-   https://www.kernel.org/pub/linux/utils/kernel/ksymoops/ .
-   Alternatively, you can do the dump lookup by hand:
+ - CONFIG_KALLSYMS を有効にしてカーネルをコンパイルした場合、ダンプをそのまま送信することができます。有効にしなかった場合は ``ksymoops`` プログラムを使ってダンプを確認する必要があります (基本的には CONFIG_KALLSYMS を使うことを推奨します)。このユーティリティは https://www.kernel.org/pub/linux/utils/kernel/ksymoops/ からダウンロードすることが可能です。もしくは、手動でダンプを確認することもできます:
 
- - In debugging dumps like the above, it helps enormously if you can
-   look up what the EIP value means.  The hex value as such doesn't help
-   me or anybody else very much: it will depend on your particular
-   kernel setup.  What you should do is take the hex value from the EIP
-   line (ignore the ``0010:``), and look it up in the kernel namelist to
-   see which kernel function contains the offending address.
+ - 上記のようなデバッグダンプの場合、EIP の値が意味しているものを確認することができれば非常に役に立ちます。EIP の16進数の値だけではあまり役に立ちません: 値はカーネルの設定によって変わってしまうためです。EIP 行の16進数の値から (``0010:`` は無視してください)、カーネルのネームリストを見て問題のアドレスを含んでいるカーネル関数を確認してください。
 
-   To find out the kernel function name, you'll need to find the system
-   binary associated with the kernel that exhibited the symptom.  This is
-   the file 'linux/vmlinux'.  To extract the namelist and match it against
-   the EIP from the kernel crash, do::
+   カーネルの関数名を確認するには、問題が発生するカーネルと関連付けられたシステムバイナリを探し出す必要があります。それは 'linux/vmlinux' ファイルです。ネームリストを抽出してカーネルがクラッシュしたときの EIP を検索するには::
 
      nm vmlinux | sort | less
 
-   This will give you a list of kernel addresses sorted in ascending
-   order, from which it is simple to find the function that contains the
-   offending address.  Note that the address given by the kernel
-   debugging messages will not necessarily match exactly with the
-   function addresses (in fact, that is very unlikely), so you can't
-   just 'grep' the list: the list will, however, give you the starting
-   point of each kernel function, so by looking for the function that
-   has a starting address lower than the one you are searching for but
-   is followed by a function with a higher address you will find the one
-   you want.  In fact, it may be a good idea to include a bit of
-   "context" in your problem report, giving a few lines around the
-   interesting one.
+   上記のコマンドで昇順で並び替えられたカーネルアドレスのリストが表示されるため、問題のアドレスを含む関数を簡単に探すことができます。カーネルのデバッグメッセージで表示されるアドレスは必ずしも関数のアドレスと一致するとは限らないため (実際、そのようなことは稀です)、単純にリストを 'grep' するだけでは上手く行きません: そのかわり、リストを見ることでカーネル関数の開始地点を知ることができるので、検索するアドレスよりも前のアドレスから始まっていて、次の関数は探しているアドレスよりも後ろのアドレスから始まっているような関数を探してください。問題を報告するときは該当する行の前後の情報も多少含めると良いでしょう。
 
-   If you for some reason cannot do the above (you have a pre-compiled
-   kernel image or similar), telling me as much about your setup as
-   possible will help.  Please read the :ref:`admin-guide/reporting-bugs.rst <reportingbugs>`
-   document for details.
+   何らかの理由で上記の作業ができない場合 (コンパイル済みのカーネルイメージを使っているなど)、できるかぎり細かくあなたの使っている設定について教えてください。詳しくは :ref:`admin-guide/reporting-bugs.rst <reportingbugs>` ドキュメントを読んでください。
 
- - Alternatively, you can use gdb on a running kernel. (read-only; i.e. you
-   cannot change values or set break points.) To do this, first compile the
-   kernel with -g; edit arch/x86/Makefile appropriately, then do a ``make
-   clean``. You'll also need to enable CONFIG_PROC_FS (via ``make config``).
+ - もしくは、動作中のカーネルに対して gdb を使うことも可能です (読み取り専用で使用します。値を変更したりブレークポイントを設定することはできません)。最初に -g を使ってカーネルをコンパイルして、arch/x86/Makefile を適切に編集し、それから ``make clean`` を実行してください。また、(``make config`` で) CONFIG_PROC_FS を有効にする必要があります。
 
-   After you've rebooted with the new kernel, do ``gdb vmlinux /proc/kcore``.
-   You can now use all the usual gdb commands. The command to look up the
-   point where your system crashed is ``l *0xXXXXXXXX``. (Replace the XXXes
-   with the EIP value.)
+   新しいカーネルで再起動したら ``gdb vmlinux /proc/kcore`` を実行してください。通常の gdb コマンドを全て利用できます。システムがクラッシュした場所を確認するコマンドは ``l *0xXXXXXXXX`` です (XXX は EIP の値に置き換えてください)。
 
-   gdb'ing a non-running kernel currently fails because ``gdb`` (wrongly)
-   disregards the starting offset for which the kernel is compiled.
+   gdb を動作していないカーネルに対して実行してもカーネルがコンパイルされた開始オフセットを ``gdb`` が (間違って) 無視するため失敗します。
