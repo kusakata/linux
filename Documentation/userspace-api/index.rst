@@ -16,6 +16,7 @@ Linux カーネルユーザー空間 API ガイド
    no_new_privs
    seccomp_filter
    unshare
+   spec_ctrl
 
 .. only::  subproject and html
 
