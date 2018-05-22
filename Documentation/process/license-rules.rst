@@ -20,97 +20,62 @@ COPYING ファイルで説明しているライセンスはカーネルソース
 
 ユーザースペースプログラムのカーネルインターフェイスを記述する User-space API (UAPI) ヘッダーファイルは特殊です。カーネルの COPYING ファイルにあるように、システムコールインターフェイスには明確な境界があり、システムコールを使用してカーネルと対話するソフトウェアまで GPL の要件が拡大されることはありません。UAPI ヘッダーは Linux カーネルで動作する実行ファイルを作成する全てのソースファイルに含める必要があるため、特別なライセンス表記で例外が設けられています。
 
-The common way of expressing the license of a source file is to add the
-matching boilerplate text into the top comment of the file.  Due to
-formatting, typos etc. these "boilerplates" are hard to validate for
-tools which are used in the context of license compliance.
+ソースファイルのライセンスを宣言するときはファイルの一番上に適当な定型文のコメントを挿入するのが一般的です。書式や typo などのため、こういった「定型文」をライセンス管理のために使用するツールで確認することは容易ではありません。
 
-An alternative to boilerplate text is the use of Software Package Data
-Exchange (SPDX) license identifiers in each source file.  SPDX license
-identifiers are machine parsable and precise shorthands for the license
-under which the content of the file is contributed.  SPDX license
-identifiers are managed by the SPDX Workgroup at the Linux Foundation and
-have been agreed on by partners throughout the industry, tool vendors, and
-legal teams.  For further information see https://spdx.org/
+定型文の代わりになるものとして各ソースファイルで Software Package Data Exchange (SPDX) ライセンス識別子を使用するという方法があります。SPDX ライセンス識別子はプログラムで簡単にパースすることができ、ファイルがどのライセンスで配布されているのか正確・簡潔に記述できます。SPDX ライセンス記述子は Linux Foundation の SPDX Workgroup で管理されており業界・ツールベンダー・法務チームなどパートナーの承認を得ています。詳しい情報は https://spdx.org/ を見てください。
 
-The Linux kernel requires the precise SPDX identifier in all source files.
-The valid identifiers used in the kernel are explained in the section
-`License identifiers`_ and have been retrieved from the official SPDX
-license list at https://spdx.org/licenses/ along with the license texts.
+Linux カーネルは全てのソースファイルに対して正確な SPDX 記述子を必要とします。カーネル内で使われている有効な記述子については `ライセンス記述子`_ セクションで説明しています。また、公式 SPDX ライセンスリスト https://spdx.org/licenses/ とライセンス文章を載せています。
 
 ライセンス識別子の書式
 -------------------------
 
-1. Placement:
+1. 配置:
 
-   The SPDX license identifier in kernel files shall be added at the first
-   possible line in a file which can contain a comment.  For the majority
-   or files this is the first line, except for scripts which require the
-   '#!PATH_TO_INTERPRETER' in the first line.  For those scripts the SPDX
-   identifier goes into the second line.
+   SPDX ライセンス識別子はカーネルファイルのできるかぎり上部に追加します。大部分のファイルでは1行目が使われますが、最初の行に '#!PATH_TO_INTERPRETER' と記述する必要があるスクリプトでは SPDX 記述子は2行目に配置します。
 
 |
 
-2. Style:
+2. 形式:
 
-   The SPDX license identifier is added in form of a comment.  The comment
-   style depends on the file type::
+   SPDX ライセンス記述子はコメントの形で追加します。コメントの形式はファイルのタイプによって変わります::
 
-      C source:	// SPDX-License-Identifier: <SPDX License Expression>
-      C header:	/* SPDX-License-Identifier: <SPDX License Expression> */
+      C ソース:	// SPDX-License-Identifier: <SPDX License Expression>
+      C ヘッダー:	/* SPDX-License-Identifier: <SPDX License Expression> */
       ASM:	/* SPDX-License-Identifier: <SPDX License Expression> */
-      scripts:	# SPDX-License-Identifier: <SPDX License Expression>
+      スクリプト:	# SPDX-License-Identifier: <SPDX License Expression>
       .rst:	.. SPDX-License-Identifier: <SPDX License Expression>
       .dts{i}:	// SPDX-License-Identifier: <SPDX License Expression>
 
-   If a specific tool cannot handle the standard comment style, then the
-   appropriate comment mechanism which the tool accepts shall be used. This
-   is the reason for having the "/\* \*/" style comment in C header
-   files. There was build breakage observed with generated .lds files where
-   'ld' failed to parse the C++ comment. This has been fixed by now, but
-   there are still older assembler tools which cannot handle C++ style
-   comments.
+   標準のコメントスタイルを特定のツールが処理できないときは、ツールが認識できる適切なコメント方式を使用します。C ヘッダーファイルで "/\* \*/" 形式のコメントが使われているのはそのためです。.lds ファイルが生成されるときに 'ld' が C++ コメントをパースできずにビルドが失敗するという現象が以前は存在していました。今ではもう解決されている問題ですが、いまでも古いアセンブラツールでは C++ スタイルコメントを扱えない場合があります。
 
 |
 
-3. Syntax:
+3. 構文:
 
-   A <SPDX License Expression> is either an SPDX short form license
-   identifier found on the SPDX License List, or the combination of two
-   SPDX short form license identifiers separated by "WITH" when a license
-   exception applies. When multiple licenses apply, an expression consists
-   of keywords "AND", "OR" separating sub-expressions and surrounded by
-   "(", ")" .
+   <SPDX License Expression> は SPDX License List にあるライセンス識別子の SPDX 省略形、あるいは複数のライセンス識別子の SPDX 省略形の組み合わせで、組み合わせるときはライセンスの例外が適用される場合を "WITH" で区切ります。複数のライセンスが適用されるときは、副表現を "AND" と "OR" キーワードで分割したり "(" と ")" で囲ったりします。
 
-   License identifiers for licenses like [L]GPL with the 'or later' option
-   are constructed by using a "+" for indicating the 'or later' option.::
+   [L]GPL のような 'or later' オプションが存在するライセンスでは "+" を使って 'or later' オプションを示します::
 
       // SPDX-License-Identifier: GPL-2.0+
       // SPDX-License-Identifier: LGPL-2.1+
 
-   WITH should be used when there is a modifier to a license needed.
-   For example, the linux kernel UAPI files use the expression::
+   ライセンスに修正が必要なときは WITH を使います。例えば、Linux カーネルの UAPI ファイルは以下のように例外を使っています::
 
       // SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note
       // SPDX-License-Identifier: GPL-2.0+ WITH Linux-syscall-note
 
-   Other examples using WITH exceptions found in the kernel are::
+   カーネルには他にも以下のように WITH 例外を使っている箇所があります::
 
       // SPDX-License-Identifier: GPL-2.0 WITH mif-exception
       // SPDX-License-Identifier: GPL-2.0+ WITH GCC-exception-2.0
 
-   Exceptions can only be used with particular License identifiers. The
-   valid License identifiers are listed in the tags of the exception text
-   file. For details see the point `Exceptions`_ in the chapter `License
-   identifiers`_.
+   例外は特定のライセンス識別子と組み合わせて使う必要があります。有効なライセンス識別子は exception テキストファイルのタグに記載されています。詳しくは `ライセンス識別子`_ チャプターの `例外`_ セクションを見てください。
 
-   OR should be used if the file is dual licensed and only one license is
-   to be selected.  For example, some dtsi files are available under dual
-   licenses::
+   OR はファイルがデュアルライセンスでどちらか片方のライセンスが選択される場合に使用します。例えば、一部の dtsi ファイルはデュアルライセンスで配布されています::
 
       // SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause
 
-   Examples from the kernel for license expressions in dual licensed files::
+   デュアルライセンスのファイルのライセンス表現の例::
 
       // SPDX-License-Identifier: GPL-2.0 OR MIT
       // SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
@@ -119,15 +84,11 @@ license list at https://spdx.org/licenses/ along with the license texts.
       // SPDX-License-Identifier: (GPL-2.0 WITH Linux-syscall-note) OR MIT
       // SPDX-License-Identifier: GPL-1.0+ OR BSD-3-Clause OR OpenSSL
 
-   AND should be used if the file has multiple licenses whose terms all
-   apply to use the file. For example, if code is inherited from another
-   project and permission has been given to put it in the kernel, but the
-   original license terms need to remain in effect::
+   AND はファイルに複数のライセンスが存在し、ファイルを使うときは全てのライセンスが適用されるときに使用します。例えば、他のプロジェクトから継承されたコードでカーネルに含める許可が得られているが、元々のライセンスの効果は失われていない場合::
 
       // SPDX-License-Identifier: (GPL-2.0 WITH Linux-syscall-note) AND MIT
 
-   Another other example where both sets of license terms need to be
-   adhered to is::
+   複数のライセンスが適用される他の例::
 
       // SPDX-License-Identifier: GPL-1.0+ AND LGPL-2.1+
 
@@ -137,7 +98,7 @@ license list at https://spdx.org/licenses/ along with the license texts.
 The licenses currently used, as well as the licenses for code added to the
 kernel, can be broken down into:
 
-1. _`Preferred licenses`:
+1. _`推奨ライセンス`:
 
    Whenever possible these licenses should be used as they are known to be
    fully compatible and widely used.  These licenses are available from the
@@ -217,7 +178,7 @@ kernel, can be broken down into:
 
 |
 
-2. Not recommended licenses:
+2. 非推奨ライセンス:
 
    These licenses should only be used for existing code or for importing
    code from a different project.  These licenses are available from the
@@ -264,7 +225,7 @@ kernel, can be broken down into:
 
 |
 
-3. _`Exceptions`:
+3. _`例外`:
 
    Some licenses can be amended with exceptions which grant certain rights
    which the original license does not.  These exceptions are available
