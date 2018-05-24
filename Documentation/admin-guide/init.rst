@@ -1,5 +1,5 @@
-Explaining the dreaded "No init found." boot hang message
-=========================================================
+恐ろしき "No init found." ブートフリーズメッセージについて
+============================================================
 
 OK, so you've got this pretty unintuitive message (currently located
 in init/main.c) and are wondering what the H*** went wrong.

@@ -1,6 +1,6 @@
-======================
-Linux Kernel Selftests
-======================
+===========================
+Linux カーネルセルフテスト
+===========================
 
 The kernel contains a set of "self tests" under the tools/testing/selftests/
 directory. These are intended to be small tests to exercise individual code

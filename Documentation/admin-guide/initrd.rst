@@ -93,8 +93,7 @@ First, a directory for the initrd file system has to be created on the
 
 	# mkdir /initrd
 
-The name is not relevant. More details can be found on the
-:manpage:`pivot_root(2)` man page.
+The name is not relevant. More details can be found on the `pivot_root(2) <https://man.kusakata.com/man/pivot_root.2.html>`_ man page.
 
 If the root file system is created during the boot procedure (i.e. if
 you're building an install floppy), the root file system creation

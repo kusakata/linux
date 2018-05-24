@@ -1,6 +1,6 @@
-======================
-No New Privileges Flag
-======================
+=========================
+No New Privileges フラグ
+=========================
 
 The execve system call can grant a newly-started program privileges that
 its parent did not have.  The most obvious examples are setuid/setgid

@@ -1,7 +1,7 @@
 .. _submittingpatches:
 
-Submitting patches: the essential guide to getting your code into the kernel
-============================================================================
+パッチの投稿: あなたのコードをカーネルに取り入れるときの基本ガイド
+====================================================================
 
 For a person or company who wishes to submit a change to the Linux
 kernel, the process can sometimes be daunting if you're not familiar

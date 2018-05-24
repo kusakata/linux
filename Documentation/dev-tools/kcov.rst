@@ -1,5 +1,5 @@
-kcov: code coverage for fuzzing
-===============================
+kcov: ファジングのコードカバレッジ
+===================================
 
 kcov exposes kernel code coverage information in a form suitable for coverage-
 guided fuzzing (randomized testing). Coverage data of a running kernel is

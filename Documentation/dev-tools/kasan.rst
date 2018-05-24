@@ -1,4 +1,4 @@
-The Kernel Address Sanitizer (KASAN)
+Kernel Address Sanitizer (KASAN)
 ====================================
 
 Overview

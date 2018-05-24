@@ -1,5 +1,5 @@
-Unicode support
-===============
+Unicode のサポート
+===================
 
 		 Last update: 2005-01-17, version 1.4
 
@@ -89,7 +89,7 @@ U+F812 KEYBOARD SYMBOL OPEN APPLE
 U+F813 KEYBOARD SYMBOL SOLID APPLE
 ====== ======================================
 
-Klingon language support
+クリンゴン語のサポート
 ------------------------
 
 In 1996, Linux was the first operating system in the world to add

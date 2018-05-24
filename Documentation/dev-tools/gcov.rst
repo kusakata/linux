@@ -1,4 +1,4 @@
-Using gcov with the Linux kernel
+Linux カーネルで gcov を使う
 ================================
 
 gcov profiling kernel support enables the use of GCC's coverage testing

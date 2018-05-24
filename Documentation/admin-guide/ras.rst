@@ -1,10 +1,10 @@
 .. include:: <isonum.txt>
 
-============================================
-Reliability, Availability and Serviceability
-============================================
+========================
+信頼性・可用性・保守性
+========================
 
-RAS concepts
+RAS の概念
 ************
 
 Reliability, Availability and Serviceability (RAS) is a concept used on

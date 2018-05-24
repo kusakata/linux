@@ -1,5 +1,5 @@
-RAID arrays
-===========
+RAID アレイ
+============
 
 Boot time assembly of RAID arrays
 ---------------------------------

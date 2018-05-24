@@ -1,7 +1,7 @@
 .. highlight:: none
 
-Debugging kernel and modules via gdb
-====================================
+gdb でカーネルとモジュールをデバッグする
+=========================================
 
 The kernel debugger kgdb, hypervisors like QEMU or JTAG-based hardware
 interfaces allow to debug the Linux kernel and its modules during runtime
@@ -12,11 +12,10 @@ them. It focuses on QEMU/KVM virtual machines as target, but the examples can
 be transferred to the other gdb stubs as well.
 
 
-Requirements
-------------
+要件
+------
 
-- gdb 7.2+ (recommended: 7.4+) with python support enabled (typically true
-  for distributions)
+- python のサポートが有効になっている gdb 7.2+ (推奨: 7.4+)
 
 
 Setup

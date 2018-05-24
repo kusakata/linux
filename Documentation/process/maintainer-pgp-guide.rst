@@ -1,8 +1,8 @@
 .. _pgpguide:
 
-===========================
-Kernel Maintainer PGP guide
-===========================
+============================
+カーネルメンテナ PGP ガイド
+============================
 
 :Author: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
 
@@ -14,7 +14,7 @@ on some of the topics mentioned in this guide.
 
 .. _`Protecting Code Integrity`: https://github.com/lfit/itpol/blob/master/protecting-code-integrity.md
 
-The role of PGP in Linux Kernel development
+Linux カーネル開発における PGP の役割
 ===========================================
 
 PGP helps ensure the integrity of the code that is produced by the Linux
@@ -37,8 +37,8 @@ have on their workstations. To this end:
 
 .. _devs_not_infra:
 
-Trusting the developers, not infrastructure
--------------------------------------------
+信頼するべきは開発者であってインフラではない
+----------------------------------------------
 
 Ever since the 2011 compromise of core kernel.org systems, the main
 operating principle of the Kernel Archives project has been to assume
@@ -57,11 +57,11 @@ establish the integrity of the Linux kernel itself.
 
 .. _pgp_tools:
 
-PGP tools
-=========
+PGP ツール
+===========
 
-Use GnuPG v2
-------------
+GnuPG v2 を使う
+----------------
 
 Your distro should already have GnuPG installed by default, you just
 need to verify that you are using version 2.x and not the legacy 1.4
@@ -91,7 +91,7 @@ by setting the appropriate alias::
 
 You can put that in your ``.bashrc`` to make sure it's always the case.
 
-Configure gpg-agent options
+gpg-agent オプションの設定
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The GnuPG agent is a helper tool that will start automatically whenever
@@ -135,7 +135,7 @@ Check the full path to your ``gpg`` or ``gpg2`` command and use the
 
 .. _master_key:
 
-Protect your master PGP key
+マスター PGP 鍵の保護
 ===========================
 
 This guide assumes that you already have a PGP key that you use for Linux
@@ -146,7 +146,7 @@ on how to create a new one.
 You should also make a new key if your current one is weaker than 2048 bits
 (RSA).
 
-Master key vs. Subkeys
+マスター鍵 vs. 副鍵
 ----------------------
 
 Subkeys are fully independent PGP keypairs that are tied to the "master"

@@ -1,20 +1,20 @@
-Ramoops oops/panic logger
-=========================
+Ramoops oops/panic ロガー
+===========================
 
 Sergiu Iordache <sergiu@chromium.org>
 
 Updated: 17 November 2011
 
-Introduction
-------------
+イントロダクション
+-------------------
 
 Ramoops is an oops/panic logger that writes its logs to RAM before the system
 crashes. It works by logging oopses and panics in a circular buffer. Ramoops
 needs a system with persistent RAM so that the content of that area can
 survive after a restart.
 
-Ramoops concepts
-----------------
+Ramoops のコンセプト
+---------------------
 
 Ramoops uses a predefined memory area to store the dump. The start and size
 and type of the memory area are set using three variables:
@@ -46,7 +46,7 @@ This might be useful when a hardware reset was used to bring the machine back
 to life (i.e. a watchdog triggered). In such cases, RAM may be somewhat
 corrupt, but usually it is restorable.
 
-Setting the parameters
+パラメータの設定
 ----------------------
 
 Setting the ramoops parameters can be done in several different manners:
@@ -118,13 +118,13 @@ very early in the architecture code, e.g.::
 
 	memblock_reserve(ramoops_data.mem_address, ramoops_data.mem_size);
 
-Dump format
------------
+ダンプフォーマット
+--------------------
 
 The data dump begins with a header, currently defined as ``====`` followed by a
 timestamp and a new line. The dump then continues with the actual data.
 
-Reading the data
+データの読み方
 ----------------
 
 The dump data can be read from the pstore filesystem. The format for these

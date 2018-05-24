@@ -1,7 +1,7 @@
 .. _kernel_docs:
 
-Index of Documentation for People Interested in Writing and/or Understanding the Linux Kernel
-=============================================================================================
+Linux カーネルを書いたり理解するのに興味を持っている人のためのドキュメントの索引
+==================================================================================
 
           Juan-Mariano de Goyeneche <jmseyas@dit.upm.es>
 

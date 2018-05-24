@@ -1,5 +1,5 @@
-Software cursor for VGA
-=======================
+VGA のソフトウェアカーソル
+============================
 
 by Pavel Machek <pavel@atrey.karlin.mff.cuni.cz>
 and Martin Mares <mj@atrey.karlin.mff.cuni.cz>

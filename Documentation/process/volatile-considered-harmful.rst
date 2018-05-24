@@ -1,7 +1,7 @@
 
 .. _volatile_considered_harmful:
 
-Why the "volatile" type class should not be used
+なぜ "volatile" 型クラスを使ってはいけないのか
 ------------------------------------------------
 
 C programmers have often taken volatile to mean that the variable could be

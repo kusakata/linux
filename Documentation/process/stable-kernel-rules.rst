@@ -1,7 +1,7 @@
 .. _stable_kernel_rules:
 
-Everything you ever wanted to know about Linux -stable releases
-===============================================================
+Linux の -stable リリースについて知っておくべき全てのこと
+==========================================================
 
 Rules on what kind of patches are accepted, and which ones are not, into the
 "-stable" tree:

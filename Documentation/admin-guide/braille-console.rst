@@ -1,4 +1,4 @@
-Linux Braille Console
+Linux 点字コンソール
 =====================
 
 To get early boot messages on a braille device (before userspace screen

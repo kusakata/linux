@@ -1,6 +1,6 @@
 .. _applying_patches:
 
-Applying Patches To The Linux Kernel
+Linux カーネルにパッチを適用する
 ++++++++++++++++++++++++++++++++++++
 
 Original by:

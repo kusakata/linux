@@ -1,5 +1,5 @@
-Adding a New System Call
-========================
+新しいシステムコールの追加
+============================
 
 This document describes what's involved in adding a new system call to the
 Linux kernel, over and above the normal submission advice in

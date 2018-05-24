@@ -1,7 +1,7 @@
 .. _codingstyle:
 
-Linux kernel coding style
-=========================
+Linux カーネルコーディングスタイル
+===================================
 
 This is a short document describing the preferred coding style for the
 linux kernel.  Coding style is very personal, and I won't **force** my
@@ -15,7 +15,7 @@ and NOT read it.  Burn them, it's a great symbolic gesture.
 Anyway, here goes:
 
 
-1) Indentation
+1) インデント
 --------------
 
 Tabs are 8 characters, and thus indentations are also 8 characters.
@@ -78,8 +78,8 @@ used for indentation, and the above example is deliberately broken.
 Get a decent editor and don't leave whitespace at the end of lines.
 
 
-2) Breaking long lines and strings
-----------------------------------
+2) 長い行と文字列の改行
+--------------------------
 
 Coding style is all about readability and maintainability using commonly
 available tools.
@@ -95,8 +95,8 @@ with a long argument list. However, never break user-visible strings such as
 printk messages, because that breaks the ability to grep for them.
 
 
-3) Placing Braces and Spaces
-----------------------------
+3) 括弧と空白の使い方
+-----------------------
 
 The other issue that always comes up in C styling is the placement of
 braces.  Unlike the indent size, there are few technical reasons to
@@ -209,7 +209,7 @@ Also, use braces when a loop contains more than a single simple statement:
 			do_something();
 	}
 
-3.1) Spaces
+3.1) 空白
 ***********
 
 Linux kernel style for use of spaces depends (mostly) on
@@ -281,7 +281,7 @@ of patches, this may make later patches in the series fail by changing their
 context lines.
 
 
-4) Naming
+4) 命名
 ---------
 
 C is a Spartan language, and so should your naming be.  Unlike Modula-2
@@ -315,7 +315,7 @@ problem, which is called the function-growth-hormone-imbalance syndrome.
 See chapter 6 (Functions).
 
 
-5) Typedefs
+5) Typedef
 -----------
 
 Please don't use things like ``vps_t``.
@@ -399,7 +399,7 @@ In general, a pointer, or a struct that has elements that can reasonably
 be directly accessed should **never** be a typedef.
 
 
-6) Functions
+6) 関数
 ------------
 
 Functions should be short and sweet, and do just one thing.  They should
@@ -444,8 +444,8 @@ Although this is not required by the C language, it is preferred in Linux
 because it is a simple way to add valuable information for the reader.
 
 
-7) Centralized exiting of functions
------------------------------------
+7) 関数の抜け方の統一
+------------------------
 
 Albeit deprecated by some people, the equivalent of the goto statement is
 used frequently by compilers in form of the unconditional jump instruction.
@@ -516,7 +516,7 @@ fix for this is to split it up into two error labels ``err_free_bar:`` and
 Ideally you should simulate errors to test all exit paths.
 
 
-8) Commenting
+8) コメント
 -------------
 
 Comments are good, but there is also a danger of over-commenting.  NEVER

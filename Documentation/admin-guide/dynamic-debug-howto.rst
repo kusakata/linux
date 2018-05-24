@@ -1,9 +1,9 @@
-Dynamic debug
+動的デバッグ
 +++++++++++++
 
 
-Introduction
-============
+イントロダクション
+===================
 
 This document describes how to use the dynamic debug (dyndbg) feature.
 
@@ -35,8 +35,8 @@ Dynamic debug has even more useful features:
    which can be read to display the complete list of known debug
    statements, to help guide you
 
-Controlling dynamic debug Behaviour
-===================================
+動的デバッグの挙動を制御する
+===============================
 
 The behaviour of ``pr_debug()``/``dev_dbg()`` are controlled via writing to a
 control file in the 'debugfs' filesystem. Thus, you must first mount
@@ -54,8 +54,8 @@ If you make a mistake with the syntax, the write will fail thus::
 				<debugfs>/dynamic_debug/control
   -bash: echo: write error: Invalid argument
 
-Viewing Dynamic Debug Behaviour
-===============================
+動的デバッグの挙動を表示
+===========================
 
 You can view the currently configured behaviour of all the debug
 statements via::
@@ -232,8 +232,8 @@ Note the regexp ``^[-+=][flmpt_]+$`` matches a flags specification.
 To clear all flags at once, use ``=_`` or ``-flmpt``.
 
 
-Debug messages during Boot Process
-==================================
+ブートプロセスのデバッグメッセージ
+====================================
 
 To activate debug messages for core code and built-in modules during
 the boot process, even before userspace and debugfs exists, use
@@ -262,8 +262,8 @@ loaded later. ``dyndbg_query=`` and bare ``dyndbg=`` are only processed at
 boot.
 
 
-Debug Messages at Module Initialization Time
-============================================
+モジュール初期化時のデバッグメッセージ
+=========================================
 
 When ``modprobe foo`` is called, modprobe scans ``/proc/cmdline`` for
 ``foo.params``, strips ``foo.``, and passes them to the kernel along with
@@ -305,8 +305,8 @@ the sysfs interface if the debug messages are no longer needed::
 
    echo "module module_name -p" > <debugfs>/dynamic_debug/control
 
-Examples
-========
+サンプル
+==========
 
 ::
 

@@ -1,7 +1,7 @@
 .. _email_clients:
 
-Email clients info for Linux
-============================
+Linux のメールクライアント情報
+===============================
 
 Git
 ---

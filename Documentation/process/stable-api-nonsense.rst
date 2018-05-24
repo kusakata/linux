@@ -1,7 +1,7 @@
 .. _stable_api_nonsense:
 
-The Linux Kernel Driver Interface
-==================================
+Linux カーネルドライバーインターフェイス
+==========================================
 
 (all of your questions answered and then some)
 

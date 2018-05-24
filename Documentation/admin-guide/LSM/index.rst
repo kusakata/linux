@@ -1,6 +1,6 @@
-===========================
-Linux Security Module Usage
-===========================
+===============================
+Linux Security Module 使用方法
+===============================
 
 The Linux Security Module (LSM) framework provides a mechanism for
 various security checks to be hooked by new kernel extensions. The name

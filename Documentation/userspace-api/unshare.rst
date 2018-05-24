@@ -1,5 +1,5 @@
-unshare system call
-===================
+unshare システムコール
+========================
 
 This document describes the new system call, unshare(). The document
 provides an overview of the feature, why it is needed, how it can

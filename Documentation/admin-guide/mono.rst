@@ -1,5 +1,5 @@
-Mono(tm) Binary Kernel Support for Linux
------------------------------------------
+Linux の Mono(tm) バイナリのカーネルサポート
+---------------------------------------------
 
 To configure Linux to automatically execute Mono-based .NET binaries
 (in the form of .exe files) without the need to use the mono CLR

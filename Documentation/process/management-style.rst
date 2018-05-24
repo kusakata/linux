@@ -1,6 +1,6 @@
 .. _managementstyle:
 
-Linux kernel management style
+Linux カーネル運営スタイル
 =============================
 
 This is a short document describing the preferred (or made up, depending

@@ -1,5 +1,5 @@
-Java(tm) Binary Kernel Support for Linux v1.03
-----------------------------------------------
+Linux の Java(tm) バイナリのカーネルサポート v1.03
+----------------------------------------------------
 
 Linux beats them ALL! While all other OS's are TALKING about direct
 support of Java Binaries in the OS, Linux is doing it!

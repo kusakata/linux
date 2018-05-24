@@ -1,6 +1,6 @@
 .. _submittingdrivers:
 
-Submitting Drivers For The Linux Kernel
+Linux カーネルにドライバーを投稿する
 =======================================
 
 This document is intended to explain how to submit device drivers to the
@@ -33,7 +33,7 @@ If you don't use assigned numbers then when your device is submitted it will
 be given an assigned number even if that is different from values you may
 have shipped to customers before.
 
-Who To Submit Drivers To
+ドライバーの投稿先
 ------------------------
 
 Linux 2.0:
@@ -48,13 +48,13 @@ Linux 2.4:
 	maintainer does not respond or you cannot find the appropriate
 	maintainer then please contact Willy Tarreau <w@1wt.eu>.
 
-Linux 2.6 and upper:
+Linux 2.6 以上:
 	The same rules apply as 2.4 except that you should follow linux-kernel
 	to track changes in API's. The final contact point for Linux 2.6+
 	submissions is Andrew Morton.
 
-What Criteria Determine Acceptance
-----------------------------------
+受諾基準
+----------
 
 Licensing:
 		The code must be released to us under the
@@ -127,8 +127,8 @@ Control:
 		driver it is a good idea to state this in the comments,
 		and include an entry in MAINTAINERS for your driver.
 
-What Criteria Do Not Determine Acceptance
------------------------------------------
+受諾基準ではない事柄
+----------------------
 
 Vendor:
 		Being the hardware vendor and maintaining the driver is
@@ -144,8 +144,8 @@ Author:
 		whole story.
 
 
-Resources
----------
+参照
+------
 
 Linux kernel master tree:
 	ftp.\ *country_code*\ .kernel.org:/pub/linux/kernel/...

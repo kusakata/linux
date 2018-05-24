@@ -1,6 +1,6 @@
 .. _submitchecklist:
 
-Linux Kernel patch submission checklist
+Linux カーネルパッチ投稿チェックリスト
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here are some basic things that developers should do if they want to see their

@@ -1,4 +1,4 @@
-The Undefined Behavior Sanitizer - UBSAN
+Undefined Behavior Sanitizer - UBSAN
 ========================================
 
 UBSAN is a runtime undefined behaviour checker.

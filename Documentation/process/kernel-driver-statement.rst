@@ -1,7 +1,7 @@
-Kernel Driver Statement
+カーネルドライバー声明
 -----------------------
 
-Position Statement on Linux Kernel Modules
+Linux カーネルモジュールに関する意見表明
 ==========================================
 
 

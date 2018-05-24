@@ -1,5 +1,5 @@
-Linux magic numbers
-===================
+Linux マジックナンバー
+=======================
 
 This file is a registry of magic numbers which are in use.  When you
 add a magic number to a structure, you should also add it to this

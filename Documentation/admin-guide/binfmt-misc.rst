@@ -1,5 +1,5 @@
-Kernel Support for miscellaneous (your favourite) Binary Formats v1.1
-=====================================================================
+様々な (あなたのお好きな) バイナリフォーマットのカーネルサポート v1.1
+=======================================================================
 
 This Kernel feature allows you to invoke almost (for restrictions see below)
 every program by simply typing its name in the shell.
