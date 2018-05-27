@@ -121,25 +121,19 @@ Linux カーネルは全てのソースファイルに対して正確な SPDX �
 
    - Valid-License-Identifier:
 
-     One or more lines which declare which License Identifiers are valid
-     inside the project to reference this particular license text.  Usually
-     this is a single valid identifier, but e.g. for licenses with the 'or
-     later' options two identifiers are valid.
+     プロジェクト内で有効なライセンス識別子を宣言するひとつまたは複数の行。通常は識別子はひとつだけですが、'or later' オプションが存在するライセンスの場合は有効な識別子が2つになります。
 
    - SPDX-URL:
 
-     The URL of the SPDX page which contains additional information related
-     to the license.
+     ライセンスに関する情報が書かれている SPDX ページの URL。
 
    - Usage-Guidance:
 
-     Freeform text for usage advice. The text must include correct examples
-     for the SPDX license identifiers as they should be put into source
-     files according to the `License identifier syntax`_ guidelines.
+     使用アドバイスを表す自由なテキスト。テキストには `ライセンス識別子の書式`_ ガイドラインにあわせてソースファイルにライセンスを記述する SPDX ライセンス識別子の例を含める必要があります。
 
    - License-Text:
 
-     All text after this tag is treated as the original license text
+     このタグ以降のテキストは全てオリジナルのライセンス文章として扱われます。
 
    ファイルフォーマットの例::
 
@@ -173,35 +167,27 @@ Linux カーネルは全てのソースファイルに対して正確な SPDX �
 
 2. 非推奨ライセンス:
 
-   These licenses should only be used for existing code or for importing
-   code from a different project.  These licenses are available from the
-   directory::
+   既存のコードや他のプロジェクトからコードをインポートするときに使用するべきでないライセンスです。非推奨ライセンスはカーネルソースツリーの以下のディレクトリに存在します::
 
       LICENSES/other/
 
-   in the kernel source tree.
+   上記のディレクトリのファイルには完全なライセンス文章と `メタタグ`_ が記述されています。ファイル名は SPDX ライセンス識別子と同じになっており、ソースファイルでライセンスを提示するときに使用します。
 
-   The files in this directory contain the full license text and
-   `Metatags`_.  The file names are identical to the SPDX license
-   identifier which shall be used for the license in source files.
-
-   Examples::
+   例::
 
       LICENSES/other/ISC
 
-   Contains the Internet Systems Consortium license text and the required
-   metatags::
+   上記のファイルには Internet Systems Consortium ライセンスのテキストと必要なメタタグが含まれています。
 
       LICENSES/other/ZLib
 
-   Contains the ZLIB license text and the required metatags.
+   上記のファイルには ZLIB ライセンスの文章と必要なメタタグが含まれています。
 
-   Metatags:
+   メタタグ:
 
-   The metatag requirements for 'other' licenses are identical to the
-   requirements of the `Preferred licenses`_.
+   'other' ライセンスのメタタグは  `推奨ライセンス`_ のメタタグと同じです。
 
-   File format example::
+   ファイルフォーマットの例::
 
       Valid-License-Identifier: ISC
       SPDX-URL: https://spdx.org/licenses/ISC.html
@@ -220,60 +206,47 @@ Linux カーネルは全てのソースファイルに対して正確な SPDX �
 
 3. _`例外`:
 
-   Some licenses can be amended with exceptions which grant certain rights
-   which the original license does not.  These exceptions are available
-   from the directory::
+   一部のライセンスではオリジナルのライセンスには存在しない権限を与える例外が追加されている場合があります。例外はカーネルソースツリーの以下のディレクトリに存在します::
 
       LICENSES/exceptions/
 
-   in the kernel source tree.  The files in this directory contain the full
-   exception text and the required `Exception Metatags`_.
+   上記のディレクトリのファイルには完全な例外文章と `例外メタタグ`_ が記述されています。
 
-   Examples::
+   例::
 
       LICENSES/exceptions/Linux-syscall-note
 
-   Contains the Linux syscall exception as documented in the COPYING
-   file of the Linux kernel, which is used for UAPI header files.
-   e.g. /\* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note \*/::
+   上記のファイルには Linux カーネルの COPYING ファイルに書かれている UAPI ヘッダーファイルで使用される Linux のシステムコールの例外について記載されています。例: /\* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note \*/。
 
       LICENSES/exceptions/GCC-exception-2.0
 
-   Contains the GCC 'linking exception' which allows to link any binary
-   independent of its license against the compiled version of a file marked
-   with this exception. This is required for creating runnable executables
-   from source code which is not compatible with the GPL.
+   上記のファイルにはコンパイルされたファイルのライセンスとは無関係にあらゆるバイナリへのリンクを許可する GCC の 'linking exception' が含まれています。GPL と互換性のないソースコードから実行ファイルを作成するために必要な例外です。
 
-   _`Exception Metatags`:
+   _`例外メタタグ`:
 
-   The following meta tags must be available in an exception file:
+   例外ファイルには以下のメタタグが必要です:
 
    - SPDX-Exception-Identifier:
 
-     One exception identifier which can be used with SPDX license
-     identifiers.
+     SPDX ライセンス識別子と一緒に使うことができる例外識別子。
 
    - SPDX-URL:
 
-     The URL of the SPDX page which contains additional information related
-     to the exception.
+     例外に関する情報が書かれている SPDX ページの URL。
 
    - SPDX-Licenses:
 
-     A comma separated list of SPDX license identifiers for which the
-     exception can be used.
+     例外を使用できる SPDX ライセンス識別子のリスト (カンマ区切り)。
 
    - Usage-Guidance:
 
-     Freeform text for usage advice. The text must be followed by correct
-     examples for the SPDX license identifiers as they should be put into
-     source files according to the `License identifier syntax`_ guidelines.
+     使用アドバイスを表す自由なテキスト。テキストには `ライセンス識別子の書式`_ ガイドラインにあわせてソースファイルにライセンスを記述する SPDX ライセンス識別子の例を含める必要があります。
 
    - Exception-Text:
 
-     All text after this tag is treated as the original exception text
+     このタグ以降のテキストは全てオリジナルの例外テキストとして扱われます。
 
-   File format examples::
+   ファイルフォーマットの例::
 
       SPDX-Exception-Identifier: Linux-syscall-note
       SPDX-URL: https://spdx.org/licenses/Linux-syscall-note.html
@@ -304,8 +277,4 @@ Linux カーネルは全てのソースファイルに対して正確な SPDX �
         Full exception text
 
 
-All SPDX license identifiers and exceptions must have a corresponding file
-in the LICENSE subdirectories. This is required to allow tool
-verification (e.g. checkpatch.pl) and to have the licenses ready to read
-and extract right from the source, which is recommended by various FOSS
-organizations, e.g. the `FSFE REUSE initiative <https://reuse.software/>`_.
+SPDX ライセンス識別子と例外は全て LICENSE サブディレクトリに対応するファイルが存在します。検証ツール (例: checkpatch.pl) でソースからライセンスを読み込んで展開できるようにするためです。これは様々な FOSS 組織で推奨されています。例: `FSFE REUSE initiative <https://reuse.software/>`_ 。
