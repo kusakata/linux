@@ -22,22 +22,22 @@ COPYING ファイルで説明しているライセンスはカーネルソース
 
 ソースファイルのライセンスを宣言するときはファイルの一番上に適当な定型文のコメントを挿入するのが一般的です。書式や typo などのため、こういった「定型文」をライセンス管理のために使用するツールで確認することは容易ではありません。
 
-定型文の代わりになるものとして各ソースファイルで Software Package Data Exchange (SPDX) ライセンス識別子を使用するという方法があります。SPDX ライセンス識別子はプログラムで簡単にパースすることができ、ファイルがどのライセンスで配布されているのか正確・簡潔に記述できます。SPDX ライセンス記述子は Linux Foundation の SPDX Workgroup で管理されており業界・ツールベンダー・法務チームなどパートナーの承認を得ています。詳しい情報は https://spdx.org/ を見てください。
+定型文の代わりになるものとして各ソースファイルで Software Package Data Exchange (SPDX) ライセンス識別子を使用するという方法があります。SPDX ライセンス識別子はプログラムで簡単にパースすることができ、ファイルがどのライセンスで配布されているのか正確・簡潔に記述できます。SPDX ライセンス識別子は Linux Foundation の SPDX Workgroup で管理されており業界・ツールベンダー・法務チームなどパートナーの承認を得ています。詳しい情報は https://spdx.org/ を見てください。
 
-Linux カーネルは全てのソースファイルに対して正確な SPDX 記述子を必要とします。カーネル内で使われている有効な記述子については `ライセンス記述子`_ セクションで説明しています。また、公式 SPDX ライセンスリスト https://spdx.org/licenses/ とライセンス文章を載せています。
+Linux カーネルは全てのソースファイルに対して正確な SPDX 識別子を必要とします。カーネル内で使われている有効な識別子については `ライセンス識別子`_ セクションで説明しています。また、公式 SPDX ライセンスリスト https://spdx.org/licenses/ とライセンス文章を載せています。
 
 ライセンス識別子の書式
 -------------------------
 
 1. 配置:
 
-   SPDX ライセンス識別子はカーネルファイルのできるかぎり上部に追加します。大部分のファイルでは1行目が使われますが、最初の行に '#!PATH_TO_INTERPRETER' と記述する必要があるスクリプトでは SPDX 記述子は2行目に配置します。
+   SPDX ライセンス識別子はカーネルファイルのできるかぎり上部に追加します。大部分のファイルでは1行目が使われますが、最初の行に '#!PATH_TO_INTERPRETER' と記述する必要があるスクリプトでは SPDX 識別子は2行目に配置します。
 
 |
 
 2. 形式:
 
-   SPDX ライセンス記述子はコメントの形で追加します。コメントの形式はファイルのタイプによって変わります::
+   SPDX ライセンス識別子はコメントの形で追加します。コメントの形式はファイルのタイプによって変わります::
 
       C ソース:	// SPDX-License-Identifier: <SPDX License Expression>
       C ヘッダー:	/* SPDX-License-Identifier: <SPDX License Expression> */
@@ -95,36 +95,29 @@ Linux カーネルは全てのソースファイルに対して正確な SPDX �
 ライセンス識別子
 -------------------
 
-The licenses currently used, as well as the licenses for code added to the
-kernel, can be broken down into:
+現在使用しているライセンスと、カーネルに追加するコードのライセンスについては以下の通りです:
 
 1. _`推奨ライセンス`:
 
-   Whenever possible these licenses should be used as they are known to be
-   fully compatible and widely used.  These licenses are available from the
-   directory::
+   可能な限り完全な互換性があり広く使われている推奨ライセンスを使うようにしてください。推奨ライセンスはカーネルソースツリーの以下のディレクトリから確認できます::
 
       LICENSES/preferred/
 
-   in the kernel source tree.
+   上記のディレクトリのファイルには完全なライセンス文章と `メタタグ`_ が記述されています。ファイル名は SPDX ライセンス識別子と同じになっており、ソースファイルでライセンスを提示するときに使用します。
 
-   The files in this directory contain the full license text and
-   `Metatags`_.  The file names are identical to the SPDX license
-   identifier which shall be used for the license in source files.
-
-   Examples::
+   例::
 
       LICENSES/preferred/GPL-2.0
 
-   Contains the GPL version 2 license text and the required metatags::
+   上記のファイルには GPL バージョン 2 のライセンス文章と必要なメタタグが含まれています。
 
       LICENSES/preferred/MIT
 
-   Contains the MIT license text and the required metatags
+   上記のファイルには MIT ライセンス文章と必要なメタタグが含まれています。
 
-   _`Metatags`:
+   _`メタタグ`:
 
-   The following meta tags must be available in a license file:
+   ライセンスファイルでは以下のメタタグが利用できます:
 
    - Valid-License-Identifier:
 
@@ -148,7 +141,7 @@ kernel, can be broken down into:
 
      All text after this tag is treated as the original license text
 
-   File format examples::
+   ファイルフォーマットの例::
 
       Valid-License-Identifier: GPL-2.0
       Valid-License-Identifier: GPL-2.0+
