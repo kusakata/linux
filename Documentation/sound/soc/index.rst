@@ -1,6 +1,6 @@
-==============
-ALSA SoC Layer
-==============
+==================
+ALSA SoC レイヤー
+==================
 
 The documentation is spilt into the following sections:-
 

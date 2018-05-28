@@ -1,6 +1,6 @@
 .. _configuregit:
 
-Configure Git
+Git の設定
 =============
 
 This chapter describes maintainer level git configuration.

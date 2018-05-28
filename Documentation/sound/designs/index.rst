@@ -1,4 +1,4 @@
-Designs and Implementations
+設計と実装
 ===========================
 
 .. toctree::

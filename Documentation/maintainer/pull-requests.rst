@@ -1,6 +1,6 @@
 .. _pullrequests:
 
-Creating Pull Requests
+プルリクエストの作成
 ======================
 
 This chapter describes how maintainers can create and submit pull requests
@@ -18,8 +18,8 @@ Original email thread::
 	http://lkml.kernel.org/r/20171114110500.GA21175@kroah.com
 
 
-Create Branch
--------------
+ブランチの作成
+---------------
 
 To start with you will need to have all the changes you wish to include in
 the pull request on a separate branch. Typically you will base this branch
@@ -129,8 +129,8 @@ can be retrieved::
 	git push origin char-misc-4.15-rc1
 
 
-Create Pull Request
--------------------
+プルリクエストの作成
+---------------------
 
 The last thing to do is create the pull request message.  ``git`` handily
 will do this for you with the ``git request-pull`` command, but it needs a
@@ -167,8 +167,8 @@ creating pull requests without a signed tag then ``https://`` may be a
 better choice. Please see the original thread for the full discussion.
 
 
-Submit Pull Request
--------------------
+プルリクエストの投稿
+----------------------
 
 A pull request is submitted in the same way as an ordinary patch. Send as
 inline email to the maintainer and CC LKML and any sub-system specific

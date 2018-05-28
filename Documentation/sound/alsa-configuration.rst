@@ -1,9 +1,9 @@
 ==============================================================
-Advanced Linux Sound Architecture - Driver Configuration guide
+Advanced Linux Sound Architecture - ドライバー設定ガイド
 ==============================================================
 
 
-Kernel Configuration
+カーネル設定
 ====================
 
 To enable ALSA support you need at least to build the kernel with
@@ -26,16 +26,16 @@ Please note that all the ALSA ISA drivers support the Linux isapnp API
 using isapnptools.
 
 
-Module parameters
-=================
+モジュールパラメータ
+=====================
 
 The user can load modules with options. If the module supports more than
 one card and you have more than one card of the same type then you can
 specify multiple values for the option separated by commas.
 
 
-Module snd
-----------
+snd モジュール
+---------------
 
 The core ALSA module.  It is used by all ALSA card drivers.
 It takes the following options which have global effects.
@@ -60,8 +60,8 @@ debug
     This option can be dynamically changed via sysfs
     /sys/modules/snd/parameters/debug file.
   
-Module snd-pcm-oss
-------------------
+snd-pcm-oss モジュール
+-----------------------
 
 The PCM OSS emulation module.
 This module takes options which change the mapping of devices.
@@ -87,8 +87,8 @@ regarding opening the device.  When this option is non-zero,
 opening a busy OSS PCM device won't be blocked but return
 immediately with EAGAIN (just like O_NONBLOCK flag).
     
-Module snd-rawmidi
-------------------
+snd-rawmidi モジュール
+------------------------
 
 This module takes options which change the mapping of devices.
 similar to those of the snd-pcm-oss module.
@@ -124,8 +124,8 @@ enable
     enable card;
     Default: enabled, for PCI and ISA PnP cards
 
-Module snd-adlib
-----------------
+snd-adlib モジュール
+----------------------
 
 Module for AdLib FM cards.
 
@@ -158,8 +158,8 @@ instead. To have the card produce sound, use ``aplaymidi`` from alsa-utils:
 
       aplaymidi -p 64:0 foo.mid
 
-Module snd-ad1816a
-------------------
+snd-ad1816a モジュール
+-----------------------
 
 Module for sound cards based on Analog Devices AD1816A/AD1815 ISA chips.
 
@@ -168,8 +168,8 @@ clockfreq
     
 This module supports multiple cards, autoprobe and PnP.
     
-Module snd-ad1848
------------------
+snd-ad1848 モジュール
+----------------------
 
 Module for sound cards based on AD1848/AD1847/CS4248 ISA chips.
 
@@ -185,8 +185,8 @@ thus main port must be specified!!! Other ports are optional.
     
 The power-management is supported.
 
-Module snd-ad1889
------------------
+snd-ad1889 モジュール
+----------------------
 
 Module for Analog Devices AD1889 chips.
 
@@ -196,8 +196,8 @@ ac97_quirk
 
 This module supports multiple cards.
 
-Module snd-ali5451
-------------------
+snd-ali5451 モジュール
+-----------------------
 
 Module for ALi M5451 PCI chip.
 
@@ -211,8 +211,8 @@ This module supports one chip and autoprobe.
 
 The power-management is supported.
 
-Module snd-als100
------------------
+snd-als100 モジュール
+-----------------------
 
 Module for sound cards based on Avance Logic ALS100/ALS120 ISA chips.
 

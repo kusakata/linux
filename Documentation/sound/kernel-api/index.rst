@@ -1,5 +1,5 @@
-ALSA Kernel API Documentation
-=============================
+ALSA カーネル API ドキュメント
+================================
 
 .. toctree::
    :maxdepth: 2
