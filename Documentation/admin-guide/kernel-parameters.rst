@@ -3,58 +3,44 @@
 カーネルのコマンドラインパラメータ
 ====================================
 
-The following is a consolidated list of the kernel parameters as
-implemented by the __setup(), core_param() and module_param() macros
-and sorted into English Dictionary order (defined as ignoring all
-punctuation and sorting digits before letters in a case insensitive
-manner), and with descriptions where known.
+以下は __setup(), core_param(), module_param() マクロによって実装されているカーネルパラメータの英語辞書順 (句読点を無視して大文字・小文字を区別しないで文字よりも先に数字が来ます) のリストと説明です。
 
-The kernel parses parameters from the kernel command line up to "--";
-if it doesn't recognize a parameter and it doesn't contain a '.', the
-parameter gets passed to init: parameters with '=' go into init's
-environment, others are passed as command line arguments to init.
-Everything after "--" is passed as an argument to init.
+カーネルはカーネルコマンドラインの "--" までのパラメータをパースします。パラメータが認識されずコマンドラインに '.' が含まれていない場合、パラメータは init に渡されます: '=' が付くパラメータは init の環境に渡され、他のパラメータはコマンドライン引数として init に渡されます。"--" 以後の文字列は init の引数として渡されます。
 
-Module parameters can be specified in two ways: via the kernel command
-line with a module name prefix, or via modprobe, e.g.::
+モジュールパラメータは2つの方法で指定することができます: モジュール名のプリフィックスを付けてカーネルコマンドラインで指定するか、modprobe を使用します。例::
 
 	(kernel command line) usbcore.blinkenlights=1
 	(modprobe command line) modprobe usbcore blinkenlights=1
 
-Parameters for modules which are built into the kernel need to be
-specified on the kernel command line.  modprobe looks through the
-kernel command line (/proc/cmdline) and collects module parameters
-when it loads a module, so the kernel command line can be used for
-loadable modules too.
+カーネルに組み込まれたモジュールのパラメータはカーネルコマンドラインで指定する必要があります。modprobe はカーネルコマンドライン (/proc/cmdline) を見てからモジュールをロードするときにモジュールパラメータを収集するため、カーネルコマンドラインはローダブルモジュールに対しても使用できます。
 
-Hyphens (dashes) and underscores are equivalent in parameter names, so::
+パラメータ名のハイフン (ダッシュ) とアンダーバーは同じ意味を持ちます::
 
 	log_buf_len=1M print-fatal-signals=1
 
-can also be entered as::
+上記のパラメータは以下のように入力することもできます::
 
 	log-buf-len=1M print_fatal_signals=1
 
-Double-quotes can be used to protect spaces in values, e.g.::
+値に空白が入るときはダブルクオーテーションで囲うことができます。例::
 
 	param="spaces in here"
 
 cpu lists:
 ----------
 
-Some kernel parameters take a list of CPUs as a value, e.g.  isolcpus,
-nohz_full, irqaffinity, rcu_nocbs.  The format of this list is:
+一部のカーネルパラメータ (例: isolcpus, nohz_full, irqaffinity, rcu_nocbs) では値として CPU のリストを入力します。リストのフォーマットは以下の通り:
 
 	<cpu number>,...,<cpu number>
 
-or
+または:
 
 	<cpu number>-<cpu number>
 	(must be a positive range in ascending order)
 
-or a mixture
+もしくは上記を組み合わせて:
 
-<cpu number>,...,<cpu number>-<cpu number>
+   <cpu number>,...,<cpu number>-<cpu number>
 
 Note that for the special case of a range one can split the range into equal
 sized groups and for each group use some amount from the beginning of that
