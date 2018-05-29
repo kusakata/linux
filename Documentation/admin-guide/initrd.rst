@@ -19,31 +19,21 @@ initrd を使用する時、システムは基本的に以下のように起動�
 
   1) ブートローダーがカーネルと初期 RAM ディスクをロードします。
   2) カーネルは initrd を通常の RAM ディスクに変換して initrd が使用しているメモリを開放します。
-  3) if the root device is not ``/dev/ram0``, the old (deprecated)
-     change_root procedure is followed. see the "Obsolete root change
-     mechanism" section below.
-  4) root device is mounted. if it is ``/dev/ram0``, the initrd image is
-     then mounted as root
-  5) /sbin/init is executed (this can be any valid executable, including
-     shell scripts; it is run with uid 0 and can do basically everything
-     init can do).
-  6) init mounts the "real" root file system
-  7) init places the root file system at the root directory using the
-     pivot_root system call
-  8) init execs the ``/sbin/init`` on the new root filesystem, performing
-     the usual boot sequence
-  9) the initrd file system is removed
+  3) ルートデバイスが ``/dev/ram0`` ではない場合、古い (非推奨の) change_root による方法が使われます。下の "旧式のルート変更メカニズム" セクションを見てください。
+  4) ルートデバイスがマウントされます。デバイスが ``/dev/ram0`` の場合、initrd イメージは root でマウントされます。
+  5) /sbin/init が実行されます (適切な実行ファイルならシェルスクリプトなど何でもかまいません。uid 0 で実行されるため init のあらゆることを実行できます)。
+  6) init によって本当のルートファイルシステムがマウントされます。
+  7) init は pivot_root システムコールを使ってルートディレクトリにルートファイルシステムを配置します。
+  8) init によって新しいルートファイルシステムで ``/sbin/init`` が実行され、通常のブートシーケンスが開始されます。
+  9) initrd ファイルシステムを削除します。
 
-Note that changing the root directory does not involve unmounting it.
-It is therefore possible to leave processes running on initrd during that
-procedure. Also note that file systems mounted under initrd continue to
-be accessible.
+ルートディレクトリの変更ではアンマウントは行われないので注意してください。変更される際に initrd で実行中のプロセスが放置される可能性があります。また、initrd かでマウントされたファイルシステムはその後もアクセスが可能です。
 
 
-Boot command-line options
--------------------------
+ブートコマンドラインオプション
+-------------------------------
 
-initrd adds the following new options::
+initrd は以下の新しいオプションを追加します::
 
   initrd=<path>    (e.g. LOADLIN)
 
@@ -68,7 +58,7 @@ initrd adds the following new options::
     initrd is mounted as root, and the normal boot procedure is followed,
     with the RAM disk mounted as root.
 
-Compressed cpio images
+cpio イメージの圧縮
 ----------------------
 
 Recent kernels have support for populating a ramdisk from a compressed cpio
@@ -85,8 +75,8 @@ Examining the contents of an existing image file is just as simple::
 	cd /tmp/imagefile
 	gzip -cd /boot/imagefile.img | cpio -imd --quiet
 
-Installation
-------------
+インストール
+-------------
 
 First, a directory for the initrd file system has to be created on the
 "normal" root file system, e.g.::
@@ -198,7 +188,7 @@ For other boot loaders, please refer to the respective documentation.
 Now you can boot and enjoy using initrd.
 
 
-Changing the root device
+ルートデバイスの変更
 ------------------------
 
 When finished with its duties, init typically changes the root device
@@ -260,7 +250,7 @@ It is also possible to use initrd with an NFS-mounted root, see the
 :manpage:`pivot_root(8)` man page for details.
 
 
-Usage scenarios
+使用シナリオ
 ---------------
 
 The main motivation for implementing initrd was to allow for modular
@@ -313,7 +303,7 @@ from the CD-ROM, and loading the RAM disk from CD without need of
 floppies.
 
 
-Obsolete root change mechanism
+旧式のルート変更メカニズム
 ------------------------------
 
 The following mechanism was used before the introduction of pivot_root.
@@ -343,8 +333,8 @@ This old, deprecated mechanism is commonly called ``change_root``, while
 the new, supported mechanism is called ``pivot_root``.
 
 
-Mixed change_root and pivot_root mechanism
-------------------------------------------
+change_root と pivot_root メカニズムの混合
+---------------------------------------------
 
 In case you did not want to use ``root=/dev/ram0`` to trigger the pivot_root
 mechanism, you may create both ``/linuxrc`` and ``/sbin/init`` in your initrd
@@ -363,7 +353,7 @@ to build the right environment (maybe using the ``root= device`` passed on
 the cmdline) before the final execution of the real ``/sbin/init``.
 
 
-Resources
+資料
 ---------
 
 .. [#f1] Almesberger, Werner; "Booting Linux: The History and the Future"
