@@ -1,6 +1,6 @@
-===========================
-Including uAPI header files
-===========================
+================================
+uAPI ヘッダーファイルの読み込み
+================================
 
 Sometimes, it is useful to include header files and C example codes in
 order to describe the userspace API and to generate cross-references

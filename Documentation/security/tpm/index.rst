@@ -1,5 +1,5 @@
 =====================================
-Trusted Platform Module documentation
+Trusted Platform Module ドキュメント
 =====================================
 
 .. toctree::

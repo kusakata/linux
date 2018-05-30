@@ -1,5 +1,5 @@
-Sound Devices
-=============
+サウンドデバイス
+=================
 
 .. kernel-doc:: include/sound/core.h
    :internal:

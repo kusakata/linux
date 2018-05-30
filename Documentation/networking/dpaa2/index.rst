@@ -1,5 +1,5 @@
 ===================
-DPAA2 Documentation
+DPAA2 ドキュメント
 ===================
 
 .. toctree::

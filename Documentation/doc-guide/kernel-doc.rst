@@ -1,5 +1,5 @@
-Writing kernel-doc comments
-===========================
+kernel-doc コメントの書き方
+=============================
 
 The Linux kernel source files may contain structured documentation
 comments in the kernel-doc format to describe the functions, types
@@ -30,8 +30,8 @@ documentation for private (file ``static``) routines, for consistency of
 kernel source code layout. This is lower priority and at the discretion
 of the maintainer of that kernel source file.
 
-How to format kernel-doc comments
----------------------------------
+kernel-doc コメントのフォーマット
+-----------------------------------
 
 The opening comment mark ``/**`` is used for kernel-doc comments. The
 ``kernel-doc`` tool will extract comments marked this way. The rest of
@@ -55,7 +55,7 @@ requested to perform extra gcc checks::
 
 	make W=n
 
-Function documentation
+関数ドキュメント
 ----------------------
 
 The general format of a function and function-like macro kernel-doc comment is::
@@ -87,7 +87,7 @@ The brief description following the function name may span multiple lines, and
 ends with an argument description, a blank comment line, or the end of the
 comment block.
 
-Function parameters
+関数パラメータ
 ~~~~~~~~~~~~~~~~~~~
 
 Each function argument should be described in order, immediately following
@@ -133,7 +133,7 @@ Examples::
   * Context: Softirq or process context. Takes and releases <lock>, BH-safe.
   * Context: Interrupt context.
 
-Return values
+返り値
 ~~~~~~~~~~~~~
 
 The return value, if any, should be described in a dedicated section
@@ -435,8 +435,8 @@ The title following ``DOC:`` acts as a heading within the source file, but also
 as an identifier for extracting the documentation comment. Thus, the title must
 be unique within the file.
 
-Including kernel-doc comments
-=============================
+kernel-doc コメントの読み込み
+===============================
 
 The documentation comments may be included in any of the reStructuredText
 documents using a dedicated kernel-doc Sphinx directive extension.
@@ -506,8 +506,8 @@ source.
 
 .. _kernel_doc:
 
-How to use kernel-doc to generate man pages
--------------------------------------------
+kernel-doc を使って man ページを生成する方法
+----------------------------------------------
 
 If you just want to use kernel-doc to generate man pages you can do this
 from the kernel git tree::

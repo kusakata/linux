@@ -1,5 +1,5 @@
 =======================
-SoundWire Documentation
+SoundWire ドキュメント
 =======================
 
 .. toctree::

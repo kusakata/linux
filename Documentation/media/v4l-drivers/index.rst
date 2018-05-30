@@ -5,7 +5,7 @@
 .. _v4l-drivers:
 
 ################################################
-Video4Linux (V4L)  driver-specific documentation
+Video4Linux (V4L)  ドライバー別ドキュメント
 ################################################
 
 **Copyright** |copy| 1999-2016 : LinuxTV Developers

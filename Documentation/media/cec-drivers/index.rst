@@ -5,7 +5,7 @@
 .. _cec-drivers:
 
 #################################
-CEC driver-specific documentation
+CEC ドライバー別ドキュメント
 #################################
 
 **Copyright** |copy| 2017 : LinuxTV Developers

@@ -332,7 +332,7 @@ Rendered as:
 
 .. _sphinx_kfigure:
 
-Figures & Images
+図形と画像
 ================
 
 If you want to add an image, you should use the ``kernel-figure`` and

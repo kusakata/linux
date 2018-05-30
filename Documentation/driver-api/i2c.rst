@@ -1,5 +1,5 @@
-I\ :sup:`2`\ C and SMBus Subsystem
-==================================
+I\ :sup:`2`\ C と SMBus サブシステム
+=====================================
 
 I\ :sup:`2`\ C (or without fancy typography, "I2C") is an acronym for
 the "Inter-IC" bus, a simple bus protocol which is widely used where low

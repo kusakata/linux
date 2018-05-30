@@ -1,11 +1,11 @@
 =======================
-DMAEngine documentation
+DMAEngine ドキュメント
 =======================
 
 DMAEngine documentation provides documents for various aspects of DMAEngine
 framework.
 
-DMAEngine documentation
+DMAEngine ドキュメント
 -----------------------
 
 This book helps with DMAengine internal APIs and guide for DMAEngine device
@@ -16,8 +16,8 @@ driver writers.
 
    provider
 
-DMAEngine client documentation
-------------------------------
+DMAEngine クライアントドキュメント
+-----------------------------------
 
 This book is a guide to device driver writers on how to use the Slave-DMA
 API of the DMAEngine. This is applicable only for slave DMA usage only.
@@ -27,8 +27,8 @@ API of the DMAEngine. This is applicable only for slave DMA usage only.
 
    client
 
-DMA Test documentation
-----------------------
+DMA テストドキュメント
+-----------------------
 
 This book introduces how to test DMA drivers using dmatest module.
 
@@ -37,7 +37,7 @@ This book introduces how to test DMA drivers using dmatest module.
 
    dmatest
 
-PXA DMA documentation
+PXA DMA ドキュメント
 ----------------------
 
 This book adds some notes about PXA DMA
