@@ -2,21 +2,11 @@
 Linux 予約デバイス (4.x+ バージョン)
 ======================================
 
-This list is the Linux Device List, the official registry of allocated
-device numbers and ``/dev`` directory nodes for the Linux operating
-system.
+以下は Linux デバイスリストです。予約デバイス番号の公式レジストリであり Linux オペレーティングシステムの ``/dev`` ディレクトリノードです。
 
-The LaTeX version of this document is no longer maintained, nor is
-the document that used to reside at lanana.org.  This version in the
-mainline Linux kernel is the master document.  Updates shall be sent
-as patches to the kernel maintainers (see the
-:ref:`Documentation/process/submitting-patches.rst <submittingpatches>` document).
-Specifically explore the sections titled "CHAR and MISC DRIVERS", and
-"BLOCK LAYER" in the MAINTAINERS file to find the right maintainers
-to involve for character and block devices.
+lanana.org に存在していたこのドキュメントの LaTeX 版はメンテナンスされていません。メインライン Linux カーネルのバージョンがマスタードキュメントです。アップデートはパッチとしてカーネルメンテナに送ってください (:ref:`Documentation/process/submitting-patches.rst <submittingpatches>` ドキュメントを参照)。文字・ブロックデバイスに関係しているメンテナが誰なのかは MAINTAINERS ファイルの "CHAR and MISC DRIVERS" と "BLOCK LAYER" セクションを見てください。
 
-This document is included by reference into the Filesystem Hierarchy
-Standard (FHS).	 The FHS is available from http://www.pathname.com/fhs/.
+このドキュメントは Filesystem Hierarchy Standard (FHS) に組み込まれています。FHS は http://www.pathname.com/fhs/ で確認できます。
 
 Allocations marked (68k/Amiga) apply to Linux/68k on the Amiga
 platform only.	Allocations marked (68k/Atari) apply to Linux/68k on
