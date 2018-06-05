@@ -13,6 +13,7 @@
    kernel-api
    assoc_array
    atomic_ops
+   cachetlb
    refcount-vs-atomic
    cpu_hotplug
    idr
@@ -24,6 +25,8 @@
    genalloc
    errseq
    printk-formats
+   circular-buffers
+   gfp_mask-from-fs-io
 
 カーネルデバッグのインターフェイス
 ===================================

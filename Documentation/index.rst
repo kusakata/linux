@@ -36,7 +36,7 @@ Arch Linux カーネルドキュメント
 .. toctree::
    :maxdepth: 2
 
-   userspace-api/index	      
+   userspace-api/index
 
 
 カーネル開発の始め方
@@ -72,6 +72,7 @@ Arch Linux カーネルドキュメント
    sound/index
    crypto/index
    filesystems/index
+   vm/index
 
 アーキテクチャ個別のドキュメント
 -----------------------------------

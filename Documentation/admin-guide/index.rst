@@ -39,6 +39,7 @@ Linux カーネルユーザー・管理者ガイド
    :maxdepth: 1
 
    initrd
+   cgroup-v2
    serial-console
    braille-console
    parport
@@ -51,9 +52,11 @@ Linux カーネルユーザー・管理者ガイド
    mono
    java
    ras
+   bcache
    pm/index
    thunderbolt
    LSM/index
+   mm/index
 
 .. only::  subproject and html
 

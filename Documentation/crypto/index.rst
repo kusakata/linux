@@ -18,5 +18,6 @@ Linux カーネル Crypto API
    architecture
    devel-algos
    userspace-if
+   crypto_engine
    api
    api-samples

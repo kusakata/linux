@@ -14,7 +14,9 @@ Linux ドライバー実装者の API ガイド
    basics
    infrastructure
    pm/index
+   clk
    device-io
+   device_connection
    dma-buf
    device_link
    message-based
