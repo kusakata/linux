@@ -3,7 +3,7 @@
 .. include:: <isonum.txt>
 
 ##############################################
-Linux Digital TV driver-specific documentation
+Linux デジタル TV ドライバー別ドキュメント
 ##############################################
 
 **Copyright** |copy| 2001-2016 : LinuxTV Developers

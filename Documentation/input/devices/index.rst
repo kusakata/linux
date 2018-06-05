@@ -1,4 +1,4 @@
-Driver-specific documentation
+ドライバー別ドキュメント
 =============================
 
 This section provides information about various devices supported by the

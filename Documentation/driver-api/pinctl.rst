@@ -1,6 +1,6 @@
-===============================
-PINCTRL (PIN CONTROL) subsystem
-===============================
+====================================
+PINCTRL (PIN CONTROL) サブシステム
+====================================
 
 This document outlines the pin control subsystem in Linux
 

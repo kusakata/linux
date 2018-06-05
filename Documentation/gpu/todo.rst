@@ -1,8 +1,8 @@
 .. _todo:
 
-=========
-TODO list
-=========
+============
+TODO リスト
+============
 
 This section contains a list of smaller janitorial tasks in the kernel DRM
 graphics subsystem useful as newbie projects. Or for slow rainy days.
