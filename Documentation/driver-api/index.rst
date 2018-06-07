@@ -48,6 +48,7 @@ Linux ドライバー実装者の API ガイド
    dmaengine/index
    slimbus
    soundwire/index
+   fpga/index
 
 .. only::  subproject and html
 

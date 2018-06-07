@@ -10,8 +10,10 @@ GPU ドライバードキュメント
    tegra
    tinydrm
    tve200
+   v3d
    vc4
    bridge/dw-hdmi
+   xen-front
 
 .. only::  subproject and html
 
