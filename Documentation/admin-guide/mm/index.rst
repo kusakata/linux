@@ -1,5 +1,5 @@
 =================
-Memory Management
+メモリ管理
 =================
 
 Linux memory management subsystem is responsible, as the name implies,

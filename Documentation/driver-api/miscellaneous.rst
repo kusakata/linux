@@ -1,5 +1,5 @@
-Parallel Port Devices
-=====================
+パラレルポートデバイス
+========================
 
 .. kernel-doc:: include/linux/parport.h
    :internal:
@@ -13,8 +13,8 @@ Parallel Port Devices
 .. kernel-doc:: drivers/parport/daisy.c
    :internal:
 
-16x50 UART Driver
-=================
+16x50 UART ドライバー
+======================
 
 .. kernel-doc:: drivers/tty/serial/serial_core.c
    :export:

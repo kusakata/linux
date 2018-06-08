@@ -1,5 +1,5 @@
-Error Detection And Correction (EDAC) Devices
-=============================================
+Error Detection And Correction (EDAC) デバイス
+================================================
 
 Main Concepts used at the EDAC subsystem
 ----------------------------------------

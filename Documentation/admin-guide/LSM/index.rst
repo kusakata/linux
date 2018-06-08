@@ -2,13 +2,7 @@
 Linux Security Module 使用方法
 ===============================
 
-The Linux Security Module (LSM) framework provides a mechanism for
-various security checks to be hooked by new kernel extensions. The name
-"module" is a bit of a misnomer since these extensions are not actually
-loadable kernel modules. Instead, they are selectable at build-time via
-CONFIG_DEFAULT_SECURITY and can be overridden at boot-time via the
-``"security=..."`` kernel command line argument, in the case where multiple
-LSMs were built into a given kernel.
+Linux Security Module (LSM) フレームワークは新しいカーネル拡張によってフックされる様々なセキュリティチェックのためのメカニズムを提供します。"module" という名前はやや的を外れています。これらの拡張はローダブルカーネルモジュールではないためです。LSM フレームワークは CONFIG_DEFAULT_SECURITY でビルド時に選択します。また、カーネルに複数の LSM を組み込んだ場合、起動時に ``"security=..."`` カーネルコマンドライン引数で上書きすることができます。
 
 The primary users of the LSM interface are Mandatory Access Control
 (MAC) extensions which provide a comprehensive security policy. Examples

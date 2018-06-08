@@ -1,6 +1,6 @@
-============================
-A block layer cache (bcache)
-============================
+=====================================
+ブロックレイヤーキャッシュ (bcache)
+=====================================
 
 Say you've got a big slow raid 6, and an ssd or three. Wouldn't it be
 nice if you could use them as cache... Hence bcache.

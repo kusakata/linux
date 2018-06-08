@@ -1,9 +1,9 @@
 .. |struct dev_pm_domain| replace:: :c:type:`struct dev_pm_domain <dev_pm_domain>`
 .. |struct generic_pm_domain| replace:: :c:type:`struct generic_pm_domain <generic_pm_domain>`
 
-============
-Device links
-============
+===============
+デバイスリンク
+===============
 
 By default, the driver core only enforces dependencies between devices
 that are borne out of a parent/child relationship within the device
