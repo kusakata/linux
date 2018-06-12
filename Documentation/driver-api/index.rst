@@ -33,6 +33,7 @@ Linux ドライバー実装者の API ガイド
    edac
    scsi
    libata
+   target
    mtdnand
    miscellaneous
    w1
