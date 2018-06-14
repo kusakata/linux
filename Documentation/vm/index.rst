@@ -1,14 +1,13 @@
 =====================================
-Linux Memory Management Documentation
+Linux メモリ管理ドキュメント
 =====================================
 
-This is a collection of documents about Linux memory management (mm) subsystem.
+こちらは Linux のメモリ管理 (mm) サブシステムのドキュメント集です。
 
-User guides for MM features
+MM 機能のユーザーガイド
 ===========================
 
-The following documents provide guides for controlling and tuning
-various features of the Linux memory management
+以下のドキュメントは Linux のメモリ管理の様々な機能を制御・設定するためのガイドです。
 
 .. toctree::
    :maxdepth: 1
@@ -16,7 +15,7 @@ various features of the Linux memory management
    swap_numa
    zswap
 
-Kernel developers MM documentation
+カーネル開発者 MM ドキュメント
 ==================================
 
 The below documents describe MM internals with different level of

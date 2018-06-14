@@ -1,5 +1,5 @@
 =================================================
-Using kgdb, kdb and the kernel debugger internals
+kgdb と kdb の使い方とカーネルデバッガーの内部
 =================================================
 
 :Author: Jason Wessel
