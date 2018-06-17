@@ -403,7 +403,7 @@ config SECCOMP_FILTER
 	  in terms of Berkeley Packet Filter programs which implement
 	  task-defined system call filtering polices.
 
-	  See Documentation/prctl/seccomp_filter.txt for details.
+	  See Documentation/userspace-api/seccomp_filter.rst for details.
 
 preferred-plugin-hostcc := $(if-success,[ $(gcc-version) -ge 40800 ],$(HOSTCXX),$(HOSTCC))
 
@@ -549,7 +549,7 @@ config GCC_PLUGIN_RANDSTRUCT_PERFORMANCE
 	  in structures.  This reduces the performance hit of RANDSTRUCT
 	  at the cost of weakened randomization.
 
-config HAVE_CC_STACKPROTECTOR
+config HAVE_STACKPROTECTOR
 	bool
 	help
 	  An arch should select this symbol if:
@@ -560,7 +560,7 @@ config CC_HAS_STACKPROTECTOR_NONE
 
 config STACKPROTECTOR
 	bool "Stack Protector buffer overflow detection"
-	depends on HAVE_CC_STACKPROTECTOR
+	depends on HAVE_STACKPROTECTOR
 	depends on $(cc-option,-fstack-protector)
 	default y
 	help
