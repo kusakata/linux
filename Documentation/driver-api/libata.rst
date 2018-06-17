@@ -1,5 +1,5 @@
 ========================
-libATA Developer's Guide
+libATA 開発者ガイド
 ========================
 
 :Author: Jeff Garzik
