@@ -61,15 +61,11 @@ initrd は以下の新しいオプションを追加します::
 cpio イメージの圧縮
 ----------------------
 
-Recent kernels have support for populating a ramdisk from a compressed cpio
-archive. On such systems, the creation of a ramdisk image doesn't need to
-involve special block devices or loopbacks; you merely create a directory on
-disk with the desired initrd content, cd to that directory, and run (as an
-example)::
+最近のカーネルは圧縮された cpio アーカイブからの ramdisk の生成をサポートしています。そのような環境では、ramdisk イメージを作成するのに特殊なブロックデバイスやループバックを使う必要がありません。ディスク上に initrd の中身を入れたディレクトリを作成して、以下のコマンドを実行するだけで作成できます::
 
 	find . | cpio --quiet -H newc -o | gzip -9 -n > /boot/imagefile.img
 
-Examining the contents of an existing image file is just as simple::
+既存のイメージファイルの中身を確認したい場合::
 
 	mkdir /tmp/imagefile
 	cd /tmp/imagefile
