@@ -42,31 +42,21 @@ cpu lists:
 
    <cpu number>,...,<cpu number>-<cpu number>
 
-Note that for the special case of a range one can split the range into equal
-sized groups and for each group use some amount from the beginning of that
-group:
+特殊なケースとして使用する CPU をグループに分割して、グループの最初から同じ数ずつ使用させることができます:
 
 	<cpu number>-cpu number>:<used size>/<group size>
 
-For example one can add to the command line following parameter:
+例えば以下のパラメータをコマンドラインに追加した場合:
 
 	isolcpus=1,2,10-20,100-2000:2/25
 
-where the final item represents CPUs 100,101,125,126,150,151,...
+最後のアイテムは CPU の 100,101,125,126,150,151,... を表します。
 
 
 
-This document may not be entirely up to date and comprehensive. The command
-"modinfo -p ${modulename}" shows a current list of all parameters of a loadable
-module. Loadable modules, after being loaded into the running kernel, also
-reveal their parameters in /sys/module/${modulename}/parameters/. Some of these
-parameters may be changed at runtime by the command
-``echo -n ${value} > /sys/module/${modulename}/parameters/${parm}``.
+このドキュメントでは最新のパラメータ全てを網羅できていません。"modinfo -p ${modulename}" コマンドを実行することでローダブルモジュールの全てのパラメータのリストが表示されます。カーネルにロードされた後、ローダブルモジュールのパラメータには /sys/module/${modulename}/parameters/ からアクセスできるようになります。一部のパラメータは ``echo -n ${value} > /sys/module/${modulename}/parameters/${parm}`` コマンドを実行することで動的に変更することができます。
 
-The parameters listed below are only valid if certain kernel build options were
-enabled and if respective hardware is present. The text in square brackets at
-the beginning of each description states the restrictions within which a
-parameter is applicable::
+下に記載しているパラメータはカーネルのビルド時のオプションを有効にして、該当するハードウェアが存在する場合にのみ使用することができます。角括弧のテキストはパラメータが利用できる条件について説明しています::
 
 	ACPI	ACPI support is enabled.
 	AGP	AGP (Accelerated Graphics Port) is enabled.
@@ -157,36 +147,21 @@ parameter is applicable::
 	X86_UV	SGI UV support is enabled.
 	XEN	Xen support is enabled
 
-In addition, the following text indicates that the option::
+さらに、以下のテキストはオプションに以下の意味があります::
 
 	BUGS=	Relates to possible processor bugs on the said processor.
 	KNL	Is a kernel start-up parameter.
 	BOOT	Is a boot loader parameter.
 
-Parameters denoted with BOOT are actually interpreted by the boot
-loader, and have no meaning to the kernel directly.
-Do not modify the syntax of boot loader parameters without extreme
-need or coordination with <Documentation/x86/boot.txt>.
+BOOT と書かれたパラメータはブートローダーによって認識されます。カーネルには直接的な効果がありません。特に必要がない場合はブートローダーパラメータの構文は変更しないでください。<Documentation/x86/boot.txt> も参照。
 
-There are also arch-specific kernel-parameters not documented here.
-See for example <Documentation/x86/x86_64/boot-options.txt>.
+ここではアーキテクチャ固有のカーネルパラメータについては列挙していません。<Documentation/x86/x86_64/boot-options.txt> などを見てください。
 
-Note that ALL kernel parameters listed below are CASE SENSITIVE, and that
-a trailing = on the name of any parameter states that that parameter will
-be entered as an environment variable, whereas its absence indicates that
-it will appear as a kernel argument readable via /proc/cmdline by programs
-running once the system is up.
+以下に記載しているカーネルパラメータは全て大文字・小文字を区別します。また、パラメータの名前に = が付いている場合は環境変数としてパラメータが入力され、付いていない場合はシステムが立ち上がったときにプログラムによって /proc/cmdline から読み込むことができるカーネル引数となります。
 
-The number of kernel parameters is not limited, but the length of the
-complete command line (parameters including spaces etc.) is limited to
-a fixed number of characters. This limit depends on the architecture
-and is between 256 and 4096 characters. It is defined in the file
-./include/asm/setup.h as COMMAND_LINE_SIZE.
+カーネルパラメータの数に制限はありませんが、コマンドラインの文字数 (パラメータと空白を含む) は最大長があります。この制限はアーキテクチャによって異なり、256文字から4096文字です。./include/asm/setup.h ファイルで COMMAND_LINE_SIZE として定義されています。
 
-Finally, the [KMG] suffix is commonly described after a number of kernel
-parameter values. These 'K', 'M', and 'G' letters represent the _binary_
-multipliers 'Kilo', 'Mega', and 'Giga', equaling 2^10, 2^20, and 2^30
-bytes respectively. Such letter suffixes can also be entirely omitted:
+最後に、カーネルパラメータの値として数字の後に [KMG] が使われることがあります。'K', 'M', 'G' はバイナリの単位 'Kilo', 'Mega', 'Giga' をあらわし、それぞれ 2^10, 2^20, 2^30 バイトと等しくなっています。これらの接尾辞は省略できます:
 
 .. include:: kernel-parameters.txt
    :literal:
@@ -194,4 +169,4 @@ bytes respectively. Such letter suffixes can also be entirely omitted:
 Todo
 ----
 
-	Add more DRM drivers.
+	DRM ドライバーを追加。
