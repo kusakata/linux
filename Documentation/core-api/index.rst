@@ -27,6 +27,8 @@
    printk-formats
    circular-buffers
    gfp_mask-from-fs-io
+   timekeeping
+   boot-time-mm
 
 カーネルデバッグのインターフェイス
 ===================================

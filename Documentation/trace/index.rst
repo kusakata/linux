@@ -18,6 +18,7 @@ Linux のトレース技術
    events-nmi
    events-msr
    mmiotrace
+   histogram
    hwlat_detector
    intel_th
    stm

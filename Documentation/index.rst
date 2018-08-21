@@ -3,6 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+.. _linux_doc:
+
 Arch Linux カーネルドキュメント
 ================================
 
@@ -73,6 +75,7 @@ Arch Linux カーネルドキュメント
    crypto/index
    filesystems/index
    vm/index
+   bpf/index
 
 アーキテクチャ個別のドキュメント
 -----------------------------------
@@ -84,6 +87,16 @@ Arch Linux カーネルドキュメント
 
    sh/index
    
+ファイルシステムのドキュメント
+-------------------------------------
+
+このセクションでは特定のファイルシステムのドキュメントを記載しています。
+
+.. toctree::
+   :maxdepth: 2
+
+   filesystems/ext4/index
+
 日本語訳
 ------------
 

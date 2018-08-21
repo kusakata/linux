@@ -10,6 +10,7 @@ Linux GPU ドライバー開発者ガイド
    drm-kms
    drm-kms-helpers
    drm-uapi
+   drm-client
    drivers
    vga-switcheroo
    vgaarbiter
