@@ -6,3 +6,4 @@ DPAA2 ドキュメント
    :maxdepth: 1
 
    overview
+   dpio-driver

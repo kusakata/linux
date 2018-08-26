@@ -26,6 +26,7 @@
    errseq
    printk-formats
    circular-buffers
+   mm-api
    gfp_mask-from-fs-io
    timekeeping
    boot-time-mm
