@@ -1,38 +1,29 @@
 L1TF - L1 Terminal Fault
 ========================
 
-L1 Terminal Fault is a hardware vulnerability which allows unprivileged
-speculative access to data which is available in the Level 1 Data Cache
-when the page table entry controlling the virtual address, which is used
-for the access, has the Present bit cleared or other reserved bits set.
+L1 Terminal Fault はページテーブルエントリが仮想アドレスを制御している場合に Level 1 データキャッシュ内のデータに非特権の投機的アクセスが可能となるハードウェア脆弱性です。ページテーブルエントリには Present や他の予約ビットが設定されています。
 
-Affected processors
--------------------
+影響を受けるプロセッサ
+-----------------------
 
-This vulnerability affects a wide range of Intel processors. The
-vulnerability is not present on:
+この脆弱性は Intel 製のプロセッサの多くが影響を受けます。脆弱性は以下のプロセッサには存在しません:
 
-   - Processors from AMD, Centaur and other non Intel vendors
+   - AMD, Centaur など Intel 以外のメーカーが製造しているプロセッサ
 
-   - Older processor models, where the CPU family is < 6
+   - CPU ファミリーが 6 未満の古いプロセッサ
 
-   - A range of Intel ATOM processors (Cedarview, Cloverview, Lincroft,
-     Penwell, Pineview, Silvermont, Airmont, Merrifield)
+   - Intel ATOM プロセッサ (Cedarview, Cloverview, Lincroft, Penwell, Pineview, Silvermont, Airmont, Merrifield)
 
-   - The Intel XEON PHI family
+   - Intel XEON PHI ファミリー
 
-   - Intel processors which have the ARCH_CAP_RDCL_NO bit set in the
-     IA32_ARCH_CAPABILITIES MSR. If the bit is set the CPU is not affected
-     by the Meltdown vulnerability either. These CPUs should become
-     available by end of 2018.
+   - IA32_ARCH_CAPABILITIES MSR で ARCH_CAP_RDCL_NO ビットが設定されている Intel プロセッサ。ビットが設定されている場合、その CPU は Meltdown 脆弱性の影響も受けません。2018年以内にビットが設定された CPU が市場に出回る予定です。
 
-Whether a processor is affected or not can be read out from the L1TF
-vulnerability file in sysfs. See :ref:`l1tf_sys_info`.
+プロセッサに脆弱性があるかどうかは sysfs の L1TF 脆弱性ファイルを読み込むことで確認できます。:ref:`l1tf_sys_info` を見てください。
 
-Related CVEs
-------------
+関連する CVE
+--------------
 
-The following CVE entries are related to the L1TF vulnerability:
+L1TF 脆弱性に関連する CVE エントリは以下の通りです:
 
    =============  =================  ==============================
    CVE-2018-3615  L1 Terminal Fault  SGX related aspects
@@ -40,7 +31,7 @@ The following CVE entries are related to the L1TF vulnerability:
    CVE-2018-3646  L1 Terminal Fault  Virtualization related aspects
    =============  =================  ==============================
 
-Problem
+問題
 -------
 
 If an instruction accesses a virtual address for which the relevant page
@@ -62,11 +53,11 @@ works from inside virtual machines because the speculation bypasses the
 extended page table (EPT) protection mechanism.
 
 
-Attack scenarios
+攻撃シナリオ
 ----------------
 
-1. Malicious user space
-^^^^^^^^^^^^^^^^^^^^^^^
+1. 悪意のあるユーザー空間
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
    Operating Systems store arbitrary information in the address bits of a
    PTE which is marked non present. This allows a malicious user space
@@ -83,7 +74,7 @@ Attack scenarios
    A system with an up to date kernel is protected against attacks from
    malicious user space applications.
 
-2. Malicious guest in a virtual machine
+2. 悪意のある仮想マシンのゲスト
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
    The fact that L1TF breaks all domain protections allows malicious guest
@@ -116,7 +107,7 @@ Attack scenarios
 
 .. _l1tf_sys_info:
 
-L1TF system information
+L1TF システム情報
 -----------------------
 
 The Linux kernel provides a sysfs interface to enumerate the current L1TF

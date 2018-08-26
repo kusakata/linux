@@ -1,5 +1,5 @@
-Code Examples
-=============
+サンプルコード
+===============
 
 Code Example For Symmetric Key Cipher Operation
 -----------------------------------------------

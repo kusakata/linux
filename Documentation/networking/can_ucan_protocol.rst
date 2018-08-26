@@ -1,5 +1,5 @@
 =================
-The UCAN Protocol
+UCAN プロトコル
 =================
 
 UCAN is the protocol used by the microcontroller-based USB-CAN

@@ -1,5 +1,5 @@
 =================
-BPF Documentation
+BPF ドキュメント
 =================
 
 This directory contains documentation for the BPF (Berkeley Packet
@@ -17,7 +17,7 @@ for `bpf(2)`_.
 
 
 
-Frequently asked questions (FAQ)
+よくある質問 (FAQ)
 ================================
 
 Two sets of Questions and Answers (Q&A) are maintained.

@@ -1,6 +1,6 @@
-=================
-Kernel clients
-=================
+=====================
+カーネルクライアント
+=====================
 
 .. kernel-doc:: drivers/gpu/drm/drm_client.c
    :doc: overview
