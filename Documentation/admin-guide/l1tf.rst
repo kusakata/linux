@@ -34,24 +34,11 @@ L1TF 脆弱性に関連する CVE エントリは以下の通りです:
 問題
 -------
 
-If an instruction accesses a virtual address for which the relevant page
-table entry (PTE) has the Present bit cleared or other reserved bits set,
-then speculative execution ignores the invalid PTE and loads the referenced
-data if it is present in the Level 1 Data Cache, as if the page referenced
-by the address bits in the PTE was still present and accessible.
+命令がページテーブルエントリ (PTE) が Present ビットを消去した、あるいは他の予約ビットが設定されている仮想アドレスにアクセスしたとき、投機実行によって不正な PTE が無視され Level 1 データキャッシュにデータが存在する場合、PTE のアドレスビットによって参照されているページがまだ存在するかのように参照されているデータがロードされます。
 
-While this is a purely speculative mechanism and the instruction will raise
-a page fault when it is retired eventually, the pure act of loading the
-data and making it available to other speculative instructions opens up the
-opportunity for side channel attacks to unprivileged malicious code,
-similar to the Meltdown attack.
+リタイアしたときに命令はページフォルトを発生させますが、データのロードと投機的命令が可能であるということから Meltdown 攻撃と同じような不正な非特権コードによるサイドチャネル攻撃を受ける可能性があります。
 
-While Meltdown breaks the user space to kernel space protection, L1TF
-allows to attack any physical memory address in the system and the attack
-works across all protection domains. It allows an attack of SGX and also
-works from inside virtual machines because the speculation bypasses the
-extended page table (EPT) protection mechanism.
-
+Meltdown はユーザー空間からカーネル空間の保護を破壊するのに対して、L1TF ではシステムの物理メモリアドレスに攻撃が可能になるため攻撃対象は全ての保護領域に及びます。SGX の攻撃ができることから拡張ページテーブル (EPT) の保護を迂回して仮想マシンの中から攻撃することも可能です。
 
 攻撃シナリオ
 ----------------
