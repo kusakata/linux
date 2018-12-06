@@ -1,156 +1,66 @@
 .. _code_of_conduct_interpretation:
 
-Linux Kernel Contributor Covenant Code of Conduct Interpretation
+Linux カーネルにおけるコントリビューター行動規範の解釈
 ================================================================
 
-The :ref:`code_of_conduct` is a general document meant to
-provide a set of rules for almost any open source community.  Every
-open-source community is unique and the Linux kernel is no exception.
-Because of this, this document describes how we in the Linux kernel
-community will interpret it.  We also do not expect this interpretation
-to be static over time, and will adjust it as needed.
+:ref:`code_of_conduct` は様々なオープンソースコミュニティで普遍的なルールを決めるための文書です。オープンソースコミュニティはそれぞれ異なる性格を持っており、Linux カーネルのコミュニティも例外ではありません。したがって、Linux カーネルコミュニティではコントリビューター行動規範をどのように扱うのかについてこの文書で説明を行います。この文章内での解釈は常に正しいとは限りません。必要に応じて修正が加えられることがあります。
 
-The Linux kernel development effort is a very personal process compared
-to "traditional" ways of developing software.  Your contributions and
-ideas behind them will be carefully reviewed, often resulting in
-critique and criticism.  The review will almost always require
-improvements before the material can be included in the
-kernel.  Know that this happens because everyone involved wants to see
-the best possible solution for the overall success of Linux.  This
-development process has been proven to create the most robust operating
-system kernel ever, and we do not want to do anything to cause the
-quality of submission and eventual result to ever decrease.
+Linux カーネルの開発作業は伝統的なソフトウェア開発とは違って非常に個人的なプロセスを取ります。あなたの貢献と発案は注意深くレビューされ、ときに批難の対象となります。あなたの投稿がカーネルに取り込まれる前に、大抵の場合、レビューによって改善が求められます。このような要求がされるのは Linux にとって最適の解決策が関係者全てに欲されているためです。これまで、この開発プロセスにしたがって、堅牢なオペレーティングシステムのカーネルが作られてきました。品質を損なうようなことは何であれ避けるべきです。
 
-Maintainers
+メンテナ
 -----------
 
-The Code of Conduct uses the term "maintainers" numerous times.  In the
-kernel community, a "maintainer" is anyone who is responsible for a
-subsystem, driver, or file, and is listed in the MAINTAINERS file in the
-kernel source tree.
+行動規範では「メンテナ」という言葉が何回も使われています。カーネルコミュニティにおいて、「メンテナ」とはカーネルのソースツリーに含まれる MAINTAINERS に名前が載っている、サブシステム・ドライバー・ファイルを担当している人間を指します。
 
-Responsibilities
+責任
 ----------------
 
-The Code of Conduct mentions rights and responsibilities for
-maintainers, and this needs some further clarifications.
+行動規範にはメンテナの権限と責任について述べていますが、多少の解題が必要でしょう。
 
-First and foremost, it is a reasonable expectation to have maintainers
-lead by example.
+何よりもまず、合理的期待としてメンテナは模範を示します。
 
-That being said, our community is vast and broad, and there is no new
-requirement for maintainers to unilaterally handle how other people
-behave in the parts of the community where they are active.  That
-responsibility is upon all of us, and ultimately the Code of Conduct
-documents final escalation paths in case of unresolved concerns
-regarding conduct issues.
+ただし、Linux カーネルコミュニティは非常に大規模なので、すでにコミュニティに参加している人々に対してメンテナが一方的に何か慣習を押し付けるということはありません。その責任は私達全てが負うものであり、行動規範による解決を必要とするのは行動に関する未解決の問題の場合で、あくまで最終的な拠り所となるものです。
 
-Maintainers should be willing to help when problems occur, and work with
-others in the community when needed.  Do not be afraid to reach out to
-the Technical Advisory Board (TAB) or other maintainers if you're
-uncertain how to handle situations that come up.  It will not be
-considered a violation report unless you want it to be.  If you are
-uncertain about approaching the TAB or any other maintainers, please
-reach out to our conflict mediator, Mishi Choudhary <mishi@linux.com>.
+問題が起こったとき、メンテナは必要に応じてコミュニティの他のメンバーを補助したり協力して問題の解決にあたってください。発生した状況の対処方法がわからない場合はいつでも Technical Advisory Board (TAB) や他のメンテナに協力を仰ぐことができます。あなたが望むのでないかぎり、違反の報告を考慮することはありません。TAB や他のメンテナに協力を求めるべきかどうかわからない場合、調停者である Mishi Choudhary <mishi@linux.com> に連絡してください。
 
-In the end, "be kind to each other" is really what the end goal is for
-everybody.  We know everyone is human and we all fail at times, but the
-primary goal for all of us should be to work toward amicable resolutions
-of problems.  Enforcement of the code of conduct will only be a last
-resort option.
+結局のところ、「お互いに親切にすること」が全てのメンバーの最終的な目標です。私達は人間であるがゆえに時として失敗もしますが、問題の平和的解決を第一として協力するべきことに誰しも疑いの余地はありません。行動規範に基づく執行は最終的な手段として存在する、それ以上でもそれ以下でもありません。
 
-Our goal of creating a robust and technically advanced operating system
-and the technical complexity involved naturally require expertise and
-decision-making.
+Linux カーネルコミュニティの目標は堅牢で技術的に優れたオペレーティングシステムを開発することであり、開発に関わる技術的に複雑な問題を解決するには専門知識と意思決定が必然となります。
 
-The required expertise varies depending on the area of contribution.  It
-is determined mainly by context and technical complexity and only
-secondary by the expectations of contributors and maintainers.
+必要とされる専門知識は貢献の対象によって変わります。それはまず文脈と技術的な複雑性によって決まり、それから貢献者とメンテナの期待によって決まります。
 
-Both the expertise expectations and decision-making are subject to
-discussion, but at the very end there is a basic necessity to be able to
-make decisions in order to make progress.  This prerogative is in the
-hands of maintainers and project's leadership and is expected to be used
-in good faith.
+専門的な期待と意思決定はどちらも議論の対象となりますが、最終的には物事を前に進めるための決定が可能であることが前提となります。この特権はメンテナおよびプロジェクトのリーダーに与えられており、誠実さを持って行使されるべきものです。
 
-As a consequence, setting expertise expectations, making decisions and
-rejecting unsuitable contributions are not viewed as a violation of the
-Code of Conduct.
+特権によって、専門的な期待を持つこと、意思決定をすること、不適切な投稿をリジェクトすることは行動規範の違反とはみなしません。
 
-While maintainers are in general welcoming to newcomers, their capacity
-of helping contributors overcome the entry hurdles is limited, so they
-have to set priorities.  This, also, is not to be seen as a violation of
-the Code of Conduct.  The kernel community is aware of that and provides
-entry level programs in various forms like kernelnewbies.org.
+基本的にメンテナは新しいメンバーの参加を歓迎しますが、貢献者に対してメンテナがハードルを際限なく下げることはできません。メンテナは優先順位を決める必要があります。優先順位の設定もまた、行動規範の違反にはあたりません。カーネルコミュニティはこの問題について kernelnewbies.org などで参加者のレベルに応じたプログラムを用意しています。
 
-Scope
------
+適用範囲
+----------
 
-The Linux kernel community primarily interacts on a set of public email
-lists distributed around a number of different servers controlled by a
-number of different companies or individuals.  All of these lists are
-defined in the MAINTAINERS file in the kernel source tree.  Any emails
-sent to those mailing lists are considered covered by the Code of
-Conduct.
+Linux カーネルコミュニティでは基本的に公のメーリングリストで連携が取られています。メーリングリストは様々な団体や個人によって運営されている数々のサーバー上に存在します。メーリングリストは全てカーネルソースツリー内の MAINTAINERS ファイルに載っています。記載されているメーリングリストに送信されるメール全てに対して行動規範が適用されます。
 
-Developers who use the kernel.org bugzilla, and other subsystem bugzilla
-or bug tracking tools should follow the guidelines of the Code of
-Conduct.  The Linux kernel community does not have an "official" project
-email address, or "official" social media address.  Any activity
-performed using a kernel.org email account must follow the Code of
-Conduct as published for kernel.org, just as any individual using a
-corporate email account must follow the specific rules of that
-corporation.
+kernel.org の bugzilla や他のサブシステムの bugzilla、あるいは他のバグトラッキングシステムを使っている開発者も行動規範のガイドラインに従ってください。Linux カーネルコミュニティには「公式の」プロジェクトメールアドレスあるいは「公式の」ソーシャルメディアアカウントが存在しません。会社のメールアカウントを使用している個人が会社のルールに従わなければならないように、kernel.org メールアカウントを使用したあらゆる活動は行動規範に従わなければなりません。
 
-The Code of Conduct does not prohibit continuing to include names, email
-addresses, and associated comments in mailing list messages, kernel
-change log messages, or code comments.
+メーリングリストのメッセージ、カーネルの変更履歴メッセージ、あるいはコードのコメント内に名前・メールアドレス・関連するコメントを付することは行動規範によって禁止されません。
 
-Interaction in other forums is covered by whatever rules apply to said
-forums and is in general not covered by the Code of Conduct.  Exceptions
-may be considered for extreme circumstances.
+他のフォーラムにおける投稿はそのフォーラムが準じているルールが適用され、基本的に行動規範の対象外となります。ただし特別な事情がある場合はその限りではありません。
 
-Contributions submitted for the kernel should use appropriate language.
-Content that already exists predating the Code of Conduct will not be
-addressed now as a violation.  Inappropriate language can be seen as a
-bug, though; such bugs will be fixed more quickly if any interested
-parties submit patches to that effect.  Expressions that are currently
-part of the user/kernel API, or reflect terminology used in published
-standards or specifications, are not considered bugs.
+カーネルに貢献する場合は適切な言葉を使ってください。行動規範が採択される以前に存在したコンテンツについては現時点で違反による修正対象となることはありません。ただし、不適切な言葉はバグとして扱われる可能性があります。そのようなバグは関係者がパッチを投稿した際に速やかに修正されるものとします。ユーザー/カーネル API に含まれている表現、標準や仕様で用いられている用語はバグとはみなされません。
 
-Enforcement
+執行
 -----------
 
-The address listed in the Code of Conduct goes to the Code of Conduct
-Committee.  The exact members receiving these emails at any given time
-are listed at https://kernel.org/code-of-conduct.html.  Members can not
-access reports made before they joined or after they have left the
-committee.
+行動規範に記載されているアドレスに送信したメールは行動規範委員会に届きます。メールを受け取るメンバーの一覧は https://kernel.org/code-of-conduct.html に記載されます。委員会に参加していないメンバーは報告を閲覧できません（委員会を脱会後も閲覧不可となります）。
 
-The initial Code of Conduct Committee consists of volunteer members of
-the TAB, as well as a professional mediator acting as a neutral third
-party.  The first task of the committee is to establish documented
-processes, which will be made public.
+行動規範委員会の初期メンバーは TAB のボランティア、中立的な第三者として活動する職業上の仲裁者から構成されます。委員会の最初の任務はプロセスを文章化して、公開することになります。
 
-Any member of the committee, including the mediator, can be contacted
-directly if a reporter does not wish to include the full committee in a
-complaint or concern.
+委員会に属するメンバー全員には報告を行いたくない場合、仲裁者を含む委員会のメンバーのいずれかに直接連絡を取ることも可能です。
 
-The Code of Conduct Committee reviews the cases according to the
-processes (see above) and consults with the TAB as needed and
-appropriate, for instance to request and receive information about the
-kernel community.
+行動規範委員会はプロセス (上述) に従って事態を判断し、必要に応じて TAB と意見を交換します。例えばカーネルコミュニティの情報を入手したい場合などが適切とされます。
 
-Any decisions by the committee will be brought to the TAB, for
-implementation of enforcement with the relevant maintainers if needed.
-A decision by the Code of Conduct Committee can be overturned by the TAB
-by a two-thirds vote.
+委員会による決定は TAB に提出され、必要に応じて関連するメンテナに執行されます。行動規範委員会による決定は TAB の3分の2以上の投票によって覆されます。
 
-At quarterly intervals, the Code of Conduct Committee and TAB will
-provide a report summarizing the anonymised reports that the Code of
-Conduct committee has received and their status, as well details of any
-overridden decisions including complete and identifiable voting details.
+四半期ごとに、行動規範委員会と TAB は行動規範委員会が受け取った報告（報告者は匿名で扱います）と現状、さらに覆された決定の詳細と投票の内訳について報告します。
 
-We expect to establish a different process for Code of Conduct Committee
-staffing beyond the bootstrap period.  This document will be updated
-with that information when this occurs.
+行動規範委員会の設立からプロセスは変わっていくことが想定されます。この文章はプロセスの変化に応じて情報が更新されます。
