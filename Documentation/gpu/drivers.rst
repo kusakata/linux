@@ -13,6 +13,7 @@ GPU ドライバードキュメント
    tve200
    v3d
    vc4
+   vkms
    bridge/dw-hdmi
    xen-front
 

@@ -11,3 +11,5 @@ FPGA サブシステム
    fpga-mgr
    fpga-bridge
    fpga-region
+   fpga-programming
+

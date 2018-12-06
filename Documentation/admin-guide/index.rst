@@ -60,6 +60,7 @@ Linux カーネルユーザー・管理者ガイド
    java
    ras
    bcache
+   ext4
    pm/index
    thunderbolt
    LSM/index

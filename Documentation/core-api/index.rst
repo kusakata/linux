@@ -20,16 +20,20 @@
    local_ops
    workqueue
    genericirq
+   xarray
    flexible-arrays
    librs
    genalloc
    errseq
    printk-formats
    circular-buffers
+   memory-allocation
    mm-api
    gfp_mask-from-fs-io
    timekeeping
    boot-time-mm
+   memory-hotplug
+
 
 カーネルデバッグのインターフェイス
 ===================================

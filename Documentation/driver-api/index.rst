@@ -26,7 +26,8 @@ Linux ドライバー実装者の API ガイド
    iio/index
    input
    usb/index
-   pci
+   firewire
+   pci/index
    spi
    i2c
    hsi

@@ -1,5 +1,7 @@
 .. SPDX-License-Identifier: GPL-2.0
 
+.. _kernel_licensing:
+
 Linux カーネルライセンス規則
 ==============================
 
@@ -165,9 +167,11 @@ Linux カーネルは全てのソースファイルに対して正確な SPDX �
 
 |
 
-2. 非推奨ライセンス:
+2. Not recommended licenses:
 
-   既存のコードや他のプロジェクトからコードをインポートするときに使用するべきでないライセンスです。非推奨ライセンスはカーネルソースツリーの以下のディレクトリに存在します::
+   These licenses should only be used for existing code or for importing
+   code from a different project.  These licenses are available from the
+   directory::
 
       LICENSES/other/
 

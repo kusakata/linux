@@ -999,7 +999,6 @@ static int lan743x_phy_open(struct lan743x_adapter *adapter)
 	struct phy_device *phydev;
 	struct net_device *netdev;
 	int ret = -EIO;
-	u32 mii_adv;
 
 	netdev = adapter->netdev;
 	phydev = phy_find_first(adapter->mdiobus);
@@ -1013,13 +1012,11 @@ static int lan743x_phy_open(struct lan743x_adapter *adapter)
 		goto return_error;
 
 	/* MAC doesn't support 1000T Half */
-	phydev->supported &= ~SUPPORTED_1000baseT_Half;
+	phy_remove_link_mode(phydev, ETHTOOL_LINK_MODE_1000baseT_Half_BIT);
 
 	/* support both flow controls */
+	phy_support_asym_pause(phydev);
 	phy->fc_request_control = (FLOW_CTRL_RX | FLOW_CTRL_TX);
-	phydev->advertising &= ~(ADVERTISED_Pause | ADVERTISED_Asym_Pause);
-	mii_adv = (u32)mii_advertise_flowctrl(phy->fc_request_control);
-	phydev->advertising |= mii_adv_to_ethtool_adv_t(mii_adv);
 	phy->fc_autoneg = phydev->autoneg;
 
 	phy_start(phydev);
@@ -1675,7 +1672,7 @@ static int lan743x_tx_napi_poll(struct napi_struct *napi, int weight)
 		netif_wake_queue(adapter->netdev);
 	}
 
-	if (!napi_complete_done(napi, weight))
+	if (!napi_complete(napi))
 		goto done;
 
 	/* enable isr */
@@ -1684,7 +1681,7 @@ static int lan743x_tx_napi_poll(struct napi_struct *napi, int weight)
 	lan743x_csr_read(adapter, INT_STS);
 
 done:
-	return weight;
+	return 0;
 }
 
 static void lan743x_tx_ring_cleanup(struct lan743x_tx *tx)
@@ -1873,9 +1870,9 @@ static int lan743x_tx_open(struct lan743x_tx *tx)
 	tx->vector_flags = lan743x_intr_get_vector_flags(adapter,
 							 INT_BIT_DMA_TX_
 							 (tx->channel_number));
-	netif_napi_add(adapter->netdev,
-		       &tx->napi, lan743x_tx_napi_poll,
-		       tx->ring_size - 1);
+	netif_tx_napi_add(adapter->netdev,
+			  &tx->napi, lan743x_tx_napi_poll,
+			  tx->ring_size - 1);
 	napi_enable(&tx->napi);
 
 	data = 0;
@@ -2850,7 +2847,7 @@ static void lan743x_pcidev_shutdown(struct pci_dev *pdev)
 	lan743x_hardware_cleanup(adapter);
 }
 
-#ifdef CONFIG_PM
+#ifdef CONFIG_PM_SLEEP
 static u16 lan743x_pm_wakeframe_crc16(const u8 *buf, int len)
 {
 	return bitrev16(crc16(0xFFFF, buf, len));
@@ -3016,10 +3013,11 @@ static int lan743x_pm_resume(struct device *dev)
 static const struct dev_pm_ops lan743x_pm_ops = {
 	SET_SYSTEM_SLEEP_PM_OPS(lan743x_pm_suspend, lan743x_pm_resume)
 };
-#endif /*CONFIG_PM */
+#endif /* CONFIG_PM_SLEEP */
 
 static const struct pci_device_id lan743x_pcidev_tbl[] = {
 	{ PCI_DEVICE(PCI_VENDOR_ID_SMSC, PCI_DEVICE_ID_SMSC_LAN7430) },
+	{ PCI_DEVICE(PCI_VENDOR_ID_SMSC, PCI_DEVICE_ID_SMSC_LAN7431) },
 	{ 0, }
 };
 
@@ -3028,7 +3026,7 @@ static struct pci_driver lan743x_pcidev_driver = {
 	.id_table = lan743x_pcidev_tbl,
 	.probe    = lan743x_pcidev_probe,
 	.remove   = lan743x_pcidev_remove,
-#ifdef CONFIG_PM
+#ifdef CONFIG_PM_SLEEP
 	.driver.pm = &lan743x_pm_ops,
 #endif
 	.shutdown = lan743x_pcidev_shutdown,
