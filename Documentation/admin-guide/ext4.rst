@@ -1,7 +1,7 @@
 .. SPDX-License-Identifier: GPL-2.0
 
 ========================
-ext4 General Information
+ext4 一般情報
 ========================
 
 Ext4 is an advanced level of the ext3 filesystem which incorporates
@@ -9,11 +9,11 @@ scalability and reliability enhancements for supporting large filesystems
 (64 bit) in keeping with increasing disk capacities and state-of-the-art
 feature requirements.
 
-Mailing list:	linux-ext4@vger.kernel.org
-Web site:	http://ext4.wiki.kernel.org
+メーリングリスト:	linux-ext4@vger.kernel.org
+ウェブサイト:	http://ext4.wiki.kernel.org
 
 
-Quick usage instructions
+簡単な使い方
 ========================
 
 Note: More extensive information for getting started with ext4 can be
@@ -66,10 +66,10 @@ http://ext4.wiki.kernel.org/index.php/Ext4_Howto
     the filesystem with a large journal can also be helpful for
     metadata-intensive workloads.
 
-Features
+特徴
 ========
 
-Currently Available
+最新機能
 -------------------
 
 * ability to use filesystems > 16TB (e2fsprogs support not available yet)
@@ -95,8 +95,8 @@ Currently Available
 [1] Filesystems with a block size of 1k may see a limit imposed by the
 directory hash tree having a maximum depth of two.
 
-Options
-=======
+オプション
+===========
 
 When mounting an ext4 filesystem, the following option are accepted:
 (*) == default
@@ -352,8 +352,8 @@ When mounting an ext4 filesystem, the following option are accepted:
         Documentation/filesystems/dax.txt.  Note that this option is
         incompatible with data=journal.
 
-Data Mode
-=========
+データモード
+==============
 There are 3 different data modes:
 
 * writeback mode
@@ -383,8 +383,8 @@ There are 3 different data modes:
   modes.  Enabling this mode will disable delayed allocation and O_DIRECT
   support.
 
-/proc entries
-=============
+/proc エントリ
+================
 
 Information about mounted ext4 file systems can be found in
 /proc/fs/ext4.  Each mounted filesystem will have a directory in
@@ -397,8 +397,8 @@ Files in /proc/fs/ext4/<devname>
   mb_groups
         details of multiblock allocator buddy cache of free blocks
 
-/sys entries
-============
+/sys エントリ
+===============
 
 Information about mounted ext4 file systems can be found in
 /sys/fs/ext4.  Each mounted filesystem will have a directory in

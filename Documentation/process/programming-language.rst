@@ -1,7 +1,7 @@
 .. _programming_language:
 
-Programming Language
-====================
+プログラミング言語
+=====================
 
 The kernel is written in the C programming language [c-language]_.
 More precisely, the kernel is typically compiled with ``gcc`` [gcc]_
@@ -15,7 +15,7 @@ There is some support for compiling the kernel with ``clang`` [clang]_
 and ``icc`` [icc]_ for several of the architectures, although at the time
 of writing it is not completed, requiring third-party patches.
 
-Attributes
+属性
 ----------
 
 One of the common extensions used throughout the kernel are attributes
