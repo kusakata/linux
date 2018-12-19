@@ -8,48 +8,29 @@ lanana.org に存在していたこのドキュメントの LaTeX 版はメン�
 
 このドキュメントは Filesystem Hierarchy Standard (FHS) に組み込まれています。FHS は http://www.pathname.com/fhs/ で確認できます。
 
-Allocations marked (68k/Amiga) apply to Linux/68k on the Amiga
-platform only.	Allocations marked (68k/Atari) apply to Linux/68k on
-the Atari platform only.
+(68k/Amiga) と書かれているデバイスは Amiga プラットフォームの Linux/68k にのみ適用されます。(68k/Atari) と書かれているデバイスは Atari プラットフォームの Linux/68k にのみ適用されます。
 
-This document is in the public domain.	The authors requests, however,
-that semantically altered versions are not distributed without
-permission of the authors, assuming the authors can be contacted without
-an unreasonable effort.
+このドキュメントはパブリックドメインです。しかしながら、著者に連絡を取ることができる以上、著者の許可なく変更を加えたバージョンを配布しないように要求します。
 
 
 .. attention::
 
-  DEVICE DRIVERS AUTHORS PLEASE READ THIS
+  デバイスドライバーの作者は以下を読んでください。
 
-  Linux now has extensive support for dynamic allocation of device numbering
-  and can use ``sysfs`` and ``udev`` (``systemd``) to handle the naming needs.
-  There are still some exceptions in the serial and boot device area. Before
-  asking   for a device number make sure you actually need one.
+  Linux はデバイスの動的な番号割当をサポートしており、``sysfs`` と ``udev`` (``systemd``) を使用して命名を処理できます。ただしシリアル・ブートデバイスの領域ではいくつか例外が存在します。デバイス番号を要求する前に本当に必要であることを確認してください。
 
-  To have a major number allocated, or a minor number in situations
-  where that applies (e.g. busmice), please submit a patch and send to
-  the authors as indicated above.
+  メジャーナンバーあるいは場合によってマイナーナンバーを割り当てて欲しい場合 (例: バスマウス)、パッチを投稿して作者に上記のように送信してください。
 
-  Keep the description of the device *in the same format
-  as this list*. The reason for this is that it is the only way we have
-  found to ensure we have all the requisite information to publish your
-  device and avoid conflicts.
+  デバイスの説明は *以下のリストと同じ形式* にしてください。デバイスを公開して衝突を防ぐために必要な情報をすべて確保するためです。
 
-  Finally, sometimes we have to play "namespace police."  Please don't be
-  offended.  We often get submissions for ``/dev`` names that would be bound
-  to cause conflicts down the road.  We are trying to avoid getting in a
-  situation where we would have to suffer an incompatible forward
-  change.  Therefore, please consult with us **before** you make your
-  device names and numbers in any way public, at least to the point
-  where it would be at all difficult to get them changed.
+  また、ときとして、「名前空間警察」として振る舞うこともあります。気を悪くしないでください。衝突が発生するような ``/dev`` の名前がしばしば投稿されているのです。変更によって前方互換性に問題が起こるような事態は避けるように努めています。したがって、デバイス名と番号を決定する前に、最低でも変更が難しくなるようなことになる **前** には相談するようにしてください。
 
-  Your cooperation is appreciated.
+  ご協力感謝します。
 
 .. include:: devices.txt
    :literal:
 
-Additional ``/dev/`` directory entries
+追加 ``/dev/`` ディレクトリエントリ
 --------------------------------------
 
 This section details additional entries that should or may exist in
@@ -58,40 +39,40 @@ form (absolute or relative) as is indicated here.  Links are
 classified as "hard" or "symbolic" depending on the preferred type of
 link; if possible, the indicated type of link should be used.
 
-Compulsory links
+必須リンク
 ++++++++++++++++
 
-These links should exist on all systems:
+以下のリンクは全ての環境に存在する必要があります:
 
 =============== =============== =============== ===============================
-/dev/fd		/proc/self/fd	symbolic	File descriptors
-/dev/stdin	fd/0		symbolic	stdin file descriptor
-/dev/stdout	fd/1		symbolic	stdout file descriptor
-/dev/stderr	fd/2		symbolic	stderr file descriptor
+/dev/fd		/proc/self/fd	symbolic	ファイル記述子
+/dev/stdin	fd/0		symbolic	stdin ファイル記述子
+/dev/stdout	fd/1		symbolic	stdout ファイル記述子
+/dev/stderr	fd/2		symbolic	stderr ファイル記述子
 /dev/nfsd	socksys		symbolic	Required by iBCS-2
 /dev/X0R	null		symbolic	Required by iBCS-2
 =============== =============== =============== ===============================
 
-Note: ``/dev/X0R`` is <letter X>-<digit 0>-<letter R>.
+ノート: ``/dev/X0R`` は <letter X>-<digit 0>-<letter R> です。
 
-Recommended links
+推奨リンク
 +++++++++++++++++
 
-It is recommended that these links exist on all systems:
+以下のリンクは全ての環境に存在することが推奨されています:
 
 
 =============== =============== =============== ===============================
-/dev/core	/proc/kcore	symbolic	Backward compatibility
-/dev/ramdisk	ram0		symbolic	Backward compatibility
-/dev/ftape	qft0		symbolic	Backward compatibility
-/dev/bttv0	video0		symbolic	Backward compatibility
-/dev/radio	radio0		symbolic	Backward compatibility
-/dev/i2o*	/dev/i2o/*	symbolic	Backward compatibility
+/dev/core	/proc/kcore	symbolic	後方互換
+/dev/ramdisk	ram0		symbolic	後方互換
+/dev/ftape	qft0		symbolic	後方互換
+/dev/bttv0	video0		symbolic	後方互換
+/dev/radio	radio0		symbolic	後方互換
+/dev/i2o*	/dev/i2o/*	symbolic	後方互換
 /dev/scd?	sr?		hard		Alternate SCSI CD-ROM name
 =============== =============== =============== ===============================
 
-Locally defined links
-+++++++++++++++++++++
+ローカルで定義されるリンク
++++++++++++++++++++++++++++++
 
 The following links may be established locally to conform to the
 configuration of the system.  This is merely a tabulation of existing
@@ -122,8 +103,8 @@ SCSI devices (/dev/sg*).
 ``/dev/mouse`` may point to a primary serial TTY device, a hardware mouse
 device, or a socket for a mouse driver program (e.g. ``/dev/gpmdata``).
 
-Sockets and pipes
-+++++++++++++++++
+ソケットとパイプ
++++++++++++++++++++
 
 Non-transient sockets and named pipes may exist in /dev.  Common entries are:
 
@@ -133,8 +114,8 @@ Non-transient sockets and named pipes may exist in /dev.  Common entries are:
 /dev/gpmdata	socket		gpm mouse multiplexer
 =============== =============== ===============================================
 
-Mount points
-++++++++++++
+マウントポイント
+++++++++++++++++++
 
 The following names are reserved for mounting special filesystems
 under /dev.  These special filesystems provide kernel interfaces that
@@ -145,8 +126,8 @@ cannot be provided with standard device nodes.
 /dev/shm	tmpfs		POSIX shared memory maintenance access
 =============== =============== ===============================================
 
-Terminal devices
-----------------
+ターミナルデバイス
+--------------------
 
 Terminal, or TTY devices are a special class of character devices.  A
 terminal device is any device that could act as a controlling terminal
@@ -166,7 +147,7 @@ reflect Linux outgrowing a borrowed convention.
 A hash mark (``#``) in a device name is used here to indicate a decimal
 number without leading zeroes.
 
-Virtual consoles and the console device
+仮想端末とコンソールデバイス
 +++++++++++++++++++++++++++++++++++++++
 
 Virtual consoles are full-screen terminal displays on the system video
@@ -185,8 +166,8 @@ either ``/dev/tty0``, a specific virtual console such as ``/dev/tty1``, or to
 a serial port primary (``tty*``, not ``cu*``) device, depending on the
 configuration of the system.
 
-Serial ports
-++++++++++++
+シリアルポート
+++++++++++++++++
 
 Serial ports are RS-232 serial ports and any device which simulates
 one, either in hardware (such as internal modems) or in software (such
@@ -233,7 +214,7 @@ to create lock files for the corresponding alternate device names
 should take into account the possibility of being used on a non-serial
 port TTY, for which no alternate device would exist.
 
-Pseudoterminals (PTYs)
+疑似端末 (PTY)
 ++++++++++++++++++++++
 
 Pseudoterminals, or PTYs, are used to create login sessions or provide
