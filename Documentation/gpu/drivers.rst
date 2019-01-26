@@ -5,6 +5,7 @@ GPU ドライバードキュメント
 .. toctree::
 
    amdgpu
+   amdgpu-dc
    i915
    meson
    pl111

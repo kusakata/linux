@@ -30,6 +30,7 @@ Linux ドライバー実装者の API ガイド
    pci/index
    spi
    i2c
+   i3c/index
    hsi
    edac
    scsi

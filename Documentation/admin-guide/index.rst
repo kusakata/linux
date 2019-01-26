@@ -65,6 +65,7 @@ Linux カーネルユーザー・管理者ガイド
    thunderbolt
    LSM/index
    mm/index
+   perf-security
 
 .. only::  subproject and html
 
