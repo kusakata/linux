@@ -1,13 +1,9 @@
+// SPDX-License-Identifier: GPL-2.0-only
 /*
  * This file contains kasan initialization code for ARM64.
  *
  * Copyright (c) 2015 Samsung Electronics Co., Ltd.
  * Author: Andrey Ryabinin <ryabinin.a.a@gmail.com>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2 as
- * published by the Free Software Foundation.
- *
  */
 
 #define pr_fmt(fmt) "kasan: " fmt
@@ -40,6 +36,11 @@ static phys_addr_t __init kasan_alloc_zeroed_page(int node)
 	void *p = memblock_alloc_try_nid(PAGE_SIZE, PAGE_SIZE,
 					      __pa(MAX_DMA_ADDRESS),
 					      MEMBLOCK_ALLOC_KASAN, node);
+	if (!p)
+		panic("%s: Failed to allocate %lu bytes align=0x%lx nid=%d from=%llx\n",
+		      __func__, PAGE_SIZE, PAGE_SIZE, node,
+		      __pa(MAX_DMA_ADDRESS));
+
 	return __pa(p);
 }
 
@@ -48,6 +49,11 @@ static phys_addr_t __init kasan_alloc_raw_page(int node)
 	void *p = memblock_alloc_try_nid_raw(PAGE_SIZE, PAGE_SIZE,
 						__pa(MAX_DMA_ADDRESS),
 						MEMBLOCK_ALLOC_KASAN, node);
+	if (!p)
+		panic("%s: Failed to allocate %lu bytes align=0x%lx nid=%d from=%llx\n",
+		      __func__, PAGE_SIZE, PAGE_SIZE, node,
+		      __pa(MAX_DMA_ADDRESS));
+
 	return __pa(p);
 }
 
@@ -251,8 +257,6 @@ void __init kasan_init(void)
 
 	memset(kasan_early_shadow_page, KASAN_SHADOW_INIT, PAGE_SIZE);
 	cpu_replace_ttbr1(lm_alias(swapper_pg_dir));
-
-	kasan_init_tags();
 
 	/* At this point kasan is fully initialized. Enable error messages */
 	init_task.kasan_depth = 0;

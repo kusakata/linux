@@ -167,25 +167,25 @@ Linux カーネルは全てのソースファイルに対して正確な SPDX �
 
 |
 
-2. Not recommended licenses:
+2. Deprecated licenses:
 
    These licenses should only be used for existing code or for importing
    code from a different project.  These licenses are available from the
    directory::
 
-      LICENSES/other/
+      LICENSES/deprecated/
 
    上記のディレクトリのファイルには完全なライセンス文章と `メタタグ`_ が記述されています。ファイル名は SPDX ライセンス識別子と同じになっており、ソースファイルでライセンスを提示するときに使用します。
 
    例::
 
-      LICENSES/other/ISC
+      LICENSES/deprecated/ISC
 
    上記のファイルには Internet Systems Consortium ライセンスのテキストと必要なメタタグが含まれています。
 
-      LICENSES/other/ZLib
+      LICENSES/deprecated/GPL-1.0
 
-   上記のファイルには ZLIB ライセンスの文章と必要なメタタグが含まれています。
+   上記のファイルには GPL バージョン 1 ライセンスの文章と必要なメタタグが含まれています。
 
    メタタグ:
 
@@ -208,7 +208,56 @@ Linux カーネルは全てのソースファイルに対して正確な SPDX �
 
 |
 
-3. _`例外`:
+3. Dual Licensing Only
+
+   These licenses should only be used to dual license code with another
+   license in addition to a preferred license.  These licenses are available
+   from the directory::
+
+      LICENSES/dual/
+
+   in the kernel source tree.
+
+   The files in this directory contain the full license text and
+   `Metatags`_.  The file names are identical to the SPDX license
+   identifier which shall be used for the license in source files.
+
+   Examples::
+
+      LICENSES/dual/MPL-1.1
+
+   Contains the Mozilla Public License version 1.1 license text and the
+   required metatags::
+
+      LICENSES/dual/Apache-2.0
+
+   Contains the Apache License version 2.0 license text and the required
+   metatags.
+
+   Metatags:
+
+   The metatag requirements for 'other' licenses are identical to the
+   requirements of the `Preferred licenses`_.
+
+   File format example::
+
+      Valid-License-Identifier: MPL-1.1
+      SPDX-URL: https://spdx.org/licenses/MPL-1.1.html
+      Usage-Guide:
+        Do NOT use. The MPL-1.1 is not GPL2 compatible. It may only be used for
+        dual-licensed files where the other license is GPL2 compatible.
+        If you end up using this it MUST be used together with a GPL2 compatible
+        license using "OR".
+        To use the Mozilla Public License version 1.1 put the following SPDX
+        tag/value pair into a comment according to the placement guidelines in
+        the licensing rules documentation:
+      SPDX-License-Identifier: MPL-1.1
+      License-Text:
+        Full license text
+
+|
+
+4. _`例外`:
 
    一部のライセンスではオリジナルのライセンスには存在しない権限を与える例外が追加されている場合があります。例外はカーネルソースツリーの以下のディレクトリに存在します::
 
@@ -282,3 +331,65 @@ Linux カーネルは全てのソースファイルに対して正確な SPDX �
 
 
 SPDX ライセンス識別子と例外は全て LICENSE サブディレクトリに対応するファイルが存在します。検証ツール (例: checkpatch.pl) でソースからライセンスを読み込んで展開できるようにするためです。これは様々な FOSS 組織で推奨されています。例: `FSFE REUSE initiative <https://reuse.software/>`_ 。
+
+_`MODULE_LICENSE`
+-----------------
+
+   Loadable kernel modules also require a MODULE_LICENSE() tag. This tag is
+   neither a replacement for proper source code license information
+   (SPDX-License-Identifier) nor in any way relevant for expressing or
+   determining the exact license under which the source code of the module
+   is provided.
+
+   The sole purpose of this tag is to provide sufficient information
+   whether the module is free software or proprietary for the kernel
+   module loader and for user space tools.
+
+   The valid license strings for MODULE_LICENSE() are:
+
+    ============================= =============================================
+    "GPL"			  Module is licensed under GPL version 2. This
+				  does not express any distinction between
+				  GPL-2.0-only or GPL-2.0-or-later. The exact
+				  license information can only be determined
+				  via the license information in the
+				  corresponding source files.
+
+    "GPL v2"			  Same as "GPL". It exists for historic
+				  reasons.
+
+    "GPL and additional rights"   Historical variant of expressing that the
+				  module source is dual licensed under a
+				  GPL v2 variant and MIT license. Please do
+				  not use in new code.
+
+    "Dual MIT/GPL"		  The correct way of expressing that the
+				  module is dual licensed under a GPL v2
+				  variant or MIT license choice.
+
+    "Dual BSD/GPL"		  The module is dual licensed under a GPL v2
+				  variant or BSD license choice. The exact
+				  variant of the BSD license can only be
+				  determined via the license information
+				  in the corresponding source files.
+
+    "Dual MPL/GPL"		  The module is dual licensed under a GPL v2
+				  variant or Mozilla Public License (MPL)
+				  choice. The exact variant of the MPL
+				  license can only be determined via the
+				  license information in the corresponding
+				  source files.
+
+    "Proprietary"		  The module is under a proprietary license.
+				  This string is solely for proprietary third
+				  party modules and cannot be used for modules
+				  which have their source code in the kernel
+				  tree. Modules tagged that way are tainting
+				  the kernel with the 'P' flag when loaded and
+				  the kernel module loader refuses to link such
+				  modules against symbols which are exported
+				  with EXPORT_SYMBOL_GPL().
+    ============================= =============================================
+
+
+

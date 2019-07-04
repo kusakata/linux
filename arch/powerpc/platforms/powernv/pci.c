@@ -1,12 +1,8 @@
+// SPDX-License-Identifier: GPL-2.0-or-later
 /*
  * Support PCI/PCIe on PowerNV platforms
  *
  * Copyright 2011 Benjamin Herrenschmidt, IBM Corp.
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version
- * 2 of the License, or (at your option) any later version.
  */
 
 #include <linux/kernel.h>
@@ -1147,6 +1143,8 @@ static int pnv_tce_iommu_bus_notifier(struct notifier_block *nb,
 			return 0;
 
 		pe = &phb->ioda.pe_array[pdn->pe_number];
+		if (!pe->table_group.group)
+			return 0;
 		iommu_add_device(&pe->table_group, dev);
 		return 0;
 	case BUS_NOTIFY_DEL_DEVICE:

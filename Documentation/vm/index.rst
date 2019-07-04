@@ -2,7 +2,7 @@
 Linux メモリ管理ドキュメント
 =====================================
 
-こちらは Linux のメモリ管理 (mm) サブシステムのドキュメント集です。メモリの割当についてのみ知りたい場合は、:ref:`memory-allocation` を見てください。
+こちらは Linux のメモリ管理 (mm) サブシステムのドキュメント集です。メモリの割当についてのみ知りたい場合は、:ref:`memory_allocation` を見てください。
 
 MM 機能のユーザーガイド
 ===========================
@@ -34,6 +34,7 @@ descriptions of data structures and algorithms.
    hwpoison
    hugetlbfs_reserv
    ksm
+   memory-model
    mmu_notifier
    numa
    overcommit-accounting

@@ -27,6 +27,15 @@ Arch Linux カーネルドキュメント
 
    admin-guide/index
 
+ファームウェア関連ドキュメント
+------------------------------
+以下はプラットフォームファームウェアに関するカーネルの情報です。
+
+.. toctree::
+   :maxdepth: 2
+
+   firmware-guide/index
+
 アプリケーション開発者向けのドキュメント
 ------------------------------------------
 
@@ -66,6 +75,7 @@ Arch Linux カーネルドキュメント
    media/index
    networking/index
    input/index
+   hwmon/index
    gpu/index
    security/index
    sound/index
@@ -73,6 +83,7 @@ Arch Linux カーネルドキュメント
    filesystems/index
    vm/index
    bpf/index
+   misc-devices/index
 
 アーキテクチャ個別のドキュメント
 -----------------------------------
@@ -82,6 +93,7 @@ Arch Linux カーネルドキュメント
 .. toctree::
    :maxdepth: 2
 
+   x86/index
    sh/index
    
 ファイルシステムのドキュメント

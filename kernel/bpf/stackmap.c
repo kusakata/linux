@@ -1,8 +1,5 @@
+// SPDX-License-Identifier: GPL-2.0-only
 /* Copyright (c) 2016 Facebook
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of version 2 of the GNU General Public
- * License as published by the Free Software Foundation.
  */
 #include <linux/bpf.h>
 #include <linux/jhash.h>
@@ -44,7 +41,7 @@ static void do_up_read(struct irq_work *entry)
 	struct stack_map_irq_work *work;
 
 	work = container_of(entry, struct stack_map_irq_work, irq_work);
-	up_read(work->sem);
+	up_read_non_owner(work->sem);
 	work->sem = NULL;
 }
 
@@ -338,6 +335,12 @@ static void stack_map_get_build_id_offset(struct bpf_stack_build_id *id_offs,
 	} else {
 		work->sem = &current->mm->mmap_sem;
 		irq_work_queue(&work->irq_work);
+		/*
+		 * The irq_work will release the mmap_sem with
+		 * up_read_non_owner(). The rwsem_release() is called
+		 * here to release the lock from lockdep's perspective.
+		 */
+		rwsem_release(&current->mm->mmap_sem.dep_map, 1, _RET_IP_);
 	}
 }
 

@@ -1,10 +1,6 @@
+// SPDX-License-Identifier: GPL-2.0-only
 /*
  *  Copyright (c) 2014 Realtek Semiconductor Corp. All rights reserved.
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * version 2 as published by the Free Software Foundation.
- *
  */
 
 #include <linux/signal.h>
@@ -557,6 +553,7 @@ enum spd_duplex {
 /* MAC PASSTHRU */
 #define AD_MASK			0xfee0
 #define BND_MASK		0x0004
+#define BD_MASK			0x0001
 #define EFUSE			0xcfdb
 #define PASS_THRU_MASK		0x1
 
@@ -1176,9 +1173,9 @@ static int vendor_mac_passthru_addr_read(struct r8152 *tp, struct sockaddr *sa)
 			return -ENODEV;
 		}
 	} else {
-		/* test for RTL8153-BND */
+		/* test for RTL8153-BND and RTL8153-BD */
 		ocp_data = ocp_read_byte(tp, MCU_TYPE_USB, USB_MISC_1);
-		if ((ocp_data & BND_MASK) == 0) {
+		if ((ocp_data & BND_MASK) == 0 && (ocp_data & BD_MASK) == 0) {
 			netif_dbg(tp, probe, tp->netdev,
 				  "Invalid variant for MAC pass through\n");
 			return -ENODEV;
@@ -1211,12 +1208,44 @@ static int vendor_mac_passthru_addr_read(struct r8152 *tp, struct sockaddr *sa)
 		goto amacout;
 	}
 	memcpy(sa->sa_data, buf, 6);
-	ether_addr_copy(tp->netdev->dev_addr, sa->sa_data);
 	netif_info(tp, probe, tp->netdev,
 		   "Using pass-thru MAC addr %pM\n", sa->sa_data);
 
 amacout:
 	kfree(obj);
+	return ret;
+}
+
+static int determine_ethernet_addr(struct r8152 *tp, struct sockaddr *sa)
+{
+	struct net_device *dev = tp->netdev;
+	int ret;
+
+	sa->sa_family = dev->type;
+
+	if (tp->version == RTL_VER_01) {
+		ret = pla_ocp_read(tp, PLA_IDR, 8, sa->sa_data);
+	} else {
+		/* if device doesn't support MAC pass through this will
+		 * be expected to be non-zero
+		 */
+		ret = vendor_mac_passthru_addr_read(tp, sa);
+		if (ret < 0)
+			ret = pla_ocp_read(tp, PLA_BACKUP, 8, sa->sa_data);
+	}
+
+	if (ret < 0) {
+		netif_err(tp, probe, dev, "Get ether addr fail\n");
+	} else if (!is_valid_ether_addr(sa->sa_data)) {
+		netif_err(tp, probe, dev, "Invalid ether addr %pM\n",
+			  sa->sa_data);
+		eth_hw_addr_random(dev);
+		ether_addr_copy(sa->sa_data, dev->dev_addr);
+		netif_info(tp, probe, dev, "Random ether addr %pM\n",
+			   sa->sa_data);
+		return 0;
+	}
+
 	return ret;
 }
 
@@ -1226,33 +1255,14 @@ static int set_ethernet_addr(struct r8152 *tp)
 	struct sockaddr sa;
 	int ret;
 
-	if (tp->version == RTL_VER_01) {
-		ret = pla_ocp_read(tp, PLA_IDR, 8, sa.sa_data);
-	} else {
-		/* if device doesn't support MAC pass through this will
-		 * be expected to be non-zero
-		 */
-		ret = vendor_mac_passthru_addr_read(tp, &sa);
-		if (ret < 0)
-			ret = pla_ocp_read(tp, PLA_BACKUP, 8, sa.sa_data);
-	}
+	ret = determine_ethernet_addr(tp, &sa);
+	if (ret < 0)
+		return ret;
 
-	if (ret < 0) {
-		netif_err(tp, probe, dev, "Get ether addr fail\n");
-	} else if (!is_valid_ether_addr(sa.sa_data)) {
-		netif_err(tp, probe, dev, "Invalid ether addr %pM\n",
-			  sa.sa_data);
-		eth_hw_addr_random(dev);
-		ether_addr_copy(sa.sa_data, dev->dev_addr);
+	if (tp->version == RTL_VER_01)
+		ether_addr_copy(dev->dev_addr, sa.sa_data);
+	else
 		ret = rtl8152_set_mac_address(dev, &sa);
-		netif_info(tp, probe, dev, "Random ether addr %pM\n",
-			   sa.sa_data);
-	} else {
-		if (tp->version == RTL_VER_01)
-			ether_addr_copy(dev->dev_addr, sa.sa_data);
-		else
-			ret = rtl8152_set_mac_address(dev, &sa);
-	}
 
 	return ret;
 }
@@ -4263,9 +4273,17 @@ static int rtl8152_post_reset(struct usb_interface *intf)
 {
 	struct r8152 *tp = usb_get_intfdata(intf);
 	struct net_device *netdev;
+	struct sockaddr sa;
 
 	if (!tp)
 		return 0;
+
+	/* reset the MAC adddress in case of policy change */
+	if (determine_ethernet_addr(tp, &sa) >= 0) {
+		rtnl_lock();
+		dev_set_mac_address (tp->netdev, &sa, NULL);
+		rtnl_unlock();
+	}
 
 	netdev = tp->netdev;
 	if (!netif_running(netdev))

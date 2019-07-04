@@ -19,14 +19,15 @@ PR_GET_SPECULATION_CTRL
 
 PR_GET_SPECULATION_CTRL は prctl(2) の arg2 で選択された投機実行の欠陥の状態を返します。返り値は 0-3 のビットで、以下の意味を持ちます:
 
-====== ===================== ==================================================================================
-ビット  定義                  説明
-====== ===================== ==================================================================================
-0      PR_SPEC_PRCTL         緩和策は PR_SET_SPECULATION_CTRL によってタスク毎に制御可能。
-1      PR_SPEC_ENABLE        投機実行は有効になっており、緩和策は無効になっている。
-2      PR_SPEC_DISABLE       投機実行が無効になっており、緩和策が有効になっている。
-3      PR_SPEC_FORCE_DISABLE PR_SPEC_DISABLE と同じだが、解除が不可能。prctl(..., PR_SPEC_ENABLE) は失敗する。
-====== ===================== ==================================================================================
+====== ====================== ==================================================================================
+ビット  定義                    説明
+====== ====================== ====================================================================================================================================================================
+0      PR_SPEC_PRCTL          緩和策は PR_SET_SPECULATION_CTRL によってタスク毎に制御可能。
+1      PR_SPEC_ENABLE         投機実行は有効になっており、緩和策は無効になっている。
+2      PR_SPEC_DISABLE        投機実行が無効になっており、緩和策が有効になっている。
+3      PR_SPEC_FORCE_DISABLE  PR_SPEC_DISABLE と同じだが、解除が不可能。prctl(..., PR_SPEC_ENABLE) は失敗する。
+4      PR_SPEC_DISABLE_NOEXEC PR_SPEC_DISABLE と同じだが、`execve(2) <https://man.kusakata.com/man/execve.2.html>`_ によって状態が消去される。
+====== ====================== ====================================================================================================================================================================
 
 全てのビットが 0 の場合、CPU は投機実行の欠陥の影響を受けません。
 
@@ -77,6 +78,7 @@ EPERM   Speculation was disabled with PR_SPEC_FORCE_DISABLE and caller
    * prctl(PR_SET_SPECULATION_CTRL, PR_SPEC_STORE_BYPASS, PR_SPEC_ENABLE, 0, 0);
    * prctl(PR_SET_SPECULATION_CTRL, PR_SPEC_STORE_BYPASS, PR_SPEC_DISABLE, 0, 0);
    * prctl(PR_SET_SPECULATION_CTRL, PR_SPEC_STORE_BYPASS, PR_SPEC_FORCE_DISABLE, 0, 0);
+   * prctl(PR_SET_SPECULATION_CTRL, PR_SPEC_STORE_BYPASS, PR_SPEC_DISABLE_NOEXEC, 0, 0);
 
 - PR_SPEC_INDIR_BRANCH: Indirect Branch Speculation in User Processes
                         (Mitigate Spectre V2 style attacks against user processes)

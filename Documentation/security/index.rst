@@ -9,7 +9,6 @@
    IMA-templates
    keys/index
    LSM
-   LSM-sctp
-   SELinux-sctp
+   SCTP
    self-protection
    tpm/index

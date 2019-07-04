@@ -12,12 +12,12 @@ Linux カーネルユーザー・管理者ガイド
    kernel-parameters
    devices
 
-以下のセクションでは CPU の脆弱性と、コンパイル時・起動時・実行時に設定できる緩和策について説明しています。
+以下のセクションでは CPU の脆弱性と緩和策について説明しています。
 
 .. toctree::
    :maxdepth: 1
 
-   l1tf
+   hw-vuln/index
 
 以下は特定の問題やバグを追跡しようとしているユーザーのためのドキュメントです。
 
@@ -66,6 +66,7 @@ Linux カーネルユーザー・管理者ガイド
    LSM/index
    mm/index
    perf-security
+   acpi/index
 
 .. only::  subproject and html
 

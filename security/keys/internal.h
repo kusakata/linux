@@ -1,12 +1,8 @@
+/* SPDX-License-Identifier: GPL-2.0-or-later */
 /* Authentication token and access key management internal defs
  *
  * Copyright (C) 2003-5, 2007 Red Hat, Inc. All Rights Reserved.
  * Written by David Howells (dhowells@redhat.com)
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version
- * 2 of the License, or (at your option) any later version.
  */
 
 #ifndef _INTERNAL_H
@@ -186,20 +182,9 @@ static inline int key_permission(const key_ref_t key_ref, unsigned perm)
 	return key_task_permission(key_ref, current_cred(), perm);
 }
 
-/*
- * Authorisation record for request_key().
- */
-struct request_key_auth {
-	struct key		*target_key;
-	struct key		*dest_keyring;
-	const struct cred	*cred;
-	void			*callout_info;
-	size_t			callout_len;
-	pid_t			pid;
-} __randomize_layout;
-
 extern struct key_type key_type_request_key_auth;
 extern struct key *request_key_auth_new(struct key *target,
+					const char *op,
 					const void *callout_info,
 					size_t callout_len,
 					struct key *dest_keyring);
