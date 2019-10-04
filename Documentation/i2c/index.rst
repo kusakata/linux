@@ -1,8 +1,8 @@
 . SPDX-License-Identifier: GPL-2.0
 
-===================
-I2C/SMBus Subsystem
-===================
+=========================
+I2C/SMBus サブシステム
+=========================
 
 .. toctree::
    :maxdepth: 1
@@ -31,7 +31,7 @@ I2C/SMBus Subsystem
 
 .. only::  subproject and html
 
-   Indices
+   索引
    =======
 
    * :ref:`genindex`

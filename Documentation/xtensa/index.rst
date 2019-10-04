@@ -1,8 +1,8 @@
 .. SPDX-License-Identifier: GPL-2.0
 
-===================
-Xtensa Architecture
-===================
+======================
+Xtensa アーキテクチャ
+======================
 
 .. toctree::
    :maxdepth: 1

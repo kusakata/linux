@@ -1,7 +1,7 @@
 .. SPDX-License-Identifier: GPL-2.0
 
 ===========================
-MIPS-specific Documentation
+MIPS 固有のドキュメント
 ===========================
 
 .. toctree::
@@ -14,7 +14,7 @@ MIPS-specific Documentation
 
 .. only::  subproject and html
 
-   Indices
+   索引
    =======
 
    * :ref:`genindex`

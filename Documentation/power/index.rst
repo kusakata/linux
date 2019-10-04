@@ -1,7 +1,7 @@
 .. SPDX-License-Identifier: GPL-2.0
 
 ================
-Power Management
+電源管理
 ================
 
 .. toctree::
@@ -40,7 +40,7 @@ Power Management
 
 .. only::  subproject and html
 
-   Indices
+   索引
    =======
 
    * :ref:`genindex`

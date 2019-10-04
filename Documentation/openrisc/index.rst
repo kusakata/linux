@@ -1,8 +1,8 @@
 .. SPDX-License-Identifier: GPL-2.0
 
-=====================
-OpenRISC Architecture
-=====================
+=========================
+OpenRISC アーキテクチャ
+=========================
 
 .. toctree::
    :maxdepth: 2
@@ -12,7 +12,7 @@ OpenRISC Architecture
 
 .. only::  subproject and html
 
-   Indices
+   索引
    =======
 
    * :ref:`genindex`

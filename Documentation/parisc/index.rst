@@ -1,8 +1,8 @@
 .. SPDX-License-Identifier: GPL-2.0
 
-====================
-PA-RISC Architecture
-====================
+========================
+PA-RISC アーキテクチャ
+========================
 
 .. toctree::
    :maxdepth: 2

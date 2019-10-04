@@ -1,8 +1,8 @@
 .. SPDX-License-Identifier: GPL-2.0
 
-======
-timers
-======
+===========
+タイマー
+===========
 
 .. toctree::
     :maxdepth: 1

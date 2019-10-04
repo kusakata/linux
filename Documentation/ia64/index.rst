@@ -1,8 +1,8 @@
 .. SPDX-License-Identifier: GPL-2.0
 
-==================
-IA-64 Architecture
-==================
+======================
+IA-64 アーキテクチャ
+======================
 
 .. toctree::
    :maxdepth: 1

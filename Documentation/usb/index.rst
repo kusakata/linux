@@ -1,6 +1,6 @@
-===========
-USB support
-===========
+==============
+USB サポート
+==============
 
 .. toctree::
     :maxdepth: 1
@@ -33,7 +33,7 @@ USB support
 
 .. only::  subproject and html
 
-   Indices
+   索引
    =======
 
    * :ref:`genindex`

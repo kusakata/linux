@@ -1,8 +1,8 @@
 .. SPDX-License-Identifier: GPL-2.0
 
-=================
-m68k Architecture
-=================
+=====================
+m68k アーキテクチャ
+=====================
 
 .. toctree::
    :maxdepth: 2
@@ -12,7 +12,7 @@ m68k Architecture
 
 .. only::  subproject and html
 
-   Indices
+   索引
    =======
 
    * :ref:`genindex`

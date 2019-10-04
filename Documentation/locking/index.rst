@@ -1,8 +1,8 @@
 .. SPDX-License-Identifier: GPL-2.0
 
-=======
-locking
-=======
+========
+ロック
+========
 
 .. toctree::
     :maxdepth: 1

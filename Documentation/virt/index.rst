@@ -1,7 +1,7 @@
 .. SPDX-License-Identifier: GPL-2.0
 
 ============================
-Linux Virtualization Support
+Linux 仮想化サポート
 ============================
 
 .. toctree::
@@ -12,7 +12,7 @@ Linux Virtualization Support
 
 .. only:: html and subproject
 
-   Indices
+   索引
    =======
 
    * :ref:`genindex`

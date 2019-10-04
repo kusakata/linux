@@ -1,8 +1,8 @@
 .. SPDX-License-Identifier: GPL-2.0
 
-===================
-Kernel Build System
-===================
+========================
+カーネルビルドシステム
+========================
 
 .. toctree::
     :maxdepth: 1
@@ -22,7 +22,7 @@ Kernel Build System
 
 .. only::  subproject and html
 
-   Indices
+   索引
    =======
 
    * :ref:`genindex`

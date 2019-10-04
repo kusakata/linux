@@ -1,10 +1,10 @@
 .. SPDX-License-Identifier: GPL-2.0
 
-===============================
-The Linux kernel firmware guide
-===============================
+====================================
+Linux カーネルファームウェアガイド
+====================================
 
-This section describes the ACPI subsystem in Linux from firmware perspective.
+このセクションでは Linux の ACPI サブシステムについてファームウェアの観点から説明します。
 
 .. toctree::
    :maxdepth: 1
