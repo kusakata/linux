@@ -24,6 +24,7 @@
    librs
    genalloc
    errseq
+   packing
    printk-formats
    circular-buffers
    generic-radix-tree
@@ -33,6 +34,9 @@
    timekeeping
    boot-time-mm
    memory-hotplug
+   protection-keys
+   ../RCU/index
+   gcc-plugins
 
 
 カーネルデバッグのインターフェイス
@@ -44,7 +48,7 @@
    debug-objects
    tracepoint
 
-.. only::  subproject
+.. only:: subproject and html
 
    Indices
    =======

@@ -9,19 +9,23 @@
 #include <errno.h>
 #include <inttypes.h>
 #include <libgen.h>
+#include <stdlib.h>
 #include <bpf/bpf.h>
 #include <bpf/btf.h>
 #include <bpf/libbpf.h>
 #include <linux/btf.h>
-#include "util.h"
+#include "util.h" // hex_width()
 #include "ui/ui.h"
 #include "sort.h"
 #include "build-id.h"
 #include "color.h"
 #include "config.h"
-#include "cache.h"
+#include "dso.h"
+#include "env.h"
 #include "map.h"
+#include "map_groups.h"
 #include "symbol.h"
+#include "srcline.h"
 #include "units.h"
 #include "debug.h"
 #include "annotate.h"
@@ -30,12 +34,15 @@
 #include "bpf-event.h"
 #include "block-range.h"
 #include "string2.h"
+#include "util/event.h"
 #include "arch/common.h"
 #include <regex.h>
 #include <pthread.h>
 #include <linux/bitops.h>
 #include <linux/kernel.h>
+#include <linux/string.h>
 #include <bpf/libbpf.h>
+#include <subcmd/parse-options.h>
 
 /* FIXME: For the HE_COLORSET */
 #include "ui/browser.h"
@@ -49,7 +56,7 @@
 #define DARROW_CHAR	((unsigned char)'.')
 #define UARROW_CHAR	((unsigned char)'-')
 
-#include "sane_ctype.h"
+#include <linux/ctype.h>
 
 struct annotation_options annotation__default_options = {
 	.use_offset     = true,
@@ -144,6 +151,7 @@ static int arch__associate_ins_ops(struct arch* arch, const char *name, struct i
 #include "arch/arc/annotate/instructions.c"
 #include "arch/arm/annotate/instructions.c"
 #include "arch/arm64/annotate/instructions.c"
+#include "arch/csky/annotate/instructions.c"
 #include "arch/x86/annotate/instructions.c"
 #include "arch/powerpc/annotate/instructions.c"
 #include "arch/s390/annotate/instructions.c"
@@ -161,6 +169,10 @@ static struct arch architectures[] = {
 	{
 		.name = "arm64",
 		.init = arm64__annotate_init,
+	},
+	{
+		.name = "csky",
+		.init = csky__annotate_init,
 	},
 	{
 		.name = "x86",
@@ -557,7 +569,7 @@ static int mov__parse(struct arch *arch, struct ins_operands *ops, struct map_sy
 	if (comment == NULL)
 		return 0;
 
-	comment = ltrim(comment);
+	comment = skip_spaces(comment);
 	comment__symbol(ops->source.raw, comment + 1, &ops->source.addr, &ops->source.name);
 	comment__symbol(ops->target.raw, comment + 1, &ops->target.addr, &ops->target.name);
 
@@ -602,7 +614,7 @@ static int dec__parse(struct arch *arch __maybe_unused, struct ins_operands *ops
 	if (comment == NULL)
 		return 0;
 
-	comment = ltrim(comment);
+	comment = skip_spaces(comment);
 	comment__symbol(ops->target.raw, comment + 1, &ops->target.addr, &ops->target.name);
 
 	return 0;
@@ -923,17 +935,16 @@ alloc_histograms:
 }
 
 static int symbol__inc_addr_samples(struct symbol *sym, struct map *map,
-				    struct perf_evsel *evsel, u64 addr,
+				    struct evsel *evsel, u64 addr,
 				    struct perf_sample *sample)
 {
 	struct annotated_source *src;
 
 	if (sym == NULL)
 		return 0;
-	src = symbol__hists(sym, evsel->evlist->nr_entries);
-	if (src == NULL)
-		return -ENOMEM;
-	return __symbol__inc_addr_samples(sym, map, src, evsel->idx, addr, sample);
+	src = symbol__hists(sym, evsel->evlist->core.nr_entries);
+	return (src) ?  __symbol__inc_addr_samples(sym, map, src, evsel->idx,
+						   addr, sample) : 0;
 }
 
 static int symbol__account_cycles(u64 addr, u64 start,
@@ -1075,13 +1086,13 @@ void annotation__compute_ipc(struct annotation *notes, size_t size)
 }
 
 int addr_map_symbol__inc_samples(struct addr_map_symbol *ams, struct perf_sample *sample,
-				 struct perf_evsel *evsel)
+				 struct evsel *evsel)
 {
 	return symbol__inc_addr_samples(ams->sym, ams->map, evsel, ams->al_addr, sample);
 }
 
 int hist_entry__inc_addr_samples(struct hist_entry *he, struct perf_sample *sample,
-				 struct perf_evsel *evsel, u64 ip)
+				 struct evsel *evsel, u64 ip)
 {
 	return symbol__inc_addr_samples(he->ms.sym, he->ms.map, evsel, ip, sample);
 }
@@ -1099,7 +1110,7 @@ static void disasm_line__init_ins(struct disasm_line *dl, struct arch *arch, str
 
 static int disasm_line__parse(char *line, const char **namep, char **rawp)
 {
-	char tmp, *name = ltrim(line);
+	char tmp, *name = skip_spaces(line);
 
 	if (name[0] == '\0')
 		return -1;
@@ -1114,16 +1125,14 @@ static int disasm_line__parse(char *line, const char **namep, char **rawp)
 	*namep = strdup(name);
 
 	if (*namep == NULL)
-		goto out_free_name;
+		goto out;
 
 	(*rawp)[0] = tmp;
-	*rawp = ltrim(*rawp);
+	*rawp = strim(*rawp);
 
 	return 0;
 
-out_free_name:
-	free((void *)namep);
-	*namep = NULL;
+out:
 	return -1;
 }
 
@@ -1131,7 +1140,7 @@ struct annotate_args {
 	size_t			 privsize;
 	struct arch		*arch;
 	struct map_symbol	 ms;
-	struct perf_evsel	*evsel;
+	struct evsel	*evsel;
 	struct annotation_options *options;
 	s64			 offset;
 	char			*line;
@@ -1162,12 +1171,12 @@ static struct annotation_line *
 annotation_line__new(struct annotate_args *args, size_t privsize)
 {
 	struct annotation_line *al;
-	struct perf_evsel *evsel = args->evsel;
+	struct evsel *evsel = args->evsel;
 	size_t size = privsize + sizeof(*al);
 	int nr = 1;
 
 	if (perf_evsel__is_group_event(evsel))
-		nr = evsel->nr_members;
+		nr = evsel->core.nr_members;
 
 	size += sizeof(al->data[0]) * nr;
 
@@ -1232,8 +1241,7 @@ void disasm_line__free(struct disasm_line *dl)
 		dl->ins.ops->free(&dl->ops);
 	else
 		ins__delete(&dl->ops);
-	free((void *)dl->ins.name);
-	dl->ins.name = NULL;
+	zfree(&dl->ins.name);
 	annotation_line__delete(&dl->al);
 }
 
@@ -1357,7 +1365,7 @@ static int disasm_line__print(struct disasm_line *dl, u64 start, int addr_fmt_wi
 
 static int
 annotation_line__print(struct annotation_line *al, struct symbol *sym, u64 start,
-		       struct perf_evsel *evsel, u64 len, int min_pcnt, int printed,
+		       struct evsel *evsel, u64 len, int min_pcnt, int printed,
 		       int max_lines, struct annotation_line *queue, int addr_fmt_width,
 		       int percent_type)
 {
@@ -1446,7 +1454,7 @@ annotation_line__print(struct annotation_line *al, struct symbol *sym, u64 start
 			return -1;
 
 		if (perf_evsel__is_group_event(evsel))
-			width *= evsel->nr_members;
+			width *= evsel->core.nr_members;
 
 		if (!*al->line)
 			printf(" %*s:\n", width, " ");
@@ -1496,7 +1504,7 @@ static int symbol__parse_objdump_line(struct symbol *sym, FILE *file,
 		return -1;
 
 	line_ip = -1;
-	parsed_line = rtrim(line);
+	parsed_line = strim(line);
 
 	/* /filename:linenr ? Save line number and ignore. */
 	if (regexec(&file_lineno, parsed_line, 2, match, 0) == 0) {
@@ -1504,7 +1512,7 @@ static int symbol__parse_objdump_line(struct symbol *sym, FILE *file,
 		return 0;
 	}
 
-	tmp = ltrim(parsed_line);
+	tmp = skip_spaces(parsed_line);
 	if (*tmp) {
 		/*
 		 * Parse hexa addresses followed by ':'
@@ -1584,7 +1592,7 @@ static void delete_last_nop(struct symbol *sym)
 				return;
 		}
 
-		list_del(&dl->al.node);
+		list_del_init(&dl->al.node);
 		disasm_line__free(dl);
 	}
 }
@@ -2009,10 +2017,10 @@ static void calc_percent(struct sym_hist *sym_hist,
 }
 
 static void annotation__calc_percent(struct annotation *notes,
-				     struct perf_evsel *leader, s64 len)
+				     struct evsel *leader, s64 len)
 {
 	struct annotation_line *al, *next;
-	struct perf_evsel *evsel;
+	struct evsel *evsel;
 
 	list_for_each_entry(al, &notes->src->source, node) {
 		s64 end;
@@ -2039,7 +2047,7 @@ static void annotation__calc_percent(struct annotation *notes,
 	}
 }
 
-void symbol__calc_percent(struct symbol *sym, struct perf_evsel *evsel)
+void symbol__calc_percent(struct symbol *sym, struct evsel *evsel)
 {
 	struct annotation *notes = symbol__annotation(sym);
 
@@ -2047,7 +2055,7 @@ void symbol__calc_percent(struct symbol *sym, struct perf_evsel *evsel)
 }
 
 int symbol__annotate(struct symbol *sym, struct map *map,
-		     struct perf_evsel *evsel, size_t privsize,
+		     struct evsel *evsel, size_t privsize,
 		     struct annotation_options *options,
 		     struct arch **parch)
 {
@@ -2212,7 +2220,7 @@ static void print_summary(struct rb_root *root, const char *filename)
 	}
 }
 
-static void symbol__annotate_hits(struct symbol *sym, struct perf_evsel *evsel)
+static void symbol__annotate_hits(struct symbol *sym, struct evsel *evsel)
 {
 	struct annotation *notes = symbol__annotation(sym);
 	struct sym_hist *h = annotation__histogram(notes, evsel->idx);
@@ -2239,7 +2247,7 @@ static int annotated_source__addr_fmt_width(struct list_head *lines, u64 start)
 }
 
 int symbol__annotate_printf(struct symbol *sym, struct map *map,
-			    struct perf_evsel *evsel,
+			    struct evsel *evsel,
 			    struct annotation_options *opts)
 {
 	struct dso *dso = map->dso;
@@ -2270,7 +2278,7 @@ int symbol__annotate_printf(struct symbol *sym, struct map *map,
 	len = symbol__size(sym);
 
 	if (perf_evsel__is_group_event(evsel)) {
-		width *= evsel->nr_members;
+		width *= evsel->core.nr_members;
 		perf_evsel__group_desc(evsel, buf, sizeof(buf));
 		evsel_name = buf;
 	}
@@ -2403,7 +2411,7 @@ static int symbol__annotate_fprintf2(struct symbol *sym, FILE *fp,
 	return 0;
 }
 
-int map_symbol__annotation_dump(struct map_symbol *ms, struct perf_evsel *evsel,
+int map_symbol__annotation_dump(struct map_symbol *ms, struct evsel *evsel,
 				struct annotation_options *opts)
 {
 	const char *ev_name = perf_evsel__name(evsel);
@@ -2461,7 +2469,7 @@ void annotated_source__purge(struct annotated_source *as)
 	struct annotation_line *al, *n;
 
 	list_for_each_entry_safe(al, n, &as->source, node) {
-		list_del(&al->node);
+		list_del_init(&al->node);
 		disasm_line__free(disasm_line(al));
 	}
 }
@@ -2655,7 +2663,7 @@ static void symbol__calc_lines(struct symbol *sym, struct map *map,
 }
 
 int symbol__tty_annotate2(struct symbol *sym, struct map *map,
-			  struct perf_evsel *evsel,
+			  struct evsel *evsel,
 			  struct annotation_options *opts)
 {
 	struct dso *dso = map->dso;
@@ -2683,7 +2691,7 @@ int symbol__tty_annotate2(struct symbol *sym, struct map *map,
 }
 
 int symbol__tty_annotate(struct symbol *sym, struct map *map,
-			 struct perf_evsel *evsel,
+			 struct evsel *evsel,
 			 struct annotation_options *opts)
 {
 	struct dso *dso = map->dso;
@@ -2954,7 +2962,7 @@ void annotation_line__write(struct annotation_line *al, struct annotation *notes
 				 wops->write_graph);
 }
 
-int symbol__annotate2(struct symbol *sym, struct map *map, struct perf_evsel *evsel,
+int symbol__annotate2(struct symbol *sym, struct map *map, struct evsel *evsel,
 		      struct annotation_options *options, struct arch **parch)
 {
 	struct annotation *notes = symbol__annotation(sym);
@@ -2966,7 +2974,7 @@ int symbol__annotate2(struct symbol *sym, struct map *map, struct perf_evsel *ev
 		return -1;
 
 	if (perf_evsel__is_group_event(evsel))
-		nr_pcnt = evsel->nr_members;
+		nr_pcnt = evsel->core.nr_members;
 
 	err = symbol__annotate(sym, map, evsel, 0, options, parch);
 	if (err)

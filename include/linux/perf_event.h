@@ -246,6 +246,7 @@ struct perf_event;
 #define PERF_PMU_CAP_ITRACE			0x20
 #define PERF_PMU_CAP_HETEROGENEOUS_CPUS		0x40
 #define PERF_PMU_CAP_NO_EXCLUDE			0x80
+#define PERF_PMU_CAP_AUX_OUTPUT			0x100
 
 /**
  * struct pmu - generic performance monitoring unit
@@ -256,6 +257,7 @@ struct pmu {
 	struct module			*module;
 	struct device			*dev;
 	const struct attribute_group	**attr_groups;
+	const struct attribute_group	**attr_update;
 	const char			*name;
 	int				type;
 
@@ -443,6 +445,16 @@ struct pmu {
 	 * caller provides necessary serialization.
 	 */
 	void (*addr_filters_sync)	(struct perf_event *event);
+					/* optional */
+
+	/*
+	 * Check if event can be used for aux_output purposes for
+	 * events of this PMU.
+	 *
+	 * Runs from perf_event_open(). Should return 0 for "no match"
+	 * or non-zero for "match".
+	 */
+	int (*aux_output_match)		(struct perf_event *event);
 					/* optional */
 
 	/*
@@ -680,6 +692,9 @@ struct perf_event {
 	struct perf_addr_filter_range	*addr_filter_ranges;
 	unsigned long			addr_filters_gen;
 
+	/* for aux_output events */
+	struct perf_event		*aux_event;
+
 	void (*destroy)(struct perf_event *);
 	struct rcu_head			rcu_head;
 
@@ -749,6 +764,11 @@ struct perf_event_context {
 	int				nr_stat;
 	int				nr_freq;
 	int				rotate_disable;
+	/*
+	 * Set when nr_events != nr_active, except tolerant to events not
+	 * necessary to be active due to scheduling constraints, such as cgroups.
+	 */
+	int				rotate_necessary;
 	refcount_t			refcount;
 	struct task_struct		*task;
 
@@ -1047,6 +1067,11 @@ static inline int is_software_event(struct perf_event *event)
 static inline int in_software_context(struct perf_event *event)
 {
 	return event->ctx->pmu->task_ctx_nr == perf_sw_context;
+}
+
+static inline int is_exclusive_pmu(struct pmu *pmu)
+{
+	return pmu->capabilities & PERF_PMU_CAP_EXCLUSIVE;
 }
 
 extern struct static_key perf_swevent_enabled[PERF_COUNT_SW_MAX];

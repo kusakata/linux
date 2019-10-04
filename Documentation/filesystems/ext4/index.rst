@@ -8,7 +8,7 @@ ext4 のデータ構造とアルゴリズム
    :maxdepth: 6
    :numbered:
 
-   about.rst
-   overview.rst
-   globals.rst
-   dynamic.rst
+   about
+   overview
+   globals
+   dynamic

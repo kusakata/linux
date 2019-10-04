@@ -11,6 +11,7 @@ Linux カーネルユーザー・管理者ガイド
    README
    kernel-parameters
    devices
+   sysctl/index
 
 以下のセクションでは CPU の脆弱性と緩和策について説明しています。
 
@@ -32,6 +33,8 @@ Linux カーネルユーザー・管理者ガイド
    ramoops
    dynamic-debug-howto
    init
+   kdump/index
+   perf/index
 
 アプリケーション開発者の興味を引くような情報がセクションの冒頭にあります。カーネル ABI の様々な面をカバーするドキュメントはこちらです。
 
@@ -47,11 +50,13 @@ Linux カーネルユーザー・管理者ガイド
 
    initrd
    cgroup-v2
+   cgroup-v1/index
    serial-console
    braille-console
    parport
    md
    module-signing
+   rapidio
    sysrq
    unicode
    vga-softcursor
@@ -60,13 +65,43 @@ Linux カーネルユーザー・管理者ガイド
    java
    ras
    bcache
+   blockdev/index
    ext4
+   binderfs
+   cifs/index
+   xfs
+   jfs
+   ufs
    pm/index
    thunderbolt
    LSM/index
    mm/index
+   namespaces/index
    perf-security
    acpi/index
+   aoe/index
+   btmrvl
+   clearing-warn-once
+   cpu-load
+   cputopology
+   device-mapper/index
+   efi-stub
+   gpio/index
+   highuid
+   hw_random
+   iostats
+   kernel-per-CPU-kthreads
+   laptops/index
+   auxdisplay/index
+   lcd-panel-cgram
+   ldm
+   lockup-watchdogs
+   numastat
+   pnp
+   rtc
+   svga
+   wimax/index
+   video-output
 
 .. only::  subproject and html
 

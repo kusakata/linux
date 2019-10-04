@@ -17,6 +17,7 @@ Linux カーネルユーザー空間 API ガイド
    seccomp_filter
    unshare
    spec_ctrl
+   accelerators/ocxl
 
 .. only::  subproject and html
 

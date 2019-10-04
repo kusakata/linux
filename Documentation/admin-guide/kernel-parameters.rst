@@ -5,7 +5,7 @@
 
 以下は __setup(), core_param(), module_param() マクロによって実装されているカーネルパラメータの英語辞書順 (句読点を無視して大文字・小文字を区別しないで文字よりも先に数字が来ます) のリストと説明です。
 
-カーネルはカーネルコマンドラインの "--" までのパラメータをパースします。パラメータが認識されずコマンドラインに '.' が含まれていない場合、パラメータは init に渡されます: '=' が付くパラメータは init の環境に渡され、他のパラメータはコマンドライン引数として init に渡されます。"--" 以後の文字列は init の引数として渡されます。
+カーネルはカーネルコマンドラインの "``--``" までのパラメータをパースします。パラメータが認識されずコマンドラインに '.' が含まれていない場合、パラメータは init に渡されます: '=' が付くパラメータは init の環境に渡され、他のパラメータはコマンドライン引数として init に渡されます。"``--``" 以後の文字列は init の引数として渡されます。
 
 モジュールパラメータは2つの方法で指定することができます: モジュール名のプリフィックスを付けてカーネルコマンドラインで指定するか、modprobe を使用します。例::
 
@@ -94,7 +94,7 @@ cpu lists:
 	LOOP	Loopback device support is enabled.
 	M68k	M68k architecture is enabled.
 			These options have more detailed description inside of
-			Documentation/m68k/kernel-options.txt.
+			Documentation/m68k/kernel-options.rst.
 	MDA	MDA console support is enabled.
 	MIPS	MIPS architecture is enabled.
 	MOUSE	Appropriate mouse support is enabled.
@@ -143,7 +143,7 @@ cpu lists:
 	X86-32	X86-32, aka i386 architecture is enabled.
 	X86-64	X86-64 architecture is enabled.
 			More X86-64 boot options can be found in
-			Documentation/x86/x86_64/boot-options.txt .
+			Documentation/x86/x86_64/boot-options.rst.
 	X86	Either 32-bit or 64-bit x86 (same as X86-32+X86-64)
 	X86_UV	SGI UV support is enabled.
 	XEN	Xen support is enabled
@@ -154,9 +154,9 @@ cpu lists:
 	KNL	Is a kernel start-up parameter.
 	BOOT	Is a boot loader parameter.
 
-BOOT と書かれたパラメータはブートローダーによって認識されます。カーネルには直接的な効果がありません。特に必要がない場合はブートローダーパラメータの構文は変更しないでください。<Documentation/x86/boot.txt> も参照。
+BOOT と書かれたパラメータはブートローダーによって認識されます。カーネルには直接的な効果がありません。特に必要がない場合はブートローダーパラメータの構文は変更しないでください。<Documentation/x86/boot.rst> も参照。
 
-ここではアーキテクチャ固有のカーネルパラメータについては列挙していません。<Documentation/x86/x86_64/boot-options.txt> などを見てください。
+ここではアーキテクチャ固有のカーネルパラメータについては列挙していません。<Documentation/x86/x86_64/boot-options.rst> などを見てください。
 
 以下に記載しているカーネルパラメータは全て大文字・小文字を区別します。また、パラメータの名前に = が付いている場合は環境変数としてパラメータが入力され、付いていない場合はシステムが立ち上がったときにプログラムによって /proc/cmdline から読み込むことができるカーネル引数となります。
 

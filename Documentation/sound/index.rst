@@ -12,7 +12,7 @@ Linux サウンドサブシステムドキュメント
    hd-audio/index
    cards/index
 
-.. only::  subproject
+.. only::  subproject and html
 
    Indices
    =======

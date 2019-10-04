@@ -55,7 +55,7 @@
  * as usual) and both source and destination can trigger faults.
  */
 
-static __always_inline unsigned long
+static __always_inline __must_check unsigned long
 __copy_from_user_inatomic(void *to, const void __user *from, unsigned long n)
 {
 	kasan_check_write(to, n);
@@ -63,7 +63,7 @@ __copy_from_user_inatomic(void *to, const void __user *from, unsigned long n)
 	return raw_copy_from_user(to, from, n);
 }
 
-static __always_inline unsigned long
+static __always_inline __must_check unsigned long
 __copy_from_user(void *to, const void __user *from, unsigned long n)
 {
 	might_fault();
@@ -85,7 +85,7 @@ __copy_from_user(void *to, const void __user *from, unsigned long n)
  * The caller should also make sure he pins the user space address
  * so that we don't result in page fault and sleep.
  */
-static __always_inline unsigned long
+static __always_inline __must_check unsigned long
 __copy_to_user_inatomic(void __user *to, const void *from, unsigned long n)
 {
 	kasan_check_read(from, n);
@@ -93,7 +93,7 @@ __copy_to_user_inatomic(void __user *to, const void *from, unsigned long n)
 	return raw_copy_to_user(to, from, n);
 }
 
-static __always_inline unsigned long
+static __always_inline __must_check unsigned long
 __copy_to_user(void __user *to, const void *from, unsigned long n)
 {
 	might_fault();
@@ -103,7 +103,7 @@ __copy_to_user(void __user *to, const void *from, unsigned long n)
 }
 
 #ifdef INLINE_COPY_FROM_USER
-static inline unsigned long
+static inline __must_check unsigned long
 _copy_from_user(void *to, const void __user *from, unsigned long n)
 {
 	unsigned long res = n;
@@ -117,12 +117,12 @@ _copy_from_user(void *to, const void __user *from, unsigned long n)
 	return res;
 }
 #else
-extern unsigned long
+extern __must_check unsigned long
 _copy_from_user(void *, const void __user *, unsigned long);
 #endif
 
 #ifdef INLINE_COPY_TO_USER
-static inline unsigned long
+static inline __must_check unsigned long
 _copy_to_user(void __user *to, const void *from, unsigned long n)
 {
 	might_fault();
@@ -133,7 +133,7 @@ _copy_to_user(void __user *to, const void *from, unsigned long n)
 	return n;
 }
 #else
-extern unsigned long
+extern __must_check unsigned long
 _copy_to_user(void __user *, const void *, unsigned long);
 #endif
 
@@ -203,7 +203,10 @@ static inline void pagefault_enable(void)
 /*
  * Is the pagefault handler disabled? If so, user access methods will not sleep.
  */
-#define pagefault_disabled() (current->pagefault_disabled != 0)
+static inline bool pagefault_disabled(void)
+{
+	return current->pagefault_disabled != 0;
+}
 
 /*
  * The pagefault handler is in general disabled by pagefault_disable() or
@@ -219,8 +222,9 @@ static inline void pagefault_enable(void)
 
 #ifndef ARCH_HAS_NOCACHE_UACCESS
 
-static inline unsigned long __copy_from_user_inatomic_nocache(void *to,
-				const void __user *from, unsigned long n)
+static inline __must_check unsigned long
+__copy_from_user_inatomic_nocache(void *to, const void __user *from,
+				  unsigned long n)
 {
 	return __copy_from_user_inatomic(to, from, n);
 }
@@ -240,6 +244,18 @@ extern long probe_kernel_read(void *dst, const void *src, size_t size);
 extern long __probe_kernel_read(void *dst, const void *src, size_t size);
 
 /*
+ * probe_user_read(): safely attempt to read from a location in user space
+ * @dst: pointer to the buffer that shall take the data
+ * @src: address to read from
+ * @size: size of the data chunk
+ *
+ * Safely read from address @src to the buffer at @dst.  If a kernel fault
+ * happens, handle that and return -EFAULT.
+ */
+extern long probe_user_read(void *dst, const void __user *src, size_t size);
+extern long __probe_user_read(void *dst, const void __user *src, size_t size);
+
+/*
  * probe_kernel_write(): safely attempt to write to a location
  * @dst: address to write to
  * @src: pointer to the data that shall be written
@@ -252,6 +268,9 @@ extern long notrace probe_kernel_write(void *dst, const void *src, size_t size);
 extern long notrace __probe_kernel_write(void *dst, const void *src, size_t size);
 
 extern long strncpy_from_unsafe(char *dst, const void *unsafe_addr, long count);
+extern long strncpy_from_unsafe_user(char *dst, const void __user *unsafe_addr,
+				     long count);
+extern long strnlen_unsafe_user(const void __user *unsafe_addr, long count);
 
 /**
  * probe_kernel_address(): safely attempt to read from a location

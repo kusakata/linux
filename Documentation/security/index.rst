@@ -8,7 +8,10 @@
    credentials
    IMA-templates
    keys/index
-   LSM
+   lsm
+   lsm-development
+   sak
    SCTP
    self-protection
+   siphash
    tpm/index

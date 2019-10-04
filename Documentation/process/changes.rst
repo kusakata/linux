@@ -15,14 +15,14 @@
 
 バグだと思われるような現象に出会ったら、バグだと即断する前に以下のソフトウェアのバージョン要件が満たされているか確認してください。使用しているソフトウェアのバージョンが分からない場合、記載しているコマンドを使うことで確認できます。
 
-また、以下のリストは既に Linux カーネルが使える状態であることが前提です。さらに、環境によっては以下のツールが全て必要であるというわけではありません。例えば ISDN ハードウェアを使用していない場合、isdn4k-utils はおそらく必要ないでしょう。
+また、以下のリストは既に Linux カーネルが使える状態であることが前提です。さらに、環境によっては以下のツールが全て必要であるというわけではありません。例えば PC Card ハードウェアを使用していない場合、pcmciautils はおそらく必要ないでしょう。
 
 ====================== ===============  ========================================
       プログラム          バージョン        バージョンをチェックするコマンド
 ====================== ===============  ========================================
 GNU C                  4.6              gcc --version
 GNU make               3.81             make --version
-binutils               2.20             ld -v
+binutils               2.21             ld -v
 flex                   2.5.35           flex --version
 bison                  2.0              bison --version
 util-linux             2.10o            fdformat --version
@@ -36,7 +36,6 @@ btrfs-progs            0.18             btrfsck
 pcmciautils            004              pccardctl -V
 quota-tools            3.09             quota -V
 PPP                    2.4.0            pppd --version
-isdn4k-utils           3.1pre1          isdnctrl 2>&1|grep version
 nfs-utils              1.0.5            showmount --version
 procps                 3.2.0            ps --version
 oprofile               0.9              oprofiled --version
@@ -46,7 +45,7 @@ mcelog                 0.6              mcelog --version
 iptables               1.4.2            iptables -V
 openssl & libcrypto    1.0.0            openssl version
 bc                     1.06.95          bc --version
-Sphinx\ [#f1]_	        1.3		          sphinx-build --version
+Sphinx\ [#f1]_	       1.3		sphinx-build --version
 ====================== ===============  ========================================
 
 .. [#f1] カーネルドキュメントをビルドするには Sphinx が必要です
@@ -67,9 +66,7 @@ Make
 Binutils
 --------
 
-The build system has, as of 4.13, switched to using thin archives (`ar T`)
-rather than incremental linking (`ld -r`) for built-in.a intermediate steps.
-This requires binutils 2.20 or newer.
+カーネルをビルドするには Binutils 2.21 以上が必要です。
 
 pkg-config
 ----------
@@ -269,12 +266,6 @@ which can be made by::
 
 as root.
 
-Isdn4k-utils
-------------
-
-Due to changes in the length of the phone number field, isdn4k-utils
-needs to be recompiled or (preferably) upgraded.
-
 NFS-utils
 ---------
 
@@ -437,11 +428,6 @@ PPP
 ---
 
 - <ftp://ftp.samba.org/pub/ppp/>
-
-Isdn4k-utils
-------------
-
-- <ftp://ftp.isdn4linux.de/pub/isdn4linux/utils/>
 
 NFS-utils
 ---------

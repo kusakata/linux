@@ -7,11 +7,10 @@
 #include <string.h>
 #include <errno.h>
 
-#include "../perf.h"
 #include "debug.h"
 #include "trace-event.h"
 
-#include "sane_ctype.h"
+#include <linux/ctype.h>
 
 static int get_common_field(struct scripting_context *context,
 			    int *offset, int *size, const char *type)
@@ -110,7 +109,7 @@ void event_format__fprintf(struct tep_event *event,
 	record.data = data;
 
 	trace_seq_init(&s);
-	tep_event_info(&s, event, &record);
+	tep_print_event(event->tep, &s, &record, "%s", TEP_PRINT_INFO);
 	trace_seq_do_fprintf(&s, fp);
 	trace_seq_destroy(&s);
 }

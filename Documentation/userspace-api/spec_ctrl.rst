@@ -33,6 +33,8 @@ PR_GET_SPECULATION_CTRL は prctl(2) の arg2 で選択された投機実行の�
 
 PR_SPEC_PRCTL が設定されている場合、タスク毎の緩和策の制御が可能です。設定されていない場合、投機実行の欠陥に対して prctl(PR_SET_SPECULATION_CTRL) を実行できません。
 
+.. _set_spec_ctrl:
+
 PR_SET_SPECULATION_CTRL
 -----------------------
 

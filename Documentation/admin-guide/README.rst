@@ -158,7 +158,7 @@ Linux が動作するハードウェアは？
 
      "make tinyconfig"  Configure the tiniest possible kernel.
 
-   Linux カーネルのコンフィグツールについては Documentation/kbuild/kconfig.txt に詳しい情報が載っています。
+   Linux カーネルのコンフィグツールについては Documentation/kbuild/kconfig.rst に詳しい情報が載っています。
 
  - ``make config`` のノート:
 
