@@ -1,41 +1,28 @@
-=====================
-The Linux IPMI Driver
-=====================
+========================
+Linux IPMI ドライバー
+========================
 
 :Author: Corey Minyard <minyard@mvista.com> / <minyard@acm.org>
 
-The Intelligent Platform Management Interface, or IPMI, is a
-standard for controlling intelligent devices that monitor a system.
-It provides for dynamic discovery of sensors in the system and the
-ability to monitor the sensors and be informed when the sensor's
-values change or go outside certain boundaries.  It also has a
-standardized database for field-replaceable units (FRUs) and a watchdog
-timer.
+翻訳ソース: http://linuxjf.osdn.jp/JFdocs/kernel-docs-2.6/IPMI.txt.html
 
-To use this, you need an interface to an IPMI controller in your
-system (called a Baseboard Management Controller, or BMC) and
-management software that can use the IPMI system.
+Intelligent Platform Management Interface (IPMI) はシステムを監視する高度なデバイス制御の為の標準です。これはシステム中のセンサーの動的検出とセンサーのモニタリング機能を提供し、センサーの値が変化した時やある境界値を越えた時に通知します。また、IPMI は現地置換可能ユニット(FRU) とウォッチドッグタイマに関する標準化されたデータベースを持ちます。
 
-This document describes how to use the IPMI driver for Linux.  If you
-are not familiar with IPMI itself, see the web site at
-http://www.intel.com/design/servers/ipmi/index.htm.  IPMI is a big
-subject and I can't cover it all here!
+(訳注：ウォッチドッグタイマ…システムのハングアップを検知する為のデバ
+イス)
 
-Configuration
+IPMI を使用する為には、システム中の IPMI コントローラ (Baseboard Management Controller または BMC と言います) へのインターフェースと、IPMI システムを使用できる管理ソフトウェアが必要です。
+
+このドキュメントは Linux 用 IPMI ドライバを使用する方法を説明します。もしあなたが IPMI 自体をよく知らない場合は、http://www.intel.com/design/servers/ipmi/index.htm の Web サイトを参照してください。IPMI は大きなテーマであり、ここで全てをカバーする事は出来ません。
+
+設定
 -------------
 
-The Linux IPMI driver is modular, which means you have to pick several
-things to have it work right depending on your hardware.  Most of
-these are available in the 'Character Devices' menu then the IPMI
-menu.
+LinuxIPMI ドライバはモジュール化(分割)されています。これは、IPMI ドライバを正しく機能させる為に、ハードウェアに合わせて幾つかのモジュールを選ばないといけない事を意味します。これらの物はほとんど、'Character Devices' メニュー中で選択可能です。
 
-No matter what, you must pick 'IPMI top-level message handler' to use
-IPMI.  What you do beyond that depends on your needs and hardware.
+とりあえず、IPMI を使用するために 'IPMI top-level message handler' を選択しなければなりません。その後に選択するものはあなたのニーズとハードウェアに依存します。
 
-The message handler does not provide any user-level interfaces.
-Kernel code (like the watchdog) can still use it.  If you need access
-from userland, you need to select 'Device interface for IPMI' if you
-want access through a device driver.
+メッセージハンドラはユーザレベルのインターフェースを一切提供しません。それでも、ウォッチドッグのようなカーネル内コードはこれを使用できます。ユーザランドからのアクセスが必要な場合、デバイスドライバ経由でアクセスしたいのであれば、'Device interface for IPMI' を選択する必要があります。
 
 The driver interface depends on your hardware.  If your system
 properly provides the SMBIOS info for IPMI, the driver will detect it
@@ -49,8 +36,7 @@ figuring to see if it will work on your system if the SMBIOS/APCI
 information is wrong or not present.  It is fairly safe to have both
 these enabled and let the drivers auto-detect what is present.
 
-You should generally enable ACPI on your system, as systems with IPMI
-can have ACPI tables describing them.
+一般に、IPMI 付システムは IPMI を記述した ACPI テーブルを持っている筈なので、システムの ACPI を有効にすべきです。
 
 If you have a standard interface and the board manufacturer has done
 their job correctly, the IPMI controller should be automatically
@@ -60,15 +46,8 @@ standard defaults, but they may not work.  If you fall into this
 situation, you need to read the section below named 'The SI Driver' or
 "The SMBus Driver" on how to hand-configure your system.
 
-IPMI defines a standard watchdog timer.  You can enable this with the
-'IPMI Watchdog Timer' config option.  If you compile the driver into
-the kernel, then via a kernel command-line option you can have the
-watchdog timer start as soon as it initializes.  It also have a lot
-of other options, see the 'Watchdog' section below for more details.
-Note that you can also have the watchdog continue to run if it is
-closed (by default it is disabled on close).  Go into the 'Watchdog
-Cards' menu, enable 'Watchdog Timer Support', and enable the option
-'Disable watchdog shutdown on close'.
+IPMI は標準ウォッチドッグタイマを定義します。'IPMI ウォッチドッグタイマ' 設定オプションでこの機能を有効にできます。このドライバをカーネルに組み込んだ場合、カーネルコマンドラインオプション経由で、ドライバが初期化され次第ウォッチドッグタイマを有効にする事ができます。他にも多数のオプションがあります。詳細は下記の「ウォッチドッグ」の章を参照して下さい。
+ウォッチドッグタイマは close された後も有効にする事ができる事に注意してください (デフォルトでは close された時に無効化されます)。'Watchdog Cards' メニューに行き、'Watchdog Timer Support' を有効にして、'Disable watchdog shutdown on close' オプションを選択して下さい。
 
 IPMI systems can often be powered off using IPMI commands.  Select
 'IPMI Poweroff' to do this.  The driver will auto-detect if the system
@@ -85,28 +64,17 @@ option.  You can also enable these dynamically by setting the module
 parameter named "panic_op" in the ipmi_msghandler module to "event"
 or "string".  Setting that parameter to "none" disables this function.
 
-Basic Design
-------------
+基本デザイン
+---------------
 
-The Linux IPMI driver is designed to be very modular and flexible, you
-only need to take the pieces you need and you can use it in many
-different ways.  Because of that, it's broken into many chunks of
-code.  These chunks (by module name) are:
+Linux IPMI ドライバは高度にモジュール化・柔軟化されるようデザインされています。必要な部分だけ選べば良いですし、幾つかの異なる方法で使用する事ができます。このため、IPMI ドライバは多数のモジュールに分割されています。これらは下記の通りです:
 
-ipmi_msghandler - This is the central piece of software for the IPMI
-system.  It handles all messages, message timing, and responses.  The
-IPMI users tie into this, and the IPMI physical interfaces (called
-System Management Interfaces, or SMIs) also tie in here.  This
-provides the kernelland interface for IPMI, but does not provide an
-interface for use by application processes.
+ipmi_msghandler - これが IPMI システム用ソフトウェアの中核モジュールです。これは全てのメッセージ、メッセージタイミング、応答を扱います。IPMI ユーザはこのドライバに結びつけられ、IPMI 物理インターフェース (System Management Interface または SMI と呼ばれています) もこのモジュールに結びつけられます。このモジュールは IPMI 用のカーネルランドインターフェースを提供しますが、アプリケーションプロセスによって使用されるインターフェースは提供しません。
 
-ipmi_devintf - This provides a userland IOCTL interface for the IPMI
-driver, each open file for this device ties in to the message handler
-as an IPMI user.
+ipmi_devintf - これはIPMI ドライバに対するユーザランドの IOCTL インターフェースを提供します。このドライバへの open されたファイルはそれぞれ、IPMI ユーザとしてメッセージハンドラに結びつけられます。
 
-ipmi_si - A driver for various system interfaces.  This supports KCS,
-SMIC, and BT interfaces.  Unless you have an SMBus interface or your
-own custom interface, you probably need to use this.
+ipmi_si - 様々なシステムインターフェースの為のドライバを提供します。これは KCS と SMIC をサポートしており、将来 BT をサポートするかもしれません。独自に専用インターフェースを用意したのでない限り、多分このドライ
+バが必要になるでしょう。
 
 ipmi_ssif - A driver for accessing BMCs on the SMBus. It uses the
 I2C kernel driver's SMBus interfaces to send and receive IPMI messages
@@ -127,19 +95,17 @@ running Linux to provide an interface to the host.
 
 These are all individually selectable via configuration options.
 
-Much documentation for the interface is in the include files.  The
-IPMI include files are:
+このインターフェースのほとんどのドキュメントは include ファイル中にあります。IPMI include ファイルは:
 
-linux/ipmi.h - Contains the user interface and IOCTL interface for IPMI.
+linux/ipmi.h - IPMI 用ユーザインターフェースと IOCTL インターフェースを含みます。
 
-linux/ipmi_smi.h - Contains the interface for system management interfaces
-(things that interface to IPMI controllers) to use.
+linux/ipmi_smi.h - SMI (IPMI コントローラへのインターフェース) を使用する為のインターフェースを含みます。
 
-linux/ipmi_msgdefs.h - General definitions for base IPMI messaging.
+linux/ipmi_msgdefs.h - 基本 IPMI メッセージの為の一般的な定義。
 
 
-Addressing
-----------
+アドレッシング
+-----------------
 
 The IPMI addressing works much like IP addresses, you have an overlay
 to handle the different address types.  The overlay is::

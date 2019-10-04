@@ -1,52 +1,38 @@
 Linux の Java(tm) バイナリのカーネルサポート v1.03
 ----------------------------------------------------
 
-Linux beats them ALL! While all other OS's are TALKING about direct
-support of Java Binaries in the OS, Linux is doing it!
+翻訳ソース: http://linuxjf.osdn.jp/JFdocs/kernel-docs-2.6/java.txt.html
 
-You can execute Java applications and Java Applets just like any
-other program after you have done the following:
+Linux はすべてにおいて先んじています！他のすべての OS が、OS 内で Java バイナリの直接サポートについて議論をしている中、Linux はサポートをしています！
 
-1) You MUST FIRST install the Java Developers Kit for Linux.
-   The Java on Linux HOWTO gives the details on getting and
-   installing this. This HOWTO can be found at:
+下記のことを行った後、他のプログラムと同じように Java アプリケーションと Java アプレットを実行できます:
+
+1) まず、Linux 向け Java Developers Kit (JDK) をインストールしなければなりません。Java-HOWTO は JDK の入手とインストールを説明しています。この HOWTO は次のところから入手できます (訳注：2001 年 12 月現在ではリンク切れになっていました。):
 
 	ftp://sunsite.unc.edu/pub/Linux/docs/HOWTO/Java-HOWTO
 
-   You should also set up a reasonable CLASSPATH environment
-   variable to use Java applications that make use of any
-   nonstandard classes (not included in the same directory
-   as the application itself).
+   また、標準ではないクラス (アプリケーション自体と同じディレクトリに含まれていないクラスのために) を利用している Java アプリケーションを使用するために、合理的な CLASSPATH 環境変数を設定しなければなりません。
 
-2) You have to compile BINFMT_MISC either as a module or into
-   the kernel (``CONFIG_BINFMT_MISC``) and set it up properly.
-   If you choose to compile it as a module, you will have
-   to insert it manually with modprobe/insmod, as kmod
-   cannot easily be supported with binfmt_misc.
-   Read the file 'binfmt_misc.txt' in this directory to know
-   more about the configuration process.
+2) モジュールとして、あるいはカーネルに組込む (``CONFIG_BINFMT_MISC``) ために、BINFMT_MISC をコンパイルし、適切に設定しなければなりません。モジュールとしてコンパイルすることを選んだなら、kmod で binfmt_misc をサポートすることが簡単にできないので、modprobe/insmod により手動でロードしなければなりません。設定についてもっと知りたいのなら、Documentation ディレクトリにあるファイル 'binfmt_misc.txt' を読んでください。
 
-3) Add the following configuration items to binfmt_misc
-   (you should really have read ``binfmt_misc.txt`` now):
-   support for Java applications::
+3) binfmt_misc に次の設定項目を追加してください (いますぐ ``binfmt_misc.txt`` を読むことをお勧めします):
+   Java アプリケーションのサポート::
 
      ':Java:M::\xca\xfe\xba\xbe::/usr/local/bin/javawrapper:'
 
-   support for executable Jar files::
+   実行可能 jar ファイルのサポート::
 
      ':ExecutableJAR:E::jar::/usr/local/bin/jarwrapper:'
 
-   support for Java Applets::
+   Java アプレットのサポート::
 
      ':Applet:E::html::/usr/bin/appletviewer:'
 
-   or the following, if you want to be more selective::
+   もしくは、より選択的にしたい場合::
 
      ':Applet:M::<!--applet::/usr/bin/appletviewer:'
 
-   Of course you have to fix the path names. The path/file names given in this
-   document match the Debian 2.1 system. (i.e. jdk installed in ``/usr``,
-   custom wrappers from this document in ``/usr/local``)
+   もちろんパス名を修正しなければなりません。この文書で使用しているパスやファイル名は Debian 2.1 システムに合わせています (つまり は ``/usr`` 内に、この文書のカスタムラッパーは ``/usr/local`` 内にインストールされています)。
 
    Note, that for the more selective applet support you have to modify
    existing html-files to contain ``<!--applet-->`` in the first line
